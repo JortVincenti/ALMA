@@ -60,7 +60,11 @@ def main():
     dtype = dtype_map.get(args.dtype, torch.float)
 
     # load model and tokenizer
-    model = AutoModelForCausalLM.from_pretrained(args.model, torch_dtype=dtype, device_map="auto")
+    model = AutoModelForCausalLM.from_pretrained(args.model, 
+                                                 torch_dtype=dtype, 
+                                                 device_map="auto",
+                                                 offload_folder="./offload"
+                                                 )
     #model = PeftModel.from_pretrained(model, args.ckpt) # load when you have lora
     model.eval()
     tokenizer = LlamaTokenizer.from_pretrained(args.model)
@@ -107,7 +111,7 @@ def main():
             prompts.append(prompt)
 
         # Tokenize with truncation and dynamic padding up to the longest sequence in the batch
-        inputs = tokenizer(prompts, return_tensors="pt", padding=True, ).to('cuda')
+        inputs = tokenizer(prompts, return_tensors="pt", padding=True, ).to('cuda') if torch.cuda.is_available() else tokenizer(prompts, return_tensors="pt", padding=True, ).to('cpu')
 
         # generate
         with torch.no_grad():
