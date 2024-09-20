@@ -10,6 +10,9 @@ import time
 
 def get_parser():
     parser = argparse.ArgumentParser()
+    #parser.add_argument('--fin', required=True)
+    #parser.add_argument('--fout', required=True)
+    #parser.add_argument('--ckpt', required=True)
     parser.add_argument('--src', required=True)
     parser.add_argument('--tgt', required=True)
     parser.add_argument('--dtype', required=True)
@@ -57,10 +60,8 @@ def main():
     dtype = dtype_map.get(args.dtype, torch.float)
 
     # Load model and tokenizer
-    model = AutoModelForCausalLM.from_pretrained(args.model, torch_dtype=dtype, device_map="auto")
-    print(f"Memory Allocated: {torch.cuda.memory_allocated(device='cuda') / (1024 ** 2):.2f} MB")
-    print(f"Memory Reserved: {torch.cuda.memory_reserved(device='cuda') / (1024 ** 2):.2f} MB")
-    
+    model = AutoModelForCausalLM.from_pretrained(args.model, torch_dtype=dtype, load_in_8bit=True, device_map="auto")
+    # model = PeftModel.from_pretrained(model, args.ckpt) # load when you have LoRA
     model.eval()
     tokenizer = LlamaTokenizer.from_pretrained(args.model)
     tokenizer.pad_token_id = tokenizer.eos_token_id
@@ -91,6 +92,9 @@ def main():
     # Track memory usage
     allocated_memory = []
     reserved_memory = []
+
+    print(f"Initial Memory Allocated: {torch.cuda.memory_allocated(device='cuda') / (1024 ** 2):.2f} MB")
+    print(f"Initial Memory Reserved: {torch.cuda.memory_reserved(device='cuda') / (1024 ** 2):.2f} MB")
 
     for batch in tqdm(dynamic_batching(tokenizer, lines, args.batch_size, args.gen_max_tokens), total=total_batches, desc="Processing Batches"):
         prompts = []
@@ -161,7 +165,6 @@ def main():
     print(f"Average ROUGE-L F1 score: {average_rougeL}")
 
     print("*" * 100)
-
 
 if __name__ == "__main__":
     main()
