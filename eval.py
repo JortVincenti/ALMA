@@ -14,9 +14,10 @@ def get_parser():
     #parser.add_argument('--fout', required=True)
     #parser.add_argument('--ckpt', required=True)
     parser.add_argument('--src', required=True)
+    parser.add_argument('--data_path', type=str, default="hf://datasets/haoranxu/WMT22-Test/cs-en/test-00000-of-00001-1a83a591805d9178.parquet")
     parser.add_argument('--tgt', required=True)
     parser.add_argument('--dtype', required=True)
-    parser.add_argument('--model', required=True)
+    parser.add_argument('--model', type=str, required=True)
     parser.add_argument('--beam', type=int, required=True)
     parser.add_argument('--gen_max_tokens', type=int, default=256)
     parser.add_argument('--batch_size', type=int, default=8, help='Batch size for generation')
@@ -24,11 +25,12 @@ def get_parser():
     return parser
 
 LANG_MAP = {
-    'eng_Latn': 'English',
-    'deu_Latn': 'German',
-    'ces_Latn': 'Czech',
-    'rus_Cyrl': 'Russian',
-    'zho_Hans': 'Chinese'
+    'en': 'English',
+    'de': 'German',
+    'cs': 'Czech',
+    'ru': 'Russian',
+    'zh': 'Chinese',
+    'is': 'Icelandic'
 }
 
 def dynamic_batching(tokenizer, texts, batch_size, max_length):
@@ -76,19 +78,19 @@ def main():
     #file_out = open(args.fout, "w")
 
     # read data
-    ds = pd.read_parquet("hf://datasets/haoranxu/WMT22-Test/cs-en/test-00000-of-00001-1a83a591805d9178.parquet")
-    #ds = load_dataset("haoranxu/WMT22-Test", "cs-en")
+    ds = pd.read_parquet(path=args.data_path)
+    #ds = load_dataset("haoranxu/WMT22-Test", "cs-en")ALMA
     # Initialize an empty list for the lines
     lines = []
     targets = []
-
-    len_samples = len(ds["cs-en"]) if not args.eval_samples else args.eval_samples
+    path = args.src + "-" + args.tgt
+    len_samples = len(ds[path]) if not args.eval_samples else args.eval_samples
 
 
     # Iterate over the dataset and extract the relevant information
-    for idx, example in enumerate(ds["cs-en"][:len_samples]):
-        czech_sentence = example['cs']  # Source sentence in Czech
-        english_translation = example['en']  # Target sentence in English
+    for idx, example in enumerate(ds[path][:len_samples]):
+        czech_sentence = example[args.src]  # Source sentence in Czech
+        english_translation = example[args.tgt]  # Target sentence in English
         
         # Format the line as needed, for example, showing both source and target
         line = f"{czech_sentence}\n"

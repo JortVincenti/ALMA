@@ -1,0 +1,22 @@
+#!/bin/bash 
+
+#SBATCH --partition=gpu_a100
+#SBATCH --gpus=1
+#SBATCH --gpus-per-node=1
+#SBATCH --ntasks=1
+#SBATCH --cpus-per-task=18
+#SBATCH --time=00:50:00
+#SBATCH --output=%x-%j.out
+
+# entire script fails if a single command fails
+set -e
+
+
+module purge
+module load 2022
+module load Mamba/4.14.0-0
+module load CUDA/11.8.0
+
+source activate .env/
+
+python eval.py "$@"
