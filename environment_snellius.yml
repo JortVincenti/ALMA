@@ -1,0 +1,8 @@
+name: null
+
+channels:
+  - conda-forge
+  - defaults
+dependencies:
+  - python=3.11
+  - code-server=4.23.1

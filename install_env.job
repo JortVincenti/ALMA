@@ -1,0 +1,44 @@
+#!/bin/bash 
+
+#SBATCH --partition=gpu_a100
+#SBATCH --gpus=1
+#SBATCH --gpus-per-node=1
+#SBATCH --job-name=InstallALMA
+#SBATCH --ntasks=1
+#SBATCH --cpus-per-task=18
+#SBATCH --time=00:30:00
+#SBATCH --output=install_alma-env-%A.out
+
+
+# entire script fails if a single command fails
+set -e
+
+module purge
+module load 2022
+module load Mamba/4.14.0-0
+module load CUDA/11.8.0
+
+PROJECT_DIR="$PWD"
+ENV_PREFIX="$PROJECT_DIR"/.env
+
+mamba env create --prefix $ENV_PREFIX --file "$PROJECT_DIR"/environment_snellius.yml --force
+source activate .env/
+
+pip install git+https://github.com/fe1ixxu/ALMA.git@alma-r-hf
+pip install peft==0.5.0
+pip install sentencepiece
+pip install sacrebleu
+pip install ipython
+pip install datasets
+pip install evaluate
+pip3 install deepspeed==0.13.1
+pip install einops
+pip install wandb
+pip install zstandard
+pip install accelerate==0.27.2
+pip install jsonlines
+pip install trl
+pip install unbabel-comet
+pip install rouge-score
+
+pip install torch==2.4.0 torchvision==0.19.0 torchaudio==2.4.0 --index-url https://download.pytorch.org/whl/cu118

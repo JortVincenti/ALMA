@@ -1,0 +1,24 @@
+#!/bin/bash 
+
+#SBATCH --partition=gpu_a100
+#SBATCH --gpus=1
+#SBATCH --gpus-per-node=1
+#SBATCH --job-name=downwload_weights
+#SBATCH --ntasks=1
+#SBATCH --cpus-per-task=18
+#SBATCH --time=00:30:00
+#SBATCH --output=download-weights-%A.out
+
+PROJECT_DIR="$PWD"
+mkdir -p /scratch-shared/${USER}/
+cd /scratch-shared/${USER}/
+
+
+rm -rf ALMA-7B/
+
+git lfs install
+
+git clone https://huggingface.co/haoranxu/ALMA-7B
+
+cd $PROJECT_DIR
+ln -s /scratch-shared/${USER}/ALMA-7B/
