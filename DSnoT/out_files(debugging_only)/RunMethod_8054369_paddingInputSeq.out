@@ -1,0 +1,163 @@
+============================================================================================== 
+Warning! Mixing Conda and module environments may lead to corruption of the
+user environment. 
+We do not recommend users mixing those two environments unless absolutely
+necessary. Note that 
+SURF does not provide any support for Conda environment.
+For more information, please refer to our software policy page:
+https://servicedesk.surf.nl/wiki/display/WIKI/Software+policy+Snellius#SoftwarepolicySnellius-UseofAnacondaandMinicondaenvironmentsonSnellius 
+
+Remember that many packages have already been installed on the system and can
+be loaded using 
+the 'module load <package__name>' command. If you are uncertain if a package is
+already available 
+on the system, please use 'module avail' or 'module spider' to search for it.
+============================================================================================== 
+torch 1.13.1
+transformers 4.28.0
+accelerate 0.18.0
+# of gpus:  1
+Model path: haoranxu/ALMA-7B
+Model type: None
+source and target lang: cs, en
+model type: llama
+loading llm model haoranxu/ALMA-7B
+
+Loading checkpoint shards:   0%|          | 0/3 [00:00<?, ?it/s]
+Loading checkpoint shards:  33%|███▎      | 1/3 [00:04<00:08,  4.07s/it]
+Loading checkpoint shards:  67%|██████▋   | 2/3 [00:07<00:03,  3.89s/it]
+Loading checkpoint shards: 100%|██████████| 3/3 [00:10<00:00,  3.50s/it]
+Loading checkpoint shards: 100%|██████████| 3/3 [00:10<00:00,  3.62s/it]
+use device  cuda:0
+pruning starts
+Loading calibration data...
+Available configs:  ['cs-en']
+Loading dataset with source_lang=cs and target_lang=en
+Loaded dataset. Sample entry {'translation': {'cs': 'Osmadvacetiletý šéfkuchař nalezen mrtev v obchodě v San Francisku', 'en': '28-Year-Old Chef Found Dead at San Francisco Mall'}}
+valdata features: {'translation': {'cs': Value(dtype='string', id=None), 'en': Value(dtype='string', id=None)}}
+translation
+dataset loading complete
+╭───────────────────── Traceback (most recent call last) ──────────────────────╮
+│ /gpfs/home3/scur1762/DSnoT/main.py:143 in <module>                           │
+│                                                                              │
+│   140 │   │   tokenizer.save_pretrained(args.save_model)                     │
+│   141                                                                        │
+│   142 if __name__ == '__main__':                                             │
+│ ❱ 143 │   main()                                                             │
+│   144                                                                        │
+│                                                                              │
+│ /gpfs/home3/scur1762/DSnoT/main.py:101 in main                               │
+│                                                                              │
+│    98 │   │   print("pruning starts")                                        │
+│    99 │   │   if args.model_type == "llama":                                 │
+│   100 │   │   │   if args.prune_method == "wanda":                           │
+│ ❱ 101 │   │   │   │   prune_wanda(args, model, tokenizer, device, prune_n=pr │
+│   102 │   │   │   elif args.prune_method == "magnitude":                     │
+│   103 │   │   │   │   prune_magnitude(args, model, tokenizer, device, prune_ │
+│   104 │   │   │   elif args.prune_method == "sparsegpt":                     │
+│                                                                              │
+│ /gpfs/home3/scur1762/DSnoT/lib/prune.py:260 in prune_wanda                   │
+│                                                                              │
+│    257 │   │   │   handles.append(subset[name].register_forward_hook(add_bat │
+│    258 │   │   for j in range(args.nsamples):                                │
+│    259 │   │   │   with torch.no_grad():                                     │
+│ ❱  260 │   │   │   │   outs[j] = layer(                                      │
+│    261 │   │   │   │   │   inps[j].unsqueeze(0),                             │
+│    262 │   │   │   │   │   attention_mask=attention_mask,                    │
+│    263 │   │   │   │   │   position_ids=position_ids,                        │
+│                                                                              │
+│ /home/scur1762/.conda/envs/DSnoT/lib/python3.8/site-packages/torch/nn/module │
+│ s/module.py:1194 in _call_impl                                               │
+│                                                                              │
+│   1191 │   │   # this function, and just call forward.                       │
+│   1192 │   │   if not (self._backward_hooks or self._forward_hooks or self._ │
+│   1193 │   │   │   │   or _global_forward_hooks or _global_forward_pre_hooks │
+│ ❱ 1194 │   │   │   return forward_call(*input, **kwargs)                     │
+│   1195 │   │   # Do not call functions when jit is used                      │
+│   1196 │   │   full_backward_hooks, non_full_backward_hooks = [], []         │
+│   1197 │   │   if self._backward_hooks or _global_backward_hooks:            │
+│                                                                              │
+│ /home/scur1762/.conda/envs/DSnoT/lib/python3.8/site-packages/accelerate/hook │
+│ s.py:165 in new_forward                                                      │
+│                                                                              │
+│   162 │   │   │   with torch.no_grad():                                      │
+│   163 │   │   │   │   output = old_forward(*args, **kwargs)                  │
+│   164 │   │   else:                                                          │
+│ ❱ 165 │   │   │   output = old_forward(*args, **kwargs)                      │
+│   166 │   │   return module._hf_hook.post_forward(module, output)            │
+│   167 │                                                                      │
+│   168 │   module.forward = new_forward                                       │
+│                                                                              │
+│ /home/scur1762/.conda/envs/DSnoT/lib/python3.8/site-packages/transformers/mo │
+│ dels/llama/modeling_llama.py:292 in forward                                  │
+│                                                                              │
+│   289 │   │   hidden_states = self.input_layernorm(hidden_states)            │
+│   290 │   │                                                                  │
+│   291 │   │   # Self Attention                                               │
+│ ❱ 292 │   │   hidden_states, self_attn_weights, present_key_value = self.sel │
+│   293 │   │   │   hidden_states=hidden_states,                               │
+│   294 │   │   │   attention_mask=attention_mask,                             │
+│   295 │   │   │   position_ids=position_ids,                                 │
+│                                                                              │
+│ /home/scur1762/.conda/envs/DSnoT/lib/python3.8/site-packages/torch/nn/module │
+│ s/module.py:1194 in _call_impl                                               │
+│                                                                              │
+│   1191 │   │   # this function, and just call forward.                       │
+│   1192 │   │   if not (self._backward_hooks or self._forward_hooks or self._ │
+│   1193 │   │   │   │   or _global_forward_hooks or _global_forward_pre_hooks │
+│ ❱ 1194 │   │   │   return forward_call(*input, **kwargs)                     │
+│   1195 │   │   # Do not call functions when jit is used                      │
+│   1196 │   │   full_backward_hooks, non_full_backward_hooks = [], []         │
+│   1197 │   │   if self._backward_hooks or _global_backward_hooks:            │
+│                                                                              │
+│ /home/scur1762/.conda/envs/DSnoT/lib/python3.8/site-packages/accelerate/hook │
+│ s.py:165 in new_forward                                                      │
+│                                                                              │
+│   162 │   │   │   with torch.no_grad():                                      │
+│   163 │   │   │   │   output = old_forward(*args, **kwargs)                  │
+│   164 │   │   else:                                                          │
+│ ❱ 165 │   │   │   output = old_forward(*args, **kwargs)                      │
+│   166 │   │   return module._hf_hook.post_forward(module, output)            │
+│   167 │                                                                      │
+│   168 │   module.forward = new_forward                                       │
+│                                                                              │
+│ /home/scur1762/.conda/envs/DSnoT/lib/python3.8/site-packages/transformers/mo │
+│ dels/llama/modeling_llama.py:204 in forward                                  │
+│                                                                              │
+│   201 │   │   if past_key_value is not None:                                 │
+│   202 │   │   │   kv_seq_len += past_key_value[0].shape[-2]                  │
+│   203 │   │   cos, sin = self.rotary_emb(value_states, seq_len=kv_seq_len)   │
+│ ❱ 204 │   │   query_states, key_states = apply_rotary_pos_emb(query_states,  │
+│   205 │   │   # [bsz, nh, t, hd]                                             │
+│   206 │   │                                                                  │
+│   207 │   │   if past_key_value is not None:                                 │
+│                                                                              │
+│ /home/scur1762/.conda/envs/DSnoT/lib/python3.8/site-packages/transformers/mo │
+│ dels/llama/modeling_llama.py:138 in apply_rotary_pos_emb                     │
+│                                                                              │
+│   135 │   gather_indices = gather_indices.repeat(1, cos.shape[1], 1, cos.sha │
+│   136 │   cos = torch.gather(cos.repeat(gather_indices.shape[0], 1, 1, 1), 2 │
+│   137 │   sin = torch.gather(sin.repeat(gather_indices.shape[0], 1, 1, 1), 2 │
+│ ❱ 138 │   q_embed = (q * cos) + (rotate_half(q) * sin)                       │
+│   139 │   k_embed = (k * cos) + (rotate_half(k) * sin)                       │
+│   140 │   return q_embed, k_embed                                            │
+│   141                                                                        │
+╰──────────────────────────────────────────────────────────────────────────────╯
+RuntimeError: The size of tensor a (2048) must match the size of tensor b (46) 
+at non-singleton dimension 2
+srun: error: gcn8: task 0: Exited with exit code 1
+srun: Terminating StepId=8054369.0
+
+JOB STATISTICS
+==============
+Job ID: 8054369
+Cluster: snellius
+User/Group: scur1762/scur1762
+State: FAILED (exit code 1)
+Nodes: 1
+Cores per node: 18
+CPU Utilized: 00:01:07
+CPU Efficiency: 11.63% of 00:09:36 core-walltime
+Job Wall-clock time: 00:00:32
+Memory Utilized: 1.55 MB
+Memory Efficiency: 0.00% of 120.00 GB

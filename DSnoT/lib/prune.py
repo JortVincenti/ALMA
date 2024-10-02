@@ -85,10 +85,33 @@ def prepare_calibration_input(args, model, dataloader, device):
             self.module = module
 
         def forward(self, inp, **kwargs):
+            # Pad input if it's smaller than model.seqlen
+            if inp.size(1) < model.seqlen:
+                inp = torch.nn.functional.pad(inp, (0, 0, 0, model.seqlen - inp.size(1)), value=0)
+            
+            # Ensure attention_mask is reshaped to 4D before expanding
+            if attention_mask.dim() == 5:
+                attention_mask = attention_mask.squeeze(2)  # Remove the extra dimension if present
+            # Ensure attention_mask is padded and reshaped to the expected size (1, 1, 2048, 2048)
+            if attention_mask.size(-1) < model.seqlen:
+                attention_mask = torch.nn.functional.pad(attention_mask, (0, model.seqlen - attention_mask.size(-1)), value=0)
+            attention_mask = attention_mask.expand(-1, 1, model.seqlen, model.seqlen)
+
+            # Print the updated shape for debugging
+            print(f"attention_mask shape after update: {attention_mask.size()}")
+
+            position_ids = kwargs["position_ids"]
+            if position_ids.size(1) < model.seqlen:
+                position_ids = torch.nn.functional.pad(position_ids, (0, model.seqlen - position_ids.size(1)), value=0)
+
+            print(f"inps shape: {inps.size()}")
+            print(f"attention_mask shape: {attention_mask.size()}")
+            print(f"position_ids shape: {position_ids.size()}")
+
             inps[cache["i"]] = inp
             cache["i"] += 1
-            cache["attention_mask"] = kwargs["attention_mask"]
-            cache["position_ids"] = kwargs["position_ids"]
+            cache["attention_mask"] = attention_mask
+            cache["position_ids"] = position_ids
             raise ValueError
 
     layers[0] = Catcher(layers[0])
@@ -190,8 +213,8 @@ def prune_magnitude(
     if args.get_time_overhead:
         save_time_result(args, args.output_results_file, total_time)
 
-def prune_wanda(args, model, tokenizer, device=torch.device("cuda:0"), prune_n=0, prune_m=0
-):
+def prune_wanda(args, model, tokenizer, device=torch.device("cuda:0"), prune_n=0, prune_m=0):
+    
     use_cache = model.config.use_cache
     model.config.use_cache = False
 
@@ -202,14 +225,11 @@ def prune_wanda(args, model, tokenizer, device=torch.device("cuda:0"), prune_n=0
         nsamples=args.nsamples, 
         seed=args.seed, 
         seqlen=model.seqlen, 
-        tokenizer=tokenizer
+        tokenizer=tokenizer,
+        source_lang=args.source_lang,
+        target_lang=args.target_lang
     )
     print("dataset loading complete")
-
-    # dataloader, _ = get_loaders(
-    #     "parallel", nsamples=args.nsamples, seed=args.seed, seqlen=model.seqlen, tokenizer=tokenizer
-    # )
-    # print("Dataset loading complete.")
 
     with torch.no_grad():
         inps, outs, attention_mask, position_ids = prepare_calibration_input(
@@ -217,13 +237,13 @@ def prune_wanda(args, model, tokenizer, device=torch.device("cuda:0"), prune_n=0
         )
 
     total_time = 0
-    layers = model.layers  # Adjusted for ALMA
+    layers = model.model.layers
     for i in range(len(layers)):
         layer = layers[i]
         subset = find_layers(layer)  # Updated to find ALMA's layers
 
         # Adjust for ALMA's device map if needed
-        if f"model.layers.{i}" in model.hf_device_map:
+        if (f"model.layers.{i}" in model.hf_device_map):
             dev = model.hf_device_map[f"model.layers.{i}"]
             inps, outs, attention_mask, position_ids = (
                 inps.to(dev),
@@ -320,32 +340,30 @@ def prune_wanda(args, model, tokenizer, device=torch.device("cuda:0"), prune_n=0
 #             args, model, dataloader, device
 #         )
 
-#     total_time = 0
-#     layers = model.model.layers
-#     for i in range(len(layers)):
-#         layer = layers[i]
-#         subset = find_layers(layer)
+    # total_time = 0
+    # layers = model.model.layers
+    # for i in range(len(layers)):
+    #     layer = layers[i]
+    #     subset = find_layers(layer)
 
-#         if (
-#             f"model.layers.{i}" in model.hf_device_map
-#         ):  ## handle the case for llama-30B and llama-65B, when the device map has multiple GPUs;
-#             dev = model.hf_device_map[f"model.layers.{i}"]
-#             inps, outs, attention_mask, position_ids = (
-#                 inps.to(dev),
-#                 outs.to(dev),
-#                 attention_mask.to(dev),
-#                 position_ids.to(dev),
-#             )
+    #     if (f"model.layers.{i}" in model.hf_device_map):  ## handle the case for llama-30B and llama-65B, when the device map has multiple GPUs;
+    #         dev = model.hf_device_map[f"model.layers.{i}"]
+    #         inps, outs, attention_mask, position_ids = (
+    #             inps.to(dev),
+    #             outs.to(dev),
+    #             attention_mask.to(dev),
+    #             position_ids.to(dev),
+    #         )
 
-#         wrapped_layers = {}
-#         for name in subset:
-#             wrapped_layers[name] = WrappedGPT(subset[name])
+    #     wrapped_layers = {}
+    #     for name in subset:
+    #         wrapped_layers[name] = WrappedGPT(subset[name])
 
-#         def add_batch(name):
-#             def tmp(_, inp, out):
-#                 wrapped_layers[name].add_batch(inp[0].data, out.data)
+    #     def add_batch(name):
+    #         def tmp(_, inp, out):
+    #             wrapped_layers[name].add_batch(inp[0].data, out.data)
 
-#             return tmp
+    #         return tmp
 
 #         handles = []
 #         for name in wrapped_layers:
@@ -543,7 +561,9 @@ def prune_DSnoT(args, model, tokenizer, device=torch.device("cuda:0"), prune_n=0
         nsamples=args.nsamples, 
         seed=args.seed, 
         seqlen=model.seqlen, 
-        tokenizer=tokenizer
+        tokenizer=tokenizer,
+        source_lang=args.source_lang,
+        target_lang=args.target_lang
     )
     print("dataset loading complete")
 
