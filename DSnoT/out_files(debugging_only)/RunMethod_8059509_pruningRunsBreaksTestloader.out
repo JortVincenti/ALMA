@@ -1,0 +1,473 @@
+============================================================================================== 
+Warning! Mixing Conda and module environments may lead to corruption of the
+user environment. 
+We do not recommend users mixing those two environments unless absolutely
+necessary. Note that 
+SURF does not provide any support for Conda environment.
+For more information, please refer to our software policy page:
+https://servicedesk.surf.nl/wiki/display/WIKI/Software+policy+Snellius#SoftwarepolicySnellius-UseofAnacondaandMinicondaenvironmentsonSnellius 
+
+Remember that many packages have already been installed on the system and can
+be loaded using 
+the 'module load <package__name>' command. If you are uncertain if a package is
+already available 
+on the system, please use 'module avail' or 'module spider' to search for it.
+============================================================================================== 
+torch 1.13.1
+transformers 4.28.0
+accelerate 0.18.0
+# of gpus:  1
+Model path: haoranxu/ALMA-7B
+Model type: None
+source and target lang: cs, en
+model type: llama
+loading llm model haoranxu/ALMA-7B
+use device  cuda:0
+pruning starts
+Loading calibration data...
+Available configs:  ['cs-en']
+Loading dataset with source_lang=cs and target_lang=en
+Loaded dataset. Sample entry {'translation': {'cs': 'Osmadvacetiletý šéfkuchař nalezen mrtev v obchodě v San Francisku', 'en': '28-Year-Old Chef Found Dead at San Francisco Mall'}}
+valdata features: {'translation': {'cs': Value(dtype='string', id=None), 'en': Value(dtype='string', id=None)}}
+translation
+dataset loading complete
+attention_mask shape after update: torch.Size([1, 1, 2048, 2048])
+inps shape: torch.Size([128, 2048, 4096])
+position_ids shape: torch.Size([1, 2048])
+Pruning layer 0 name self_attn.q_proj
+Pruning layer 0 name self_attn.k_proj
+Pruning layer 0 name self_attn.v_proj
+Pruning layer 0 name self_attn.o_proj
+Pruning layer 0 name mlp.gate_proj
+Pruning layer 0 name mlp.down_proj
+Pruning layer 0 name mlp.up_proj
+Pruning layer 1 name self_attn.q_proj
+Pruning layer 1 name self_attn.k_proj
+Pruning layer 1 name self_attn.v_proj
+Pruning layer 1 name self_attn.o_proj
+Pruning layer 1 name mlp.gate_proj
+Pruning layer 1 name mlp.down_proj
+Pruning layer 1 name mlp.up_proj
+Pruning layer 2 name self_attn.q_proj
+Pruning layer 2 name self_attn.k_proj
+Pruning layer 2 name self_attn.v_proj
+Pruning layer 2 name self_attn.o_proj
+Pruning layer 2 name mlp.gate_proj
+Pruning layer 2 name mlp.down_proj
+Pruning layer 2 name mlp.up_proj
+Pruning layer 3 name self_attn.q_proj
+Pruning layer 3 name self_attn.k_proj
+Pruning layer 3 name self_attn.v_proj
+Pruning layer 3 name self_attn.o_proj
+Pruning layer 3 name mlp.gate_proj
+Pruning layer 3 name mlp.down_proj
+Pruning layer 3 name mlp.up_proj
+Pruning layer 4 name self_attn.q_proj
+Pruning layer 4 name self_attn.k_proj
+Pruning layer 4 name self_attn.v_proj
+Pruning layer 4 name self_attn.o_proj
+Pruning layer 4 name mlp.gate_proj
+Pruning layer 4 name mlp.down_proj
+Pruning layer 4 name mlp.up_proj
+Pruning layer 5 name self_attn.q_proj
+Pruning layer 5 name self_attn.k_proj
+Pruning layer 5 name self_attn.v_proj
+Pruning layer 5 name self_attn.o_proj
+Pruning layer 5 name mlp.gate_proj
+Pruning layer 5 name mlp.down_proj
+Pruning layer 5 name mlp.up_proj
+Pruning layer 6 name self_attn.q_proj
+Pruning layer 6 name self_attn.k_proj
+Pruning layer 6 name self_attn.v_proj
+Pruning layer 6 name self_attn.o_proj
+Pruning layer 6 name mlp.gate_proj
+Pruning layer 6 name mlp.down_proj
+Pruning layer 6 name mlp.up_proj
+Pruning layer 7 name self_attn.q_proj
+Pruning layer 7 name self_attn.k_proj
+Pruning layer 7 name self_attn.v_proj
+Pruning layer 7 name self_attn.o_proj
+Pruning layer 7 name mlp.gate_proj
+Pruning layer 7 name mlp.down_proj
+Pruning layer 7 name mlp.up_proj
+Pruning layer 8 name self_attn.q_proj
+Pruning layer 8 name self_attn.k_proj
+Pruning layer 8 name self_attn.v_proj
+Pruning layer 8 name self_attn.o_proj
+Pruning layer 8 name mlp.gate_proj
+Pruning layer 8 name mlp.down_proj
+Pruning layer 8 name mlp.up_proj
+Pruning layer 9 name self_attn.q_proj
+Pruning layer 9 name self_attn.k_proj
+Pruning layer 9 name self_attn.v_proj
+Pruning layer 9 name self_attn.o_proj
+Pruning layer 9 name mlp.gate_proj
+Pruning layer 9 name mlp.down_proj
+Pruning layer 9 name mlp.up_proj
+Pruning layer 10 name self_attn.q_proj
+Pruning layer 10 name self_attn.k_proj
+Pruning layer 10 name self_attn.v_proj
+Pruning layer 10 name self_attn.o_proj
+Pruning layer 10 name mlp.gate_proj
+Pruning layer 10 name mlp.down_proj
+Pruning layer 10 name mlp.up_proj
+Pruning layer 11 name self_attn.q_proj
+Pruning layer 11 name self_attn.k_proj
+Pruning layer 11 name self_attn.v_proj
+Pruning layer 11 name self_attn.o_proj
+Pruning layer 11 name mlp.gate_proj
+Pruning layer 11 name mlp.down_proj
+Pruning layer 11 name mlp.up_proj
+Pruning layer 12 name self_attn.q_proj
+Pruning layer 12 name self_attn.k_proj
+Pruning layer 12 name self_attn.v_proj
+Pruning layer 12 name self_attn.o_proj
+Pruning layer 12 name mlp.gate_proj
+Pruning layer 12 name mlp.down_proj
+Pruning layer 12 name mlp.up_proj
+Pruning layer 13 name self_attn.q_proj
+Pruning layer 13 name self_attn.k_proj
+Pruning layer 13 name self_attn.v_proj
+Pruning layer 13 name self_attn.o_proj
+Pruning layer 13 name mlp.gate_proj
+Pruning layer 13 name mlp.down_proj
+Pruning layer 13 name mlp.up_proj
+Pruning layer 14 name self_attn.q_proj
+Pruning layer 14 name self_attn.k_proj
+Pruning layer 14 name self_attn.v_proj
+Pruning layer 14 name self_attn.o_proj
+Pruning layer 14 name mlp.gate_proj
+Pruning layer 14 name mlp.down_proj
+Pruning layer 14 name mlp.up_proj
+Pruning layer 15 name self_attn.q_proj
+Pruning layer 15 name self_attn.k_proj
+Pruning layer 15 name self_attn.v_proj
+Pruning layer 15 name self_attn.o_proj
+Pruning layer 15 name mlp.gate_proj
+Pruning layer 15 name mlp.down_proj
+Pruning layer 15 name mlp.up_proj
+Pruning layer 16 name self_attn.q_proj
+Pruning layer 16 name self_attn.k_proj
+Pruning layer 16 name self_attn.v_proj
+Pruning layer 16 name self_attn.o_proj
+Pruning layer 16 name mlp.gate_proj
+Pruning layer 16 name mlp.down_proj
+Pruning layer 16 name mlp.up_proj
+Pruning layer 17 name self_attn.q_proj
+Pruning layer 17 name self_attn.k_proj
+Pruning layer 17 name self_attn.v_proj
+Pruning layer 17 name self_attn.o_proj
+Pruning layer 17 name mlp.gate_proj
+Pruning layer 17 name mlp.down_proj
+Pruning layer 17 name mlp.up_proj
+Pruning layer 18 name self_attn.q_proj
+Pruning layer 18 name self_attn.k_proj
+Pruning layer 18 name self_attn.v_proj
+Pruning layer 18 name self_attn.o_proj
+Pruning layer 18 name mlp.gate_proj
+Pruning layer 18 name mlp.down_proj
+Pruning layer 18 name mlp.up_proj
+Pruning layer 19 name self_attn.q_proj
+Pruning layer 19 name self_attn.k_proj
+Pruning layer 19 name self_attn.v_proj
+Pruning layer 19 name self_attn.o_proj
+Pruning layer 19 name mlp.gate_proj
+Pruning layer 19 name mlp.down_proj
+Pruning layer 19 name mlp.up_proj
+Pruning layer 20 name self_attn.q_proj
+Pruning layer 20 name self_attn.k_proj
+Pruning layer 20 name self_attn.v_proj
+Pruning layer 20 name self_attn.o_proj
+Pruning layer 20 name mlp.gate_proj
+Pruning layer 20 name mlp.down_proj
+Pruning layer 20 name mlp.up_proj
+Pruning layer 21 name self_attn.q_proj
+Pruning layer 21 name self_attn.k_proj
+Pruning layer 21 name self_attn.v_proj
+Pruning layer 21 name self_attn.o_proj
+Pruning layer 21 name mlp.gate_proj
+Pruning layer 21 name mlp.down_proj
+Pruning layer 21 name mlp.up_proj
+Pruning layer 22 name self_attn.q_proj
+Pruning layer 22 name self_attn.k_proj
+Pruning layer 22 name self_attn.v_proj
+Pruning layer 22 name self_attn.o_proj
+Pruning layer 22 name mlp.gate_proj
+Pruning layer 22 name mlp.down_proj
+Pruning layer 22 name mlp.up_proj
+Pruning layer 23 name self_attn.q_proj
+Pruning layer 23 name self_attn.k_proj
+Pruning layer 23 name self_attn.v_proj
+Pruning layer 23 name self_attn.o_proj
+Pruning layer 23 name mlp.gate_proj
+Pruning layer 23 name mlp.down_proj
+Pruning layer 23 name mlp.up_proj
+Pruning layer 24 name self_attn.q_proj
+Pruning layer 24 name self_attn.k_proj
+Pruning layer 24 name self_attn.v_proj
+Pruning layer 24 name self_attn.o_proj
+Pruning layer 24 name mlp.gate_proj
+Pruning layer 24 name mlp.down_proj
+Pruning layer 24 name mlp.up_proj
+Pruning layer 25 name self_attn.q_proj
+Pruning layer 25 name self_attn.k_proj
+Pruning layer 25 name self_attn.v_proj
+Pruning layer 25 name self_attn.o_proj
+Pruning layer 25 name mlp.gate_proj
+Pruning layer 25 name mlp.down_proj
+Pruning layer 25 name mlp.up_proj
+Pruning layer 26 name self_attn.q_proj
+Pruning layer 26 name self_attn.k_proj
+Pruning layer 26 name self_attn.v_proj
+Pruning layer 26 name self_attn.o_proj
+Pruning layer 26 name mlp.gate_proj
+Pruning layer 26 name mlp.down_proj
+Pruning layer 26 name mlp.up_proj
+Pruning layer 27 name self_attn.q_proj
+Pruning layer 27 name self_attn.k_proj
+Pruning layer 27 name self_attn.v_proj
+Pruning layer 27 name self_attn.o_proj
+Pruning layer 27 name mlp.gate_proj
+Pruning layer 27 name mlp.down_proj
+Pruning layer 27 name mlp.up_proj
+Pruning layer 28 name self_attn.q_proj
+Pruning layer 28 name self_attn.k_proj
+Pruning layer 28 name self_attn.v_proj
+Pruning layer 28 name self_attn.o_proj
+Pruning layer 28 name mlp.gate_proj
+Pruning layer 28 name mlp.down_proj
+Pruning layer 28 name mlp.up_proj
+
+Loading checkpoint shards:   0%|          | 0/3 [00:00<?, ?it/s]
+Loading checkpoint shards:  33%|███▎      | 1/3 [00:03<00:07,  3.65s/it]
+Loading checkpoint shards:  67%|██████▋   | 2/3 [00:07<00:03,  3.63s/it]
+Loading checkpoint shards: 100%|██████████| 3/3 [00:09<00:00,  3.19s/it]
+Loading checkpoint shards: 100%|██████████| 3/3 [00:09<00:00,  3.31s/it]
+Pruning layer 29 name self_attn.q_proj
+Pruning layer 29 name self_attn.k_proj
+Pruning layer 29 name self_attn.v_proj
+Pruning layer 29 name self_attn.o_proj
+Pruning layer 29 name mlp.gate_proj
+Pruning layer 29 name mlp.down_proj
+Pruning layer 29 name mlp.up_proj
+Pruning layer 30 name self_attn.q_proj
+Pruning layer 30 name self_attn.k_proj
+Pruning layer 30 name self_attn.v_proj
+Pruning layer 30 name self_attn.o_proj
+Pruning layer 30 name mlp.gate_proj
+Pruning layer 30 name mlp.down_proj
+Pruning layer 30 name mlp.up_proj
+Pruning layer 31 name self_attn.q_proj
+Pruning layer 31 name self_attn.k_proj
+Pruning layer 31 name self_attn.v_proj
+Pruning layer 31 name self_attn.o_proj
+Pruning layer 31 name mlp.gate_proj
+Pruning layer 31 name mlp.down_proj
+Pruning layer 31 name mlp.up_proj
+******************************
+layer 0 sparsity 0.500000
+layer 1 sparsity 0.500000
+layer 2 sparsity 0.500000
+layer 3 sparsity 0.500000
+layer 4 sparsity 0.500000
+layer 5 sparsity 0.500000
+layer 6 sparsity 0.500000
+layer 7 sparsity 0.500000
+layer 8 sparsity 0.500000
+layer 9 sparsity 0.500000
+layer 10 sparsity 0.500000
+layer 11 sparsity 0.500000
+layer 12 sparsity 0.500000
+layer 13 sparsity 0.500000
+layer 14 sparsity 0.500000
+layer 15 sparsity 0.500000
+layer 16 sparsity 0.500000
+layer 17 sparsity 0.500000
+layer 18 sparsity 0.500000
+layer 19 sparsity 0.500000
+layer 20 sparsity 0.500000
+layer 21 sparsity 0.500000
+layer 22 sparsity 0.500000
+layer 23 sparsity 0.500000
+layer 24 sparsity 0.500000
+layer 25 sparsity 0.500000
+layer 26 sparsity 0.500000
+layer 27 sparsity 0.500000
+layer 28 sparsity 0.500000
+layer 29 sparsity 0.500000
+layer 30 sparsity 0.500000
+layer 31 sparsity 0.500000
+sparsity sanity check 0.5000
+******************************
+evaluating on wikitext2
+Downloading and preparing dataset None/wikitext-103-raw-v1 to /home/scur1762/.cache/huggingface/datasets/parquet/wikitext-103-raw-v1-7bb180478b704b56/0.0.0/2a3b91fbd88a2c90d1dbbb32b460cf621d31bd5b05b934492fdef7d8d6f236ec...
+
+Downloading data files:   0%|          | 0/3 [00:00<?, ?it/s]
+Downloading data files: 100%|██████████| 3/3 [00:00<00:00, 156.21it/s]
+
+Extracting data files:   0%|          | 0/3 [00:00<?, ?it/s]
+Extracting data files: 100%|██████████| 3/3 [00:00<00:00, 49.94it/s]
+
+Generating train split:   0%|          | 0/1801350 [00:00<?, ? examples/s]
+Generating train split:   4%|▍         | 80000/1801350 [00:00<00:02, 703392.65 examples/s]
+Generating train split:   9%|▉         | 160000/1801350 [00:00<00:02, 704920.77 examples/s]
+Generating train split:  14%|█▍        | 250000/1801350 [00:00<00:02, 737585.09 examples/s]
+Generating train split:  19%|█▉        | 350000/1801350 [00:00<00:01, 771791.50 examples/s]
+Generating train split:  25%|██▍       | 450000/1801350 [00:00<00:01, 800374.01 examples/s]
+Generating train split:  31%|███       | 550000/1801350 [00:00<00:01, 809955.32 examples/s]
+Generating train split:  36%|███▌      | 650000/1801350 [00:00<00:01, 822915.12 examples/s]
+Generating train split:  42%|████▏     | 750000/1801350 [00:00<00:01, 832701.35 examples/s]
+Generating train split:  47%|████▋     | 840000/1801350 [00:01<00:01, 824048.03 examples/s]
+Generating train split:  53%|█████▎    | 960675/1801350 [00:01<00:01, 789464.04 examples/s]
+Generating train split:  60%|█████▉    | 1080675/1801350 [00:01<00:00, 864409.43 examples/s]
+Generating train split:  67%|██████▋   | 1200675/1801350 [00:01<00:00, 912556.81 examples/s]
+Generating train split:  73%|███████▎  | 1320675/1801350 [00:01<00:00, 905387.29 examples/s]
+Generating train split:  79%|███████▉  | 1430675/1801350 [00:01<00:00, 934282.97 examples/s]
+Generating train split:  86%|████████▌ | 1550675/1801350 [00:01<00:00, 962075.51 examples/s]
+Generating train split:  93%|█████████▎| 1670675/1801350 [00:01<00:00, 988506.75 examples/s]
+Generating train split:  99%|█████████▉| 1780675/1801350 [00:02<00:00, 993597.87 examples/s]
+Generating train split: 1891350 examples [00:02, 993467.36 examples/s]                      
+Generating train split: 1991350 examples [00:02, 978922.56 examples/s]
+Generating train split: 2091350 examples [00:02, 971035.51 examples/s]
+Generating train split: 2211350 examples [00:02, 984114.76 examples/s]
+Generating train split: 2321350 examples [00:02, 987140.55 examples/s]
+Generating train split: 2431350 examples [00:02, 980192.53 examples/s]
+Generating train split: 2541350 examples [00:02, 984502.69 examples/s]
+Generating train split: 2651350 examples [00:02, 998615.01 examples/s]
+Generating train split: 2762025 examples [00:03, 980870.02 examples/s]
+Generating train split: 2872025 examples [00:03, 986030.18 examples/s]
+Generating train split: 2972025 examples [00:03, 977839.58 examples/s]
+Generating train split: 3092025 examples [00:03, 994036.50 examples/s]
+Generating train split: 3192025 examples [00:03, 990563.30 examples/s]
+Generating train split: 3312025 examples [00:03, 1002027.48 examples/s]
+Generating train split: 3422025 examples [00:03, 1001319.29 examples/s]
+Generating train split: 3572025 examples [00:03, 991149.25 examples/s] 
+Generating train split: 3676136 examples [00:03, 976685.61 examples/s]
+                                                                      
+
+Generating test split:   0%|          | 0/4358 [00:00<?, ? examples/s]
+                                                                      
+
+Generating validation split:   0%|          | 0/3760 [00:00<?, ? examples/s]
+                                                                            
+╭───────────────────── Traceback (most recent call last) ──────────────────────╮
+│ /gpfs/home3/scur1762/DSnoT/main.py:143 in <module>                           │
+│                                                                              │
+│   140 │   │   tokenizer.save_pretrained(args.save_model)                     │
+│   141                                                                        │
+│   142 if __name__ == '__main__':                                             │
+│ ❱ 143 │   main()                                                             │
+│   144                                                                        │
+│                                                                              │
+│ /gpfs/home3/scur1762/DSnoT/main.py:133 in main                               │
+│                                                                              │
+│   130 │   ################################################################   │
+│   131 │                                                                      │
+│   132 │   dataset = 'wikitext2'                                              │
+│ ❱ 133 │   ppl = eval_ppl(model, tokenizer, dataset, device)                  │
+│   134 │   print(f"\nppl on {dataset}: {ppl}\n")                              │
+│   135 │                                                                      │
+│   136 │   save_ppl_result(args, args.output_results_file, sparsity_ratio, pp │
+│                                                                              │
+│ /gpfs/home3/scur1762/DSnoT/lib/eval.py:18 in eval_ppl                        │
+│                                                                              │
+│   15 │   print(f"evaluating on {dataset}")                                   │
+│   16 │                                                                       │
+│   17 │   # Get the test loader                                               │
+│ ❱ 18 │   _, testloader = get_loaders(                                        │
+│   19 │   │   dataset, seed=0, seqlen=model.seqlen, tokenizer=tokenizer       │
+│   20 │   )                                                                   │
+│   21                                                                         │
+│                                                                              │
+│ /gpfs/home3/scur1762/DSnoT/lib/data.py:217 in get_loaders                    │
+│                                                                              │
+│   214 # Function to select the appropriate loader based on dataset name      │
+│   215 def get_loaders(name, nsamples=128, seed=0, seqlen=2048, tokenizer=Non │
+│   216 │   if 'wikitext2' in name:                                            │
+│ ❱ 217 │   │   return get_wikitext2(nsamples, seed, seqlen, tokenizer)        │
+│   218 │   if "c4" in name:                                                   │
+│   219 │   │   return get_c4(nsamples, seed, seqlen, tokenizer)               │
+│   220 │   if "ptb" in name:                                                  │
+│                                                                              │
+│ /gpfs/home3/scur1762/DSnoT/lib/data.py:23 in get_wikitext2                   │
+│                                                                              │
+│    20 # Load and process wikitext2 dataset                                   │
+│    21 def get_wikitext2(nsamples, seed, seqlen, tokenizer):                  │
+│    22 │   # Load train and test datasets                                     │
+│ ❱  23 │   traindata = load_dataset('wikitext', 'wikitext-2-raw-v1', split='t │
+│    24 │   testdata = load_dataset('wikitext', 'wikitext-2-raw-v1', split='te │
+│    25 │                                                                      │
+│    26 │   # Encode datasets                                                  │
+│                                                                              │
+│ /home/scur1762/.conda/envs/DSnoT/lib/python3.8/site-packages/datasets/load.p │
+│ y:1791 in load_dataset                                                       │
+│                                                                              │
+│   1788 │   try_from_hf_gcs = path not in _PACKAGED_DATASETS_MODULES          │
+│   1789 │                                                                     │
+│   1790 │   # Download and prepare data                                       │
+│ ❱ 1791 │   builder_instance.download_and_prepare(                            │
+│   1792 │   │   download_config=download_config,                              │
+│   1793 │   │   download_mode=download_mode,                                  │
+│   1794 │   │   verification_mode=verification_mode,                          │
+│                                                                              │
+│ /home/scur1762/.conda/envs/DSnoT/lib/python3.8/site-packages/datasets/builde │
+│ r.py:891 in download_and_prepare                                             │
+│                                                                              │
+│    888 │   │   │   │   │   │   │   prepare_split_kwargs["max_shard_size"] =  │
+│    889 │   │   │   │   │   │   if num_proc is not None:                      │
+│    890 │   │   │   │   │   │   │   prepare_split_kwargs["num_proc"] = num_pr │
+│ ❱  891 │   │   │   │   │   │   self._download_and_prepare(                   │
+│    892 │   │   │   │   │   │   │   dl_manager=dl_manager,                    │
+│    893 │   │   │   │   │   │   │   verification_mode=verification_mode,      │
+│    894 │   │   │   │   │   │   │   **prepare_split_kwargs,                   │
+│                                                                              │
+│ /home/scur1762/.conda/envs/DSnoT/lib/python3.8/site-packages/datasets/builde │
+│ r.py:1004 in _download_and_prepare                                           │
+│                                                                              │
+│   1001 │   │   │   dl_manager.manage_extracted_files()                       │
+│   1002 │   │                                                                 │
+│   1003 │   │   if verification_mode == VerificationMode.BASIC_CHECKS or veri │
+│ ❱ 1004 │   │   │   verify_splits(self.info.splits, split_dict)               │
+│   1005 │   │                                                                 │
+│   1006 │   │   # Update the info object with the splits.                     │
+│   1007 │   │   self.info.splits = split_dict                                 │
+│                                                                              │
+│ /home/scur1762/.conda/envs/DSnoT/lib/python3.8/site-packages/datasets/utils/ │
+│ info_utils.py:100 in verify_splits                                           │
+│                                                                              │
+│    97 │   │   if expected_splits[name].num_examples != recorded_splits[name] │
+│    98 │   ]                                                                  │
+│    99 │   if len(bad_splits) > 0:                                            │
+│ ❱ 100 │   │   raise NonMatchingSplitsSizesError(str(bad_splits))             │
+│   101 │   logger.info("All the splits matched successfully.")                │
+│   102                                                                        │
+│   103                                                                        │
+╰──────────────────────────────────────────────────────────────────────────────╯
+NonMatchingSplitsSizesError: [{'expected': SplitInfo(name='test', 
+num_bytes=1305088, num_examples=4358, shard_lengths=None, dataset_name=None), 
+'recorded': SplitInfo(name='test', num_bytes=5176698, num_examples=17432, 
+shard_lengths=None, dataset_name='parquet')}, {'expected': 
+SplitInfo(name='train', num_bytes=546500949, num_examples=1801350, 
+shard_lengths=None, dataset_name=None), 'recorded': SplitInfo(name='train', 
+num_bytes=1113622699, num_examples=3676136, shard_lengths=[1650675, 1661350, 
+364111], dataset_name='parquet')}, {'expected': SplitInfo(name='validation', 
+num_bytes=1159288, num_examples=3760, shard_lengths=None, dataset_name=None), 
+'recorded': SplitInfo(name='validation', num_bytes=4607450, num_examples=15040, 
+shard_lengths=None, dataset_name='parquet')}]
+srun: error: gcn15: task 0: Exited with exit code 1
+srun: Terminating StepId=8059509.0
+
+JOB STATISTICS
+==============
+Job ID: 8059509
+Cluster: snellius
+User/Group: scur1762/scur1762
+State: RUNNING
+Nodes: 1
+Cores per node: 18
+CPU Utilized: 00:00:00
+CPU Efficiency: 0.00% of 00:40:48 core-walltime
+Job Wall-clock time: 00:02:16
+Memory Utilized: 0.00 MB (estimated maximum)
+Memory Efficiency: 0.00% of 120.00 GB (120.00 GB/node)
+WARNING: Efficiency statistics may be misleading for RUNNING jobs.

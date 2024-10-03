@@ -89,23 +89,29 @@ def prepare_calibration_input(args, model, dataloader, device):
             if inp.size(1) < model.seqlen:
                 inp = torch.nn.functional.pad(inp, (0, 0, 0, model.seqlen - inp.size(1)), value=0)
             
-            # Ensure attention_mask is reshaped to 4D before expanding
-            if attention_mask.dim() == 5:
-                attention_mask = attention_mask.squeeze(2)  # Remove the extra dimension if present
-            # Ensure attention_mask is padded and reshaped to the expected size (1, 1, 2048, 2048)
-            if attention_mask.size(-1) < model.seqlen:
-                attention_mask = torch.nn.functional.pad(attention_mask, (0, model.seqlen - attention_mask.size(-1)), value=0)
-            attention_mask = attention_mask.expand(-1, 1, model.seqlen, model.seqlen)
+            # Ensure attention_mask exists before processing
+            attention_mask = kwargs.get("attention_mask", None)
+            if attention_mask is not None:
+                # Ensure attention_mask is reshaped to 4D before expanding
+                if attention_mask.dim() == 3:
+                    attention_mask = attention_mask.unsqueeze(1)  # Add extra dimension to make it 4D
 
-            # Print the updated shape for debugging
-            print(f"attention_mask shape after update: {attention_mask.size()}")
+                # Ensure attention_mask is padded and reshaped to the expected size (1, 1, 2048, 2048)
+                if attention_mask.size(-1) < model.seqlen:
+                    attention_mask = torch.nn.functional.pad(attention_mask, (0, model.seqlen - attention_mask.size(-1), 0, model.seqlen - attention_mask.size(-2)), value=0)
+
+                attention_mask = attention_mask.expand(-1, 1, model.seqlen, model.seqlen)
+
+                # Print the updated shape for debugging
+                print(f"attention_mask shape after update: {attention_mask.size()}")
+            else:
+                print("attention_mask is None")
 
             position_ids = kwargs["position_ids"]
             if position_ids.size(1) < model.seqlen:
                 position_ids = torch.nn.functional.pad(position_ids, (0, model.seqlen - position_ids.size(1)), value=0)
 
             print(f"inps shape: {inps.size()}")
-            print(f"attention_mask shape: {attention_mask.size()}")
             print(f"position_ids shape: {position_ids.size()}")
 
             inps[cache["i"]] = inp
