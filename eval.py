@@ -6,7 +6,7 @@ from tqdm import tqdm
 import pandas as pd
 import sacrebleu
 from rouge_score import rouge_scorer
-import time
+import numpy as np
 
 def get_parser():
     parser = argparse.ArgumentParser()
@@ -62,6 +62,7 @@ def main():
     dtype = dtype_map.get(args.dtype, torch.float)
 
     # load model and tokenizer
+    initial_vram = torch.cuda.memory_allocated()
     model = AutoModelForCausalLM.from_pretrained(args.model, 
                                                  torch_dtype=dtype, 
                                                  device_map="auto",
@@ -103,7 +104,9 @@ def main():
     total_batches = (len(lines) + args.batch_size - 1) // args.batch_size  # calculate the number of batches
     # Initialize empty lists to store the generated translations and targets
     generated_translations = []
-    total_time = 0
+    
+    vram_per_batch = []
+    latency_per_batch = []
     for batch in tqdm(dynamic_batching(tokenizer, lines, args.batch_size, args.gen_max_tokens), total=total_batches, desc="Processing Batches"):
         prompts = []
         for line in batch:
@@ -116,17 +119,26 @@ def main():
         inputs = tokenizer(prompts, return_tensors="pt", padding=True, ).to('cuda') if torch.cuda.is_available() else tokenizer(prompts, return_tensors="pt", padding=True, ).to('cpu')
 
         # generate
+        start = torch.cuda.Event(enable_timing=True)
+        end = torch.cuda.Event(enable_timing=True)
         with torch.no_grad():
-            start = time.time()
+            start.record()
             generated_ids = model.generate(
                 input_ids=inputs.input_ids,
                 attention_mask=inputs.attention_mask,
                 num_beams=args.beam, # beam size
                 max_new_tokens=args.gen_max_tokens
             )
-            end_time = time.time() - start
+            end.record()
+        
+        torch.cuda.synchronize()
+        latency_per_batch.append(start.elapsed_time(end))
 
-        total_time += end_time        
+        # Calculate the VRAM used by the model
+        memory_per_batch = ((torch.cuda.memory_allocated() - initial_vram) // (1024 ** 2))
+        print(f"VRAM usage: {memory_per_batch} MB")
+        vram_per_batch.append(memory_per_batch)
+             
         outputs = tokenizer.batch_decode(generated_ids, skip_special_tokens=True)
 
         # Process and write the translations
@@ -134,10 +146,20 @@ def main():
             translation = output[len(prompt):].strip()
             generated_translations.append(translation)
 
+    #Average VRAM usage
+    average_vram = sum(vram_per_batch) / len(vram_per_batch)
+    print(f"Average VRAM usage: {average_vram} MB")
+    
+    
+    temp_latency = np.array(latency_per_batch)
+    mean_time = temp_latency[abs[temp_latency - np.mean(temp_latency)] < np.std(temp_latency)].mean()
+
+    # total_time = sum(latency_per_batch) / len(latency_per_batch)
+
     print("*"*100)
     print("Evaluation Results:")
-    print(f"Time taken for generation: {total_time:.2f} seconds")
-    print(f"Average generation time: {total_time / len(lines)} seconds")
+    print(f"Avg Time taken for generation: {mean_time:.2f} ms")
+    # print(f"Average generation time: {total_time / len(lines)} seconds")
 
     # BLEU Score
     bleu = sacrebleu.corpus_bleu(generated_translations, [targets])
