@@ -9,7 +9,6 @@ from .data import get_loaders
 from .sparsegpt import SparseGPT
 from .layerwrapper import WrappedGPT
 
-from datasets import load_dataset
 
 def find_layers(module, layers=[nn.Linear], name=""):
     """
@@ -102,8 +101,6 @@ def prepare_calibration_input(args, model, dataloader, device):
 
                 attention_mask = attention_mask.expand(-1, 1, model.seqlen, model.seqlen)
 
-                # Print the updated shape for debugging
-                print(f"attention_mask shape after update: {attention_mask.size()}")
             else:
                 print("attention_mask is None")
 
@@ -111,8 +108,10 @@ def prepare_calibration_input(args, model, dataloader, device):
             if position_ids.size(1) < model.seqlen:
                 position_ids = torch.nn.functional.pad(position_ids, (0, model.seqlen - position_ids.size(1)), value=0)
 
-            print(f"inps shape: {inps.size()}")
-            print(f"position_ids shape: {position_ids.size()}")
+            # DEBUG statements
+            # print(f"attention_mask shape: {attention_mask.size()}")
+            # print(f"inps shape: {inps.size()}")
+            # print(f"position_ids shape: {position_ids.size()}")
 
             inps[cache["i"]] = inp
             cache["i"] += 1

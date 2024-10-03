@@ -31,6 +31,8 @@ def main():
     parser = argparse.ArgumentParser()
     parser.add_argument('--model', type=str, help='LLaMA model')
     parser.add_argument('--model_type', type=str, default=None, help='model type, either llama or opt')
+    parser.add_argument('--source_lang', type=str, default='cs')
+    parser.add_argument('--target_lang', type=str, default='en')
     parser.add_argument('--seed', type=int, default=0, help='Seed for sampling the calibration data.')
     parser.add_argument('--nsamples', type=int, default=128, help='Number of calibration samples.')
     parser.add_argument('--eval_dataset', type=str, default='wikitext2', choices=["wikitext2", "c4", "ptb"], help='eval ppl on dataset')
@@ -61,6 +63,7 @@ def main():
 
     print(f"Model path: {args.model}")
     print(f"Model type: {args.model_type}")
+    print(f"source and target lang: {args.source_lang}, {args.target_lang}")
 
     # Handling different model types
     if not args.model_type:
@@ -126,7 +129,8 @@ def main():
     print("*"*30)
     ################################################################
     
-    dataset = 'wikitext2'
+    # dataset = 'wikitext2'
+    dataset = 'WMT22-Test'
     ppl = eval_ppl(model, tokenizer, dataset, device)
     print(f"\nppl on {dataset}: {ppl}\n")
 

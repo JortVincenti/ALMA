@@ -21,7 +21,8 @@ def eval_ppl(model, tokenizer, dataset, device=torch.device("cuda:0")):
 
     # Evaluate ppl in no grad context to avoid updating the model
     with torch.no_grad():
-        ppl = eval_ppl_wikitext(model, testloader, 1, device)
+        # ppl = eval_ppl_wikitext(model, testloader, 1, device)
+        ppl = eval_ppl_alma_test(model, testloader, 1, device)
     return ppl 
 
 # Function to evaluate perplexity (ppl) specifically on the wikitext dataset
@@ -71,4 +72,45 @@ def eval_ppl_wikitext(model, testenc, bs=1, device=None):
     # Empty CUDA cache to save memory
     # torch.cuda.empty_cache()
 
+    return ppl.item()
+
+
+def eval_ppl_alma_test(model, testenc, bs=1, device=None):
+    testenc = testenc.input_ids  # Extract the input IDs from the tokenized data
+
+    # Calculate number of samples
+    nsamples = testenc.numel() // model.seqlen
+
+    # List to store negative log likelihoods
+    nlls = []
+    print(f"nsamples {nsamples}")
+
+    # Loop through each batch
+    for i in range(0, nsamples, bs):
+        if i % 50 == 0:
+            print(f"sample {i}")
+
+        j = min(i + bs, nsamples)
+
+        # Prepare inputs and move to device
+        inputs = testenc[:, (i * model.seqlen):(j * model.seqlen)].to(device)
+        inputs = inputs.reshape(j - i, model.seqlen)
+
+        # Forward pass through the model
+        lm_logits = model(inputs).logits
+
+        # Shift logits and labels for next token prediction
+        shift_logits = lm_logits[:, :-1, :].contiguous()
+        shift_labels = inputs[:, 1:]
+
+        # Compute loss
+        loss_fct = nn.CrossEntropyLoss()
+        loss = loss_fct(shift_logits.view(-1, shift_logits.size(-1)), shift_labels.view(-1))
+
+        # Calculate negative log likelihood
+        neg_log_likelihood = loss.float() * model.seqlen * (j - i)
+        nlls.append(neg_log_likelihood)
+
+    # Compute perplexity
+    ppl = torch.exp(torch.stack(nlls).sum() / (nsamples * model.seqlen))
     return ppl.item()

@@ -83,57 +83,39 @@ def get_alma(nsamples, seed, seqlen, tokenizer, source_lang, target_lang):
             translations = traindata[i]['translation']
             source_text = translations.get(source_lang)
             target_text = translations.get(target_lang)
-            # source_text = traindata[i][source_lang]
-            # target_text = traindata[i][target_lang]
-
             if source_text is None or target_text is None:
                 raise ValueError(f"Source or target language not found in translation. Entry: {translations}")
-            
             # Tokenize source and target text
             source_enc = tokenizer(source_text, return_tensors='pt', max_length=seqlen, truncation=True)
             target_enc = tokenizer(target_text, return_tensors='pt', max_length=seqlen, truncation=True)
             
-            # # Ensure the source sequence length meets the requirement ORIGINAL
-            # if source_enc.input_ids.shape[1] > seqlen:
-            #     break  # Proceed only if the sequence fits within the seqlen
-            # Ensure the source sequence length meets the requirement
+            # Ensure the source sequence length meets the requirement # Proceed only if the sequence fits within the seqlen
             if source_enc.input_ids.shape[1] <= seqlen:
-                break  # Proceed only if the sequence fits within the seqlen
+                break  
 
-        # ORIGINAL
-        # # Randomly select a sequence length window within the input
-        # i = random.randint(0, source_enc.input_ids.shape[1] - seqlen - 1)
-        # j = i + seqlen
-        # # Prepare the input and target sequences
-        # inp = source_enc.input_ids[:, i:j]
-        # tar = target_enc.input_ids[:, i:j].clone()
-        # tar[:, :-1] = -100  # Masking all but the last token in the target sequence for language modeling
-        
-    # Ensure that the tokenized sequence length is at least seqlen
-    if source_enc.input_ids.shape[1] >= seqlen:
-        # Randomly select a sequence length window within the input
-        i = random.randint(0, source_enc.input_ids.shape[1] - seqlen - 1)
-        j = i + seqlen
-        # Prepare the input and target sequences
-        inp = source_enc.input_ids[:, i:j]
-        tar = target_enc.input_ids[:, i:j].clone()
-    else:
-        # If the sequence is shorter than seqlen, just take the whole sequence
-        inp = source_enc.input_ids
-        tar = target_enc.input_ids.clone()
-        trainloader.append((inp, tar))
-    tar[:, :-1] = -100  # Masking all but the last token in the target sequence for language modeling
+            
+        # Ensure that the tokenized sequence length is at least seqlen
+        if source_enc.input_ids.shape[1] >= seqlen:
+            # Randomly select a sequence length window within the input
+            i = random.randint(0, source_enc.input_ids.shape[1] - seqlen - 1)
+            j = i + seqlen
+            # Prepare the input and target sequences
+            inp = source_enc.input_ids[:, i:j]
+            tar = target_enc.input_ids[:, i:j].clone()
+        else:
+            # If the sequence is shorter than seqlen, just take the whole sequence
+            inp = source_enc.input_ids
+            tar = target_enc.input_ids.clone()
+            trainloader.append((inp, tar))
 
+    # DEBUG statements
     # Print the available fields in valdata
-    print("valdata features:", valdata.features)
-    for entry in valdata[:1100]:
-        print(entry) 
-    # source_texts = [entry['translation'][source_lang] for entry in valdata[:1100]]
+    # print("valdata features:", valdata.features)
+    # for entry in valdata[:1100]:
+    #     print(entry) 
+    
     source_texts = [entry['translation'][source_lang] for entry in valdata if isinstance(entry, dict) and 'translation' in entry]
-    # print(source_texts)
-
     joined_source_text = ' '.join(source_texts)
-    # print(joined_source_text)
     
     # Tokenize the joined source texts for validation
     valenc = tokenizer(
@@ -147,15 +129,30 @@ def get_alma(nsamples, seed, seqlen, tokenizer, source_lang, target_lang):
 
     if valenc is None:
         raise ValueError("Validation data could not be processed properly.")
-    
-    # valenc = tokenizer(' '.join([entry['translation'][source_lang] for entry in valdata[:1100]]), return_tensors='pt', max_length=(256 * seqlen), truncation=True)
-    # valenc = tokenizer(' '.join(valdata[:1100][source_lang]), return_tensors='pt', max_length=(256 * seqlen), truncation=True)
-    # valenc = valenc.input_ids[:, :(256 * seqlen)]
-    
+        
     # Wrap validation data for compatibility
     valenc = TokenizerWrapper(valenc)
 
     return trainloader, valenc
+
+def get_alma_test(seqlen, tokenizer, source_lang, target_lang):
+    import pandas as pd
+    from datasets import Dataset
+
+    # Load ALMA test dataset
+    test_df = pd.read_parquet("hf://datasets/haoranxu/WMT22-Test/cs-en/test-00000-of-00001-1a83a591805d9178.parquet")
+
+    # Convert the Pandas DataFrame back into a Hugging Face Dataset
+    testdata = Dataset.from_pandas(test_df)
+
+    # Prepare test data: Join source texts into a single string and tokenize
+    source_texts = [entry['translation'][source_lang] for entry in testdata]
+    joined_source_text = ' '.join(source_texts)
+
+    # Tokenize the test data
+    testenc = tokenizer(joined_source_text, return_tensors='pt', max_length=seqlen, truncation=True)
+
+    return testenc
 
 # Load and process c4 dataset
 def get_c4(nsamples, seed, seqlen, tokenizer):
