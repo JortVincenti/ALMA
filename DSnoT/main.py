@@ -8,6 +8,7 @@ from importlib.metadata import version
 from lib.prune import check_sparsity, prune_DSnoT, prune_magnitude, prune_sparsegpt, prune_wanda
 from lib.prune_opt import check_sparsity_opt, prune_DSnoT_opt
 from lib.eval import eval_ppl
+from lib.eval_alma import alma_eval
 from lib.save_results import save_ppl_result
 
 print('torch', version('torch'))
@@ -55,6 +56,14 @@ def main():
     parser.add_argument("--output_results_file", default="results.txt", type=str)
     parser.add_argument("--cache_dir", default="llm_weights", type=str )
     parser.add_argument('--save_model', type=str, default=None, help='Path to save the pruned model.')
+
+    # FOR THE EVALUATION
+    parser.add_argument('--beam', type=int, required=True)
+    parser.add_argument('--dtype', required=True)
+    parser.add_argument('--gen_max_tokens', type=int, default=256)
+    parser.add_argument('--batch_size', type=int, default=8, help='Batch size for generation')
+    parser.add_argument('--eval_samples', type=int, default=None, help='Number of samples to evaluate')
+
     args = parser.parse_args()
 
     # Setting seeds for reproducibility
@@ -104,6 +113,7 @@ def main():
             elif args.prune_method == "sparsegpt":
                 prune_sparsegpt(args, model, tokenizer, device, prune_n=prune_n, prune_m=prune_m)
             elif args.prune_method == "DSnoT":
+                print("It's going for DSnoT pruning")
                 prune_DSnoT(args, model, tokenizer, device, prune_n=prune_n, prune_m=prune_m)
             elif args.prune_method == "dense":
                 pass
@@ -129,16 +139,20 @@ def main():
     print("*"*30)
     ################################################################
     
+    if args.save_model:
+        print("came in here")
+        model.save_pretrained(args.save_model)
+        print("should have saved now")
+        tokenizer.save_pretrained(args.save_model)
+
     # dataset = 'wikitext2'
     dataset = 'WMT22-Test'
-    ppl = eval_ppl(model, tokenizer, dataset, device)
+    ppl = alma_eval(model, tokenizer, args, device)
+    # ppl = eval_ppl(model, tokenizer, dataset, device)
     print(f"\nppl on {dataset}: {ppl}\n")
 
     save_ppl_result(args, args.output_results_file, sparsity_ratio, ppl)
 
-    if args.save_model:
-        model.save_pretrained(args.save_model)
-        tokenizer.save_pretrained(args.save_model)
 
 if __name__ == '__main__':
     main()
