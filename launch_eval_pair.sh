@@ -10,5 +10,5 @@ do
     SRC_LANG=$(echo "$LANG" | awk -F '-' '{print $1}')
     TGT_LANG=$(echo "$LANG" | awk -F '-' '{print $2}')
     echo "Evaluating $LANG_PAIR"
-    sbatch --job-name "eval-${LANG}" eval_pairs.job --src "${SRC_LANG}" --data_path "${LANG_PAIR}" --tgt "${TGT_LANG}" --dtype "float16" --model "ALMA-7B/" --beam 5    
+    sbatch --job-name "eval-${LANG}" eval_pairs.job --src "${SRC_LANG}" --data_path "${LANG_PAIR}" --tgt "${TGT_LANG}" --dtype "float16" --model "haoranxu/ALMA-7B" --beam 5    
 done

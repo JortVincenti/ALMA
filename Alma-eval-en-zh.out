@@ -1,0 +1,215 @@
+Error importing huggingface_hub.hf_api: No module named 'yaml'
+Error importing huggingface_hub.hf_api: No module named 'yaml'
+Traceback (most recent call last):
+Error importing huggingface_hub.hf_api: No module named 'yaml'
+Traceback (most recent call last):
+Traceback (most recent call last):
+  File "/gpfs/home3/scur1746/ALMA/eval.py", line 4, in <module>
+  File "/gpfs/home3/scur1746/ALMA/eval.py", line 4, in <module>
+  File "/gpfs/home3/scur1746/ALMA/eval.py", line 4, in <module>
+    from transformers import AutoModelForCausalLM, LlamaTokenizer
+    from transformers import AutoModelForCausalLM, LlamaTokenizer
+    from transformers import AutoModelForCausalLM, LlamaTokenizer
+  File "/gpfs/home3/scur1746/ALMA/.env/lib/python3.11/site-packages/transformers/__init__.py", line 26, in <module>
+  File "/gpfs/home3/scur1746/ALMA/.env/lib/python3.11/site-packages/transformers/__init__.py", line 26, in <module>
+  File "/gpfs/home3/scur1746/ALMA/.env/lib/python3.11/site-packages/transformers/__init__.py", line 26, in <module>
+    from . import dependency_versions_check
+    from . import dependency_versions_check
+    from . import dependency_versions_check
+  File "/gpfs/home3/scur1746/ALMA/.env/lib/python3.11/site-packages/transformers/dependency_versions_check.py", line 16, in <module>
+  File "/gpfs/home3/scur1746/ALMA/.env/lib/python3.11/site-packages/transformers/dependency_versions_check.py", line 16, in <module>
+  File "/gpfs/home3/scur1746/ALMA/.env/lib/python3.11/site-packages/transformers/dependency_versions_check.py", line 16, in <module>
+    from .utils.versions import require_version, require_version_core
+    from .utils.versions import require_version, require_version_core
+    from .utils.versions import require_version, require_version_core
+  File "/gpfs/home3/scur1746/ALMA/.env/lib/python3.11/site-packages/transformers/utils/__init__.py", line 21, in <module>
+  File "/gpfs/home3/scur1746/ALMA/.env/lib/python3.11/site-packages/transformers/utils/__init__.py", line 21, in <module>
+  File "/gpfs/home3/scur1746/ALMA/.env/lib/python3.11/site-packages/transformers/utils/__init__.py", line 21, in <module>
+    from huggingface_hub import get_full_repo_name  # for backward compatibility
+    from huggingface_hub import get_full_repo_name  # for backward compatibility
+    from huggingface_hub import get_full_repo_name  # for backward compatibility
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/gpfs/home3/scur1746/ALMA/.env/lib/python3.11/site-packages/huggingface_hub/__init__.py", line 530, in __getattr__
+  File "/gpfs/home3/scur1746/ALMA/.env/lib/python3.11/site-packages/huggingface_hub/__init__.py", line 530, in __getattr__
+  File "/gpfs/home3/scur1746/ALMA/.env/lib/python3.11/site-packages/huggingface_hub/__init__.py", line 530, in __getattr__
+    submod = importlib.import_module(submod_path)
+    submod = importlib.import_module(submod_path)
+    submod = importlib.import_module(submod_path)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/gpfs/home3/scur1746/ALMA/.env/lib/python3.11/importlib/__init__.py", line 126, in import_module
+  File "/gpfs/home3/scur1746/ALMA/.env/lib/python3.11/importlib/__init__.py", line 126, in import_module
+  File "/gpfs/home3/scur1746/ALMA/.env/lib/python3.11/importlib/__init__.py", line 126, in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+    return _bootstrap._gcd_import(name[level:], package, level)
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/gpfs/home3/scur1746/ALMA/.env/lib/python3.11/site-packages/huggingface_hub/hf_api.py", line 52, in <module>
+  File "/gpfs/home3/scur1746/ALMA/.env/lib/python3.11/site-packages/huggingface_hub/hf_api.py", line 52, in <module>
+  File "/gpfs/home3/scur1746/ALMA/.env/lib/python3.11/site-packages/huggingface_hub/hf_api.py", line 52, in <module>
+    from ._commit_api import (
+    from ._commit_api import (
+    from ._commit_api import (
+  File "/gpfs/home3/scur1746/ALMA/.env/lib/python3.11/site-packages/huggingface_hub/_commit_api.py", line 20, in <module>
+  File "/gpfs/home3/scur1746/ALMA/.env/lib/python3.11/site-packages/huggingface_hub/_commit_api.py", line 20, in <module>
+  File "/gpfs/home3/scur1746/ALMA/.env/lib/python3.11/site-packages/huggingface_hub/_commit_api.py", line 20, in <module>
+    from .file_download import hf_hub_url
+    from .file_download import hf_hub_url
+  File "/gpfs/home3/scur1746/ALMA/.env/lib/python3.11/site-packages/huggingface_hub/file_download.py", line 25, in <module>
+  File "/gpfs/home3/scur1746/ALMA/.env/lib/python3.11/site-packages/huggingface_hub/file_download.py", line 25, in <module>
+    from ._local_folder import (
+    from ._local_folder import (
+  File "/gpfs/home3/scur1746/ALMA/.env/lib/python3.11/site-packages/huggingface_hub/_local_folder.py", line 60, in <module>
+  File "/gpfs/home3/scur1746/ALMA/.env/lib/python3.11/site-packages/huggingface_hub/_local_folder.py", line 60, in <module>
+    from .utils import WeakFileLock
+    from .utils import WeakFileLock
+    from .file_download import hf_hub_url
+  File "/gpfs/home3/scur1746/ALMA/.env/lib/python3.11/site-packages/huggingface_hub/utils/__init__.py", line 50, in <module>
+  File "/gpfs/home3/scur1746/ALMA/.env/lib/python3.11/site-packages/huggingface_hub/utils/__init__.py", line 50, in <module>
+    from ._fixes import SoftTemporaryDirectory, WeakFileLock, yaml_dump
+    from ._fixes import SoftTemporaryDirectory, WeakFileLock, yaml_dump
+  File "/gpfs/home3/scur1746/ALMA/.env/lib/python3.11/site-packages/huggingface_hub/utils/_fixes.py", line 20, in <module>
+  File "/gpfs/home3/scur1746/ALMA/.env/lib/python3.11/site-packages/huggingface_hub/utils/_fixes.py", line 20, in <module>
+    import yaml
+    import yaml
+ModuleNotFoundError: No module named 'yaml'
+  File "/gpfs/home3/scur1746/ALMA/.env/lib/python3.11/site-packages/huggingface_hub/file_download.py", line 25, in <module>
+ModuleNotFoundError: No module named 'yaml'
+    from ._local_folder import (
+  File "/gpfs/home3/scur1746/ALMA/.env/lib/python3.11/site-packages/huggingface_hub/_local_folder.py", line 60, in <module>
+    from .utils import WeakFileLock
+  File "/gpfs/home3/scur1746/ALMA/.env/lib/python3.11/site-packages/huggingface_hub/utils/__init__.py", line 50, in <module>
+    from ._fixes import SoftTemporaryDirectory, WeakFileLock, yaml_dump
+  File "/gpfs/home3/scur1746/ALMA/.env/lib/python3.11/site-packages/huggingface_hub/utils/_fixes.py", line 20, in <module>
+    import yaml
+ModuleNotFoundError: No module named 'yaml'
+
+JOB STATISTICS
+==============
+Job ID: 8109587
+Cluster: snellius
+User/Group: scur1746/scur1746
+State: RUNNING
+Nodes: 1
+Cores per node: 18
+CPU Utilized: 00:00:00
+CPU Efficiency: 0.00% of 00:05:24 core-walltime
+Job Wall-clock time: 00:00:18
+Memory Utilized: 0.00 MB (estimated maximum)
+Memory Efficiency: 0.00% of 120.00 GB (120.00 GB/node)
+WARNING: Efficiency statistics may be misleading for RUNNING jobs.
+
+JOB STATISTICS
+==============
+Job ID: 8109589
+Cluster: snellius
+User/Group: scur1746/scur1746
+State: RUNNING
+Nodes: 1
+Cores per node: 18
+CPU Utilized: 00:00:00
+CPU Efficiency: 0.00% of 00:05:24 core-walltime
+Job Wall-clock time: 00:00:18
+Memory Utilized: 0.00 MB (estimated maximum)
+Memory Efficiency: 0.00% of 120.00 GB (120.00 GB/node)
+WARNING: Efficiency statistics may be misleading for RUNNING jobs.
+
+JOB STATISTICS
+==============
+Job ID: 8109588
+Cluster: snellius
+User/Group: scur1746/scur1746
+State: RUNNING
+Nodes: 1
+Cores per node: 18
+CPU Utilized: 00:00:00
+CPU Efficiency: 0.00% of 00:05:24 core-walltime
+Job Wall-clock time: 00:00:18
+Memory Utilized: 0.00 MB (estimated maximum)
+Memory Efficiency: 0.00% of 120.00 GB (120.00 GB/node)
+WARNING: Efficiency statistics may be misleading for RUNNING jobs.
+Could not set the permissions on the file '/home/scur1746/.cache/huggingface/hub/models--haoranxu--ALMA-7B/blobs/c4002b9e63e4788a326fda9933861997cf014eaf3d5a8b76a416cf25b58b945e.incomplete'. Error: [Errno 2] No such file or directory: '/home/scur1746/.cache/huggingface/hub/models--haoranxu--ALMA-7B/tmp_c49d6003-76bd-4d14-8072-b3410498e656'.
+Continuing without setting permissions.
+Could not set the permissions on the file '/home/scur1746/.cache/huggingface/hub/models--haoranxu--ALMA-7B/blobs/c4002b9e63e4788a326fda9933861997cf014eaf3d5a8b76a416cf25b58b945e.incomplete'. Error: [Errno 2] No such file or directory: '/home/scur1746/.cache/huggingface/hub/models--haoranxu--ALMA-7B/tmp_c49d6003-76bd-4d14-8072-b3410498e656'.
+Continuing without setting permissions.
+Downloading shards:   0%|          | 0/3 [42:17<?, ?it/s]
+Traceback (most recent call last):
+  File "/gpfs/home3/scur1746/ALMA/.env/lib/python3.11/shutil.py", line 853, in move
+    os.rename(src, real_dst)
+FileNotFoundError: [Errno 2] No such file or directory: '/home/scur1746/.cache/huggingface/hub/models--haoranxu--ALMA-7B/blobs/c4002b9e63e4788a326fda9933861997cf014eaf3d5a8b76a416cf25b58b945e.incomplete' -> '/home/scur1746/.cache/huggingface/hub/models--haoranxu--ALMA-7B/blobs/c4002b9e63e4788a326fda9933861997cf014eaf3d5a8b76a416cf25b58b945e'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/gpfs/home3/scur1746/ALMA/.env/lib/python3.11/site-packages/huggingface_hub/file_download.py", line 1978, in _copy_no_matter_what
+    shutil.copy2(src, dst)
+  File "/gpfs/home3/scur1746/ALMA/.env/lib/python3.11/shutil.py", line 448, in copy2
+    copyfile(src, dst, follow_symlinks=follow_symlinks)
+  File "/gpfs/home3/scur1746/ALMA/.env/lib/python3.11/shutil.py", line 256, in copyfile
+    with open(src, 'rb') as fsrc:
+         ^^^^^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: '/home/scur1746/.cache/huggingface/hub/models--haoranxu--ALMA-7B/blobs/c4002b9e63e4788a326fda9933861997cf014eaf3d5a8b76a416cf25b58b945e.incomplete'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/gpfs/home3/scur1746/ALMA/eval.py", line 209, in <module>
+    
+  File "/gpfs/home3/scur1746/ALMA/eval.py", line 79, in main
+    model = AutoModelForCausalLM.from_pretrained(args.model, 
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/gpfs/home3/scur1746/ALMA/.env/lib/python3.11/site-packages/transformers/models/auto/auto_factory.py", line 564, in from_pretrained
+    return model_class.from_pretrained(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/gpfs/home3/scur1746/ALMA/.env/lib/python3.11/site-packages/transformers/modeling_utils.py", line 3769, in from_pretrained
+    resolved_archive_file, sharded_metadata = get_checkpoint_shard_files(
+                                              ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/gpfs/home3/scur1746/ALMA/.env/lib/python3.11/site-packages/transformers/utils/hub.py", line 1098, in get_checkpoint_shard_files
+    cached_filename = cached_file(
+                      ^^^^^^^^^^^^
+  File "/gpfs/home3/scur1746/ALMA/.env/lib/python3.11/site-packages/transformers/utils/hub.py", line 403, in cached_file
+    resolved_file = hf_hub_download(
+                    ^^^^^^^^^^^^^^^^
+  File "/gpfs/home3/scur1746/ALMA/.env/lib/python3.11/site-packages/huggingface_hub/utils/_deprecation.py", line 101, in inner_f
+    return f(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^
+  File "/gpfs/home3/scur1746/ALMA/.env/lib/python3.11/site-packages/huggingface_hub/utils/_validators.py", line 114, in _inner_fn
+    return fn(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^
+  File "/gpfs/home3/scur1746/ALMA/.env/lib/python3.11/site-packages/huggingface_hub/file_download.py", line 1232, in hf_hub_download
+    return _hf_hub_download_to_cache_dir(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/gpfs/home3/scur1746/ALMA/.env/lib/python3.11/site-packages/huggingface_hub/file_download.py", line 1381, in _hf_hub_download_to_cache_dir
+    _download_to_tmp_and_move(
+  File "/gpfs/home3/scur1746/ALMA/.env/lib/python3.11/site-packages/huggingface_hub/file_download.py", line 1925, in _download_to_tmp_and_move
+    _chmod_and_move(incomplete_path, destination_path)
+  File "/gpfs/home3/scur1746/ALMA/.env/lib/python3.11/site-packages/huggingface_hub/file_download.py", line 1967, in _chmod_and_move
+    shutil.move(str(src), str(dst), copy_function=_copy_no_matter_what)
+  File "/gpfs/home3/scur1746/ALMA/.env/lib/python3.11/shutil.py", line 873, in move
+    copy_function(src, real_dst)
+  File "/gpfs/home3/scur1746/ALMA/.env/lib/python3.11/site-packages/huggingface_hub/file_download.py", line 1981, in _copy_no_matter_what
+    shutil.copyfile(src, dst)
+  File "/gpfs/home3/scur1746/ALMA/.env/lib/python3.11/shutil.py", line 256, in copyfile
+    with open(src, 'rb') as fsrc:
+         ^^^^^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: '/home/scur1746/.cache/huggingface/hub/models--haoranxu--ALMA-7B/blobs/c4002b9e63e4788a326fda9933861997cf014eaf3d5a8b76a416cf25b58b945e.incomplete'
+
+JOB STATISTICS
+==============
+Job ID: 8109238
+Cluster: snellius
+User/Group: scur1746/scur1746
+State: RUNNING
+Nodes: 1
+Cores per node: 18
+CPU Utilized: 00:00:00
+CPU Efficiency: 0.00% of 12:47:06 core-walltime
+Job Wall-clock time: 00:42:37
+Memory Utilized: 0.00 MB (estimated maximum)
+Memory Efficiency: 0.00% of 120.00 GB (120.00 GB/node)
+WARNING: Efficiency statistics may be misleading for RUNNING jobs.
