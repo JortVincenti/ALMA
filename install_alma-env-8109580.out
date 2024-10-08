@@ -1,0 +1,871 @@
+Transaction
+
+  Prefix: /gpfs/home3/scur1746/ALMA/.env
+
+  Updating specs:
+
+   - python=3.11
+   - code-server=4.23.1
+
+
+  Package               Version  Build               Channel                    Size
+──────────────────────────────────────────────────────────────────────────────────────
+  Install:
+──────────────────────────────────────────────────────────────────────────────────────
+
+  + _libgcc_mutex           0.1  conda_forge         conda-forge/linux-64     Cached
+  + _openmp_mutex           4.5  2_gnu               conda-forge/linux-64     Cached
+  + bzip2                 1.0.8  h4bc722e_7          conda-forge/linux-64     Cached
+  + ca-certificates   2024.8.30  hbcca054_0          conda-forge/linux-64     Cached
+  + code-server          4.23.1  hafe34db_1          conda-forge/linux-64     Cached
+  + icu                    75.1  he02047a_0          conda-forge/linux-64     Cached
+  + ld_impl_linux-64       2.43  h712a8e2_1          conda-forge/linux-64     Cached
+  + libexpat              2.6.3  h5888daf_0          conda-forge/linux-64     Cached
+  + libffi                3.4.2  h7f98852_5          conda-forge/linux-64     Cached
+  + libgcc               14.1.0  h77fa898_1          conda-forge/linux-64     Cached
+  + libgcc-ng            14.1.0  h69a702a_1          conda-forge/linux-64     Cached
+  + libgomp              14.1.0  h77fa898_1          conda-forge/linux-64     Cached
+  + libnsl                2.0.1  hd590300_0          conda-forge/linux-64     Cached
+  + libsqlite            3.46.1  hadc24fc_0          conda-forge/linux-64     Cached
+  + libstdcxx            14.1.0  hc0a3c3a_1          conda-forge/linux-64     Cached
+  + libstdcxx-ng         14.1.0  h4852527_1          conda-forge/linux-64     Cached
+  + libuuid              2.38.1  h0b41bf4_0          conda-forge/linux-64     Cached
+  + libuv                1.49.0  hb9d3cd8_0          conda-forge/linux-64     Cached
+  + libxcrypt            4.4.36  hd590300_1          conda-forge/linux-64     Cached
+  + libzlib               1.3.1  hb9d3cd8_2          conda-forge/linux-64     Cached
+  + ncurses                 6.5  he02047a_1          conda-forge/linux-64     Cached
+  + nodejs              18.20.4  hc55a1b2_1          conda-forge/linux-64     Cached
+  + openssl               3.3.2  hb9d3cd8_0          conda-forge/linux-64     Cached
+  + pip                    24.2  pyh8b19718_1        conda-forge/noarch       Cached
+  + python              3.11.10  hc5c86c4_2_cpython  conda-forge/linux-64     Cached
+  + readline                8.2  h8228510_1          conda-forge/linux-64     Cached
+  + setuptools           75.1.0  pyhd8ed1ab_0        conda-forge/noarch       Cached
+  + tk                   8.6.13  noxft_h4845f30_101  conda-forge/linux-64     Cached
+  + tzdata                2024b  hc8b5060_0          conda-forge/noarch       Cached
+  + wheel                0.44.0  pyhd8ed1ab_0        conda-forge/noarch       Cached
+  + xz                    5.2.6  h166bdaf_0          conda-forge/linux-64     Cached
+  + zlib                  1.3.1  hb9d3cd8_2          conda-forge/linux-64     Cached
+
+  Summary:
+
+  Install: 32 packages
+
+  Total download: 0 B
+
+──────────────────────────────────────────────────────────────────────────────────────
+
+
+
+Looking for: ['python=3.11', 'code-server=4.23.1']
+
+
+Preparing transaction: ...working... done
+Verifying transaction: ...working... done
+Executing transaction: ...working... done
+#
+# To activate this environment, use
+#
+#     $ conda activate /gpfs/home3/scur1746/ALMA/.env
+#
+# To deactivate an active environment, use
+#
+#     $ conda deactivate
+
+Retrieving notices: ...working... done
+Collecting git+https://github.com/fe1ixxu/ALMA.git@alma-r-hf
+  Cloning https://github.com/fe1ixxu/ALMA.git (to revision alma-r-hf) to /gpfs/scratch1/nodespecific/gcn31/scur1746.8109580/pip-req-build-5qa8s6k5
+  Running command git clone --filter=blob:none --quiet https://github.com/fe1ixxu/ALMA.git /gpfs/scratch1/nodespecific/gcn31/scur1746.8109580/pip-req-build-5qa8s6k5
+  Running command git checkout -b alma-r-hf --track origin/alma-r-hf
+  Switched to a new branch 'alma-r-hf'
+  branch 'alma-r-hf' set up to track 'origin/alma-r-hf'.
+  Resolved https://github.com/fe1ixxu/ALMA.git to commit fe905f52a0e13b8efae49218d754bde5376bbe42
+  Installing build dependencies: started
+  Installing build dependencies: finished with status 'done'
+  Getting requirements to build wheel: started
+  Getting requirements to build wheel: finished with status 'done'
+  Preparing metadata (pyproject.toml): started
+  Preparing metadata (pyproject.toml): finished with status 'done'
+Collecting filelock (from transformers==4.35.0.dev0)
+  Using cached filelock-3.16.1-py3-none-any.whl.metadata (2.9 kB)
+Collecting huggingface-hub<1.0,>=0.16.4 (from transformers==4.35.0.dev0)
+  Using cached huggingface_hub-0.25.1-py3-none-any.whl.metadata (13 kB)
+Collecting numpy>=1.17 (from transformers==4.35.0.dev0)
+  Using cached numpy-2.1.2-cp311-cp311-manylinux_2_17_x86_64.manylinux2014_x86_64.whl.metadata (60 kB)
+Collecting packaging>=20.0 (from transformers==4.35.0.dev0)
+  Using cached packaging-24.1-py3-none-any.whl.metadata (3.2 kB)
+Collecting pyyaml>=5.1 (from transformers==4.35.0.dev0)
+  Using cached PyYAML-6.0.2-cp311-cp311-manylinux_2_17_x86_64.manylinux2014_x86_64.whl.metadata (2.1 kB)
+Collecting regex!=2019.12.17 (from transformers==4.35.0.dev0)
+  Using cached regex-2024.9.11-cp311-cp311-manylinux_2_17_x86_64.manylinux2014_x86_64.whl.metadata (40 kB)
+Collecting requests (from transformers==4.35.0.dev0)
+  Using cached requests-2.32.3-py3-none-any.whl.metadata (4.6 kB)
+Collecting tokenizers<0.15,>=0.14 (from transformers==4.35.0.dev0)
+  Using cached tokenizers-0.14.1-cp311-cp311-manylinux_2_17_x86_64.manylinux2014_x86_64.whl.metadata (6.7 kB)
+Collecting safetensors>=0.3.1 (from transformers==4.35.0.dev0)
+  Using cached safetensors-0.4.5-cp311-cp311-manylinux_2_17_x86_64.manylinux2014_x86_64.whl.metadata (3.8 kB)
+Collecting tqdm>=4.27 (from transformers==4.35.0.dev0)
+  Using cached tqdm-4.66.5-py3-none-any.whl.metadata (57 kB)
+Collecting fsspec>=2023.5.0 (from huggingface-hub<1.0,>=0.16.4->transformers==4.35.0.dev0)
+  Using cached fsspec-2024.9.0-py3-none-any.whl.metadata (11 kB)
+Collecting typing-extensions>=3.7.4.3 (from huggingface-hub<1.0,>=0.16.4->transformers==4.35.0.dev0)
+  Using cached typing_extensions-4.12.2-py3-none-any.whl.metadata (3.0 kB)
+Collecting huggingface-hub<1.0,>=0.16.4 (from transformers==4.35.0.dev0)
+  Using cached huggingface_hub-0.17.3-py3-none-any.whl.metadata (13 kB)
+Collecting charset-normalizer<4,>=2 (from requests->transformers==4.35.0.dev0)
+  Using cached charset_normalizer-3.3.2-cp311-cp311-manylinux_2_17_x86_64.manylinux2014_x86_64.whl.metadata (33 kB)
+Collecting idna<4,>=2.5 (from requests->transformers==4.35.0.dev0)
+  Using cached idna-3.10-py3-none-any.whl.metadata (10 kB)
+Collecting urllib3<3,>=1.21.1 (from requests->transformers==4.35.0.dev0)
+  Using cached urllib3-2.2.3-py3-none-any.whl.metadata (6.5 kB)
+Collecting certifi>=2017.4.17 (from requests->transformers==4.35.0.dev0)
+  Using cached certifi-2024.8.30-py3-none-any.whl.metadata (2.2 kB)
+Using cached numpy-2.1.2-cp311-cp311-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (16.3 MB)
+Using cached packaging-24.1-py3-none-any.whl (53 kB)
+Using cached PyYAML-6.0.2-cp311-cp311-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (762 kB)
+Using cached regex-2024.9.11-cp311-cp311-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (792 kB)
+Using cached safetensors-0.4.5-cp311-cp311-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (435 kB)
+Using cached tokenizers-0.14.1-cp311-cp311-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (3.8 MB)
+Using cached huggingface_hub-0.17.3-py3-none-any.whl (295 kB)
+Using cached tqdm-4.66.5-py3-none-any.whl (78 kB)
+Using cached filelock-3.16.1-py3-none-any.whl (16 kB)
+Using cached requests-2.32.3-py3-none-any.whl (64 kB)
+Using cached certifi-2024.8.30-py3-none-any.whl (167 kB)
+Using cached charset_normalizer-3.3.2-cp311-cp311-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (140 kB)
+Using cached idna-3.10-py3-none-any.whl (70 kB)
+Using cached typing_extensions-4.12.2-py3-none-any.whl (37 kB)
+Using cached urllib3-2.2.3-py3-none-any.whl (126 kB)
+Using cached fsspec-2024.9.0-py3-none-any.whl (179 kB)
+Building wheels for collected packages: transformers
+  Building wheel for transformers (pyproject.toml): started
+  Building wheel for transformers (pyproject.toml): finished with status 'done'
+  Created wheel for transformers: filename=transformers-4.35.0.dev0-py3-none-any.whl size=7882019 sha256=023ebf73bdeacffc66b5d54865d8d0ba93b59510943765b6f4d6c8fc63b3f150
+  Stored in directory: /gpfs/scratch1/nodespecific/gcn31/scur1746.8109580/pip-ephem-wheel-cache-6oc63f9e/wheels/ec/07/d4/7a6007884bf3a4e196c3d8ec9875dff4ed8582ca3066d48466
+Successfully built transformers
+Installing collected packages: urllib3, typing-extensions, tqdm, safetensors, regex, pyyaml, packaging, numpy, idna, fsspec, filelock, charset-normalizer, certifi, requests, huggingface-hub, tokenizers, transformers
+Successfully installed certifi-2024.8.30 charset-normalizer-3.3.2 filelock-3.16.1 fsspec-2024.9.0 huggingface-hub-0.17.3 idna-3.10 numpy-2.1.2 packaging-24.1 pyyaml-6.0.2 regex-2024.9.11 requests-2.32.3 safetensors-0.4.5 tokenizers-0.14.1 tqdm-4.66.5 transformers-4.35.0.dev0 typing-extensions-4.12.2 urllib3-2.2.3
+Collecting peft==0.5.0
+  Using cached peft-0.5.0-py3-none-any.whl.metadata (22 kB)
+Requirement already satisfied: numpy>=1.17 in ./.env/lib/python3.11/site-packages (from peft==0.5.0) (2.1.2)
+Requirement already satisfied: packaging>=20.0 in ./.env/lib/python3.11/site-packages (from peft==0.5.0) (24.1)
+Collecting psutil (from peft==0.5.0)
+  Using cached psutil-6.0.0-cp36-abi3-manylinux_2_12_x86_64.manylinux2010_x86_64.manylinux_2_17_x86_64.manylinux2014_x86_64.whl.metadata (21 kB)
+Requirement already satisfied: pyyaml in ./.env/lib/python3.11/site-packages (from peft==0.5.0) (6.0.2)
+Collecting torch>=1.13.0 (from peft==0.5.0)
+  Using cached torch-2.4.1-cp311-cp311-manylinux1_x86_64.whl.metadata (26 kB)
+Requirement already satisfied: transformers in ./.env/lib/python3.11/site-packages (from peft==0.5.0) (4.35.0.dev0)
+Requirement already satisfied: tqdm in ./.env/lib/python3.11/site-packages (from peft==0.5.0) (4.66.5)
+Collecting accelerate (from peft==0.5.0)
+  Using cached accelerate-1.0.0-py3-none-any.whl.metadata (19 kB)
+Requirement already satisfied: safetensors in ./.env/lib/python3.11/site-packages (from peft==0.5.0) (0.4.5)
+Requirement already satisfied: filelock in ./.env/lib/python3.11/site-packages (from torch>=1.13.0->peft==0.5.0) (3.16.1)
+Requirement already satisfied: typing-extensions>=4.8.0 in ./.env/lib/python3.11/site-packages (from torch>=1.13.0->peft==0.5.0) (4.12.2)
+Collecting sympy (from torch>=1.13.0->peft==0.5.0)
+  Using cached sympy-1.13.3-py3-none-any.whl.metadata (12 kB)
+Collecting networkx (from torch>=1.13.0->peft==0.5.0)
+  Using cached networkx-3.3-py3-none-any.whl.metadata (5.1 kB)
+Collecting jinja2 (from torch>=1.13.0->peft==0.5.0)
+  Using cached jinja2-3.1.4-py3-none-any.whl.metadata (2.6 kB)
+Requirement already satisfied: fsspec in ./.env/lib/python3.11/site-packages (from torch>=1.13.0->peft==0.5.0) (2024.9.0)
+Collecting nvidia-cuda-nvrtc-cu12==12.1.105 (from torch>=1.13.0->peft==0.5.0)
+  Using cached nvidia_cuda_nvrtc_cu12-12.1.105-py3-none-manylinux1_x86_64.whl.metadata (1.5 kB)
+Collecting nvidia-cuda-runtime-cu12==12.1.105 (from torch>=1.13.0->peft==0.5.0)
+  Using cached nvidia_cuda_runtime_cu12-12.1.105-py3-none-manylinux1_x86_64.whl.metadata (1.5 kB)
+Collecting nvidia-cuda-cupti-cu12==12.1.105 (from torch>=1.13.0->peft==0.5.0)
+  Using cached nvidia_cuda_cupti_cu12-12.1.105-py3-none-manylinux1_x86_64.whl.metadata (1.6 kB)
+Collecting nvidia-cudnn-cu12==9.1.0.70 (from torch>=1.13.0->peft==0.5.0)
+  Using cached nvidia_cudnn_cu12-9.1.0.70-py3-none-manylinux2014_x86_64.whl.metadata (1.6 kB)
+Collecting nvidia-cublas-cu12==12.1.3.1 (from torch>=1.13.0->peft==0.5.0)
+  Using cached nvidia_cublas_cu12-12.1.3.1-py3-none-manylinux1_x86_64.whl.metadata (1.5 kB)
+Collecting nvidia-cufft-cu12==11.0.2.54 (from torch>=1.13.0->peft==0.5.0)
+  Using cached nvidia_cufft_cu12-11.0.2.54-py3-none-manylinux1_x86_64.whl.metadata (1.5 kB)
+Collecting nvidia-curand-cu12==10.3.2.106 (from torch>=1.13.0->peft==0.5.0)
+  Using cached nvidia_curand_cu12-10.3.2.106-py3-none-manylinux1_x86_64.whl.metadata (1.5 kB)
+Collecting nvidia-cusolver-cu12==11.4.5.107 (from torch>=1.13.0->peft==0.5.0)
+  Using cached nvidia_cusolver_cu12-11.4.5.107-py3-none-manylinux1_x86_64.whl.metadata (1.6 kB)
+Collecting nvidia-cusparse-cu12==12.1.0.106 (from torch>=1.13.0->peft==0.5.0)
+  Using cached nvidia_cusparse_cu12-12.1.0.106-py3-none-manylinux1_x86_64.whl.metadata (1.6 kB)
+Collecting nvidia-nccl-cu12==2.20.5 (from torch>=1.13.0->peft==0.5.0)
+  Using cached nvidia_nccl_cu12-2.20.5-py3-none-manylinux2014_x86_64.whl.metadata (1.8 kB)
+Collecting nvidia-nvtx-cu12==12.1.105 (from torch>=1.13.0->peft==0.5.0)
+  Using cached nvidia_nvtx_cu12-12.1.105-py3-none-manylinux1_x86_64.whl.metadata (1.7 kB)
+Collecting triton==3.0.0 (from torch>=1.13.0->peft==0.5.0)
+  Using cached triton-3.0.0-1-cp311-cp311-manylinux2014_x86_64.manylinux_2_17_x86_64.whl.metadata (1.3 kB)
+Collecting nvidia-nvjitlink-cu12 (from nvidia-cusolver-cu12==11.4.5.107->torch>=1.13.0->peft==0.5.0)
+  Using cached nvidia_nvjitlink_cu12-12.6.77-py3-none-manylinux2014_x86_64.whl.metadata (1.5 kB)
+Collecting huggingface-hub>=0.21.0 (from accelerate->peft==0.5.0)
+  Using cached huggingface_hub-0.25.1-py3-none-any.whl.metadata (13 kB)
+Requirement already satisfied: regex!=2019.12.17 in ./.env/lib/python3.11/site-packages (from transformers->peft==0.5.0) (2024.9.11)
+Requirement already satisfied: requests in ./.env/lib/python3.11/site-packages (from transformers->peft==0.5.0) (2.32.3)
+Requirement already satisfied: tokenizers<0.15,>=0.14 in ./.env/lib/python3.11/site-packages (from transformers->peft==0.5.0) (0.14.1)
+INFO: pip is looking at multiple versions of tokenizers to determine which version is compatible with other requirements. This could take a while.
+Collecting tokenizers<0.15,>=0.14 (from transformers->peft==0.5.0)
+  Using cached tokenizers-0.14.0-cp311-cp311-manylinux_2_17_x86_64.manylinux2014_x86_64.whl.metadata (6.7 kB)
+Collecting transformers (from peft==0.5.0)
+  Using cached transformers-4.45.2-py3-none-any.whl.metadata (44 kB)
+Collecting tokenizers<0.21,>=0.20 (from transformers->peft==0.5.0)
+  Using cached tokenizers-0.20.0-cp311-cp311-manylinux_2_17_x86_64.manylinux2014_x86_64.whl.metadata (6.7 kB)
+Collecting MarkupSafe>=2.0 (from jinja2->torch>=1.13.0->peft==0.5.0)
+  Using cached MarkupSafe-2.1.5-cp311-cp311-manylinux_2_17_x86_64.manylinux2014_x86_64.whl.metadata (3.0 kB)
+Requirement already satisfied: charset-normalizer<4,>=2 in ./.env/lib/python3.11/site-packages (from requests->transformers->peft==0.5.0) (3.3.2)
+Requirement already satisfied: idna<4,>=2.5 in ./.env/lib/python3.11/site-packages (from requests->transformers->peft==0.5.0) (3.10)
+Requirement already satisfied: urllib3<3,>=1.21.1 in ./.env/lib/python3.11/site-packages (from requests->transformers->peft==0.5.0) (2.2.3)
+Requirement already satisfied: certifi>=2017.4.17 in ./.env/lib/python3.11/site-packages (from requests->transformers->peft==0.5.0) (2024.8.30)
+Collecting mpmath<1.4,>=1.1.0 (from sympy->torch>=1.13.0->peft==0.5.0)
+  Using cached mpmath-1.3.0-py3-none-any.whl.metadata (8.6 kB)
+Using cached peft-0.5.0-py3-none-any.whl (85 kB)
+Using cached torch-2.4.1-cp311-cp311-manylinux1_x86_64.whl (797.1 MB)
+Using cached nvidia_cublas_cu12-12.1.3.1-py3-none-manylinux1_x86_64.whl (410.6 MB)
+Using cached nvidia_cuda_cupti_cu12-12.1.105-py3-none-manylinux1_x86_64.whl (14.1 MB)
+Using cached nvidia_cuda_nvrtc_cu12-12.1.105-py3-none-manylinux1_x86_64.whl (23.7 MB)
+Using cached nvidia_cuda_runtime_cu12-12.1.105-py3-none-manylinux1_x86_64.whl (823 kB)
+Using cached nvidia_cudnn_cu12-9.1.0.70-py3-none-manylinux2014_x86_64.whl (664.8 MB)
+Using cached nvidia_cufft_cu12-11.0.2.54-py3-none-manylinux1_x86_64.whl (121.6 MB)
+Using cached nvidia_curand_cu12-10.3.2.106-py3-none-manylinux1_x86_64.whl (56.5 MB)
+Using cached nvidia_cusolver_cu12-11.4.5.107-py3-none-manylinux1_x86_64.whl (124.2 MB)
+Using cached nvidia_cusparse_cu12-12.1.0.106-py3-none-manylinux1_x86_64.whl (196.0 MB)
+Using cached nvidia_nccl_cu12-2.20.5-py3-none-manylinux2014_x86_64.whl (176.2 MB)
+Using cached nvidia_nvtx_cu12-12.1.105-py3-none-manylinux1_x86_64.whl (99 kB)
+Using cached triton-3.0.0-1-cp311-cp311-manylinux2014_x86_64.manylinux_2_17_x86_64.whl (209.4 MB)
+Using cached accelerate-1.0.0-py3-none-any.whl (330 kB)
+Using cached psutil-6.0.0-cp36-abi3-manylinux_2_12_x86_64.manylinux2010_x86_64.manylinux_2_17_x86_64.manylinux2014_x86_64.whl (290 kB)
+Using cached transformers-4.45.2-py3-none-any.whl (9.9 MB)
+Using cached huggingface_hub-0.25.1-py3-none-any.whl (436 kB)
+Using cached tokenizers-0.20.0-cp311-cp311-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (2.9 MB)
+Using cached jinja2-3.1.4-py3-none-any.whl (133 kB)
+Using cached networkx-3.3-py3-none-any.whl (1.7 MB)
+Using cached sympy-1.13.3-py3-none-any.whl (6.2 MB)
+Using cached MarkupSafe-2.1.5-cp311-cp311-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (28 kB)
+Using cached mpmath-1.3.0-py3-none-any.whl (536 kB)
+Using cached nvidia_nvjitlink_cu12-12.6.77-py3-none-manylinux2014_x86_64.whl (19.7 MB)
+Installing collected packages: mpmath, triton, sympy, psutil, nvidia-nvtx-cu12, nvidia-nvjitlink-cu12, nvidia-nccl-cu12, nvidia-curand-cu12, nvidia-cufft-cu12, nvidia-cuda-runtime-cu12, nvidia-cuda-nvrtc-cu12, nvidia-cuda-cupti-cu12, nvidia-cublas-cu12, networkx, MarkupSafe, nvidia-cusparse-cu12, nvidia-cudnn-cu12, jinja2, huggingface-hub, tokenizers, nvidia-cusolver-cu12, transformers, torch, accelerate, peft
+  Attempting uninstall: huggingface-hub
+    Found existing installation: huggingface-hub 0.17.3
+    Uninstalling huggingface-hub-0.17.3:
+      Successfully uninstalled huggingface-hub-0.17.3
+  Attempting uninstall: tokenizers
+    Found existing installation: tokenizers 0.14.1
+    Uninstalling tokenizers-0.14.1:
+      Successfully uninstalled tokenizers-0.14.1
+  Attempting uninstall: transformers
+    Found existing installation: transformers 4.35.0.dev0
+    Uninstalling transformers-4.35.0.dev0:
+      Successfully uninstalled transformers-4.35.0.dev0
+Successfully installed MarkupSafe-2.1.5 accelerate-1.0.0 huggingface-hub-0.25.1 jinja2-3.1.4 mpmath-1.3.0 networkx-3.3 nvidia-cublas-cu12-12.1.3.1 nvidia-cuda-cupti-cu12-12.1.105 nvidia-cuda-nvrtc-cu12-12.1.105 nvidia-cuda-runtime-cu12-12.1.105 nvidia-cudnn-cu12-9.1.0.70 nvidia-cufft-cu12-11.0.2.54 nvidia-curand-cu12-10.3.2.106 nvidia-cusolver-cu12-11.4.5.107 nvidia-cusparse-cu12-12.1.0.106 nvidia-nccl-cu12-2.20.5 nvidia-nvjitlink-cu12-12.6.77 nvidia-nvtx-cu12-12.1.105 peft-0.5.0 psutil-6.0.0 sympy-1.13.3 tokenizers-0.20.0 torch-2.4.1 transformers-4.45.2 triton-3.0.0
+Collecting sentencepiece
+  Using cached sentencepiece-0.2.0-cp311-cp311-manylinux_2_17_x86_64.manylinux2014_x86_64.whl.metadata (7.7 kB)
+Using cached sentencepiece-0.2.0-cp311-cp311-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (1.3 MB)
+Installing collected packages: sentencepiece
+Successfully installed sentencepiece-0.2.0
+Collecting sacrebleu
+  Using cached sacrebleu-2.4.3-py3-none-any.whl.metadata (51 kB)
+Collecting portalocker (from sacrebleu)
+  Using cached portalocker-2.10.1-py3-none-any.whl.metadata (8.5 kB)
+Requirement already satisfied: regex in ./.env/lib/python3.11/site-packages (from sacrebleu) (2024.9.11)
+Collecting tabulate>=0.8.9 (from sacrebleu)
+  Using cached tabulate-0.9.0-py3-none-any.whl.metadata (34 kB)
+Requirement already satisfied: numpy>=1.17 in ./.env/lib/python3.11/site-packages (from sacrebleu) (2.1.2)
+Collecting colorama (from sacrebleu)
+  Using cached colorama-0.4.6-py2.py3-none-any.whl.metadata (17 kB)
+Collecting lxml (from sacrebleu)
+  Using cached lxml-5.3.0-cp311-cp311-manylinux_2_28_x86_64.whl.metadata (3.8 kB)
+Using cached sacrebleu-2.4.3-py3-none-any.whl (103 kB)
+Using cached tabulate-0.9.0-py3-none-any.whl (35 kB)
+Using cached colorama-0.4.6-py2.py3-none-any.whl (25 kB)
+Using cached lxml-5.3.0-cp311-cp311-manylinux_2_28_x86_64.whl (5.0 MB)
+Using cached portalocker-2.10.1-py3-none-any.whl (18 kB)
+Installing collected packages: tabulate, portalocker, lxml, colorama, sacrebleu
+Successfully installed colorama-0.4.6 lxml-5.3.0 portalocker-2.10.1 sacrebleu-2.4.3 tabulate-0.9.0
+Collecting ipython
+  Using cached ipython-8.28.0-py3-none-any.whl.metadata (5.0 kB)
+Collecting decorator (from ipython)
+  Using cached decorator-5.1.1-py3-none-any.whl.metadata (4.0 kB)
+Collecting jedi>=0.16 (from ipython)
+  Using cached jedi-0.19.1-py2.py3-none-any.whl.metadata (22 kB)
+Collecting matplotlib-inline (from ipython)
+  Using cached matplotlib_inline-0.1.7-py3-none-any.whl.metadata (3.9 kB)
+Collecting prompt-toolkit<3.1.0,>=3.0.41 (from ipython)
+  Using cached prompt_toolkit-3.0.48-py3-none-any.whl.metadata (6.4 kB)
+Collecting pygments>=2.4.0 (from ipython)
+  Using cached pygments-2.18.0-py3-none-any.whl.metadata (2.5 kB)
+Collecting stack-data (from ipython)
+  Using cached stack_data-0.6.3-py3-none-any.whl.metadata (18 kB)
+Collecting traitlets>=5.13.0 (from ipython)
+  Using cached traitlets-5.14.3-py3-none-any.whl.metadata (10 kB)
+Requirement already satisfied: typing-extensions>=4.6 in ./.env/lib/python3.11/site-packages (from ipython) (4.12.2)
+Collecting pexpect>4.3 (from ipython)
+  Using cached pexpect-4.9.0-py2.py3-none-any.whl.metadata (2.5 kB)
+Collecting parso<0.9.0,>=0.8.3 (from jedi>=0.16->ipython)
+  Using cached parso-0.8.4-py2.py3-none-any.whl.metadata (7.7 kB)
+Collecting ptyprocess>=0.5 (from pexpect>4.3->ipython)
+  Using cached ptyprocess-0.7.0-py2.py3-none-any.whl.metadata (1.3 kB)
+Collecting wcwidth (from prompt-toolkit<3.1.0,>=3.0.41->ipython)
+  Using cached wcwidth-0.2.13-py2.py3-none-any.whl.metadata (14 kB)
+Collecting executing>=1.2.0 (from stack-data->ipython)
+  Using cached executing-2.1.0-py2.py3-none-any.whl.metadata (8.9 kB)
+Collecting asttokens>=2.1.0 (from stack-data->ipython)
+  Using cached asttokens-2.4.1-py2.py3-none-any.whl.metadata (5.2 kB)
+Collecting pure-eval (from stack-data->ipython)
+  Using cached pure_eval-0.2.3-py3-none-any.whl.metadata (6.3 kB)
+Collecting six>=1.12.0 (from asttokens>=2.1.0->stack-data->ipython)
+  Using cached six-1.16.0-py2.py3-none-any.whl.metadata (1.8 kB)
+Using cached ipython-8.28.0-py3-none-any.whl (819 kB)
+Using cached jedi-0.19.1-py2.py3-none-any.whl (1.6 MB)
+Using cached pexpect-4.9.0-py2.py3-none-any.whl (63 kB)
+Using cached prompt_toolkit-3.0.48-py3-none-any.whl (386 kB)
+Using cached pygments-2.18.0-py3-none-any.whl (1.2 MB)
+Using cached traitlets-5.14.3-py3-none-any.whl (85 kB)
+Using cached decorator-5.1.1-py3-none-any.whl (9.1 kB)
+Using cached matplotlib_inline-0.1.7-py3-none-any.whl (9.9 kB)
+Using cached stack_data-0.6.3-py3-none-any.whl (24 kB)
+Using cached asttokens-2.4.1-py2.py3-none-any.whl (27 kB)
+Using cached executing-2.1.0-py2.py3-none-any.whl (25 kB)
+Using cached parso-0.8.4-py2.py3-none-any.whl (103 kB)
+Using cached ptyprocess-0.7.0-py2.py3-none-any.whl (13 kB)
+Using cached pure_eval-0.2.3-py3-none-any.whl (11 kB)
+Using cached wcwidth-0.2.13-py2.py3-none-any.whl (34 kB)
+Using cached six-1.16.0-py2.py3-none-any.whl (11 kB)
+Installing collected packages: wcwidth, pure-eval, ptyprocess, traitlets, six, pygments, prompt-toolkit, pexpect, parso, executing, decorator, matplotlib-inline, jedi, asttokens, stack-data, ipython
+Successfully installed asttokens-2.4.1 decorator-5.1.1 executing-2.1.0 ipython-8.28.0 jedi-0.19.1 matplotlib-inline-0.1.7 parso-0.8.4 pexpect-4.9.0 prompt-toolkit-3.0.48 ptyprocess-0.7.0 pure-eval-0.2.3 pygments-2.18.0 six-1.16.0 stack-data-0.6.3 traitlets-5.14.3 wcwidth-0.2.13
+Collecting datasets
+  Using cached datasets-3.0.1-py3-none-any.whl.metadata (20 kB)
+Requirement already satisfied: filelock in ./.env/lib/python3.11/site-packages (from datasets) (3.16.1)
+Requirement already satisfied: numpy>=1.17 in ./.env/lib/python3.11/site-packages (from datasets) (2.1.2)
+Collecting pyarrow>=15.0.0 (from datasets)
+  Using cached pyarrow-17.0.0-cp311-cp311-manylinux_2_28_x86_64.whl.metadata (3.3 kB)
+Collecting dill<0.3.9,>=0.3.0 (from datasets)
+  Using cached dill-0.3.8-py3-none-any.whl.metadata (10 kB)
+Collecting pandas (from datasets)
+  Using cached pandas-2.2.3-cp311-cp311-manylinux_2_17_x86_64.manylinux2014_x86_64.whl.metadata (89 kB)
+Requirement already satisfied: requests>=2.32.2 in ./.env/lib/python3.11/site-packages (from datasets) (2.32.3)
+Requirement already satisfied: tqdm>=4.66.3 in ./.env/lib/python3.11/site-packages (from datasets) (4.66.5)
+Collecting xxhash (from datasets)
+  Using cached xxhash-3.5.0-cp311-cp311-manylinux_2_17_x86_64.manylinux2014_x86_64.whl.metadata (12 kB)
+Collecting multiprocess (from datasets)
+  Using cached multiprocess-0.70.17-py311-none-any.whl.metadata (7.2 kB)
+Collecting fsspec<=2024.6.1,>=2023.1.0 (from fsspec[http]<=2024.6.1,>=2023.1.0->datasets)
+  Using cached fsspec-2024.6.1-py3-none-any.whl.metadata (11 kB)
+Collecting aiohttp (from datasets)
+  Using cached aiohttp-3.10.9-cp311-cp311-manylinux_2_17_x86_64.manylinux2014_x86_64.whl.metadata (7.6 kB)
+Requirement already satisfied: huggingface-hub>=0.22.0 in ./.env/lib/python3.11/site-packages (from datasets) (0.25.1)
+Requirement already satisfied: packaging in ./.env/lib/python3.11/site-packages (from datasets) (24.1)
+Requirement already satisfied: pyyaml>=5.1 in ./.env/lib/python3.11/site-packages (from datasets) (6.0.2)
+Collecting aiohappyeyeballs>=2.3.0 (from aiohttp->datasets)
+  Using cached aiohappyeyeballs-2.4.3-py3-none-any.whl.metadata (6.1 kB)
+Collecting aiosignal>=1.1.2 (from aiohttp->datasets)
+  Using cached aiosignal-1.3.1-py3-none-any.whl.metadata (4.0 kB)
+Collecting attrs>=17.3.0 (from aiohttp->datasets)
+  Using cached attrs-24.2.0-py3-none-any.whl.metadata (11 kB)
+Collecting frozenlist>=1.1.1 (from aiohttp->datasets)
+  Using cached frozenlist-1.4.1-cp311-cp311-manylinux_2_5_x86_64.manylinux1_x86_64.manylinux_2_17_x86_64.manylinux2014_x86_64.whl.metadata (12 kB)
+Collecting multidict<7.0,>=4.5 (from aiohttp->datasets)
+  Using cached multidict-6.1.0-cp311-cp311-manylinux_2_17_x86_64.manylinux2014_x86_64.whl.metadata (5.0 kB)
+Collecting yarl<2.0,>=1.12.0 (from aiohttp->datasets)
+  Using cached yarl-1.13.1-cp311-cp311-manylinux_2_17_x86_64.manylinux2014_x86_64.whl.metadata (50 kB)
+Requirement already satisfied: typing-extensions>=3.7.4.3 in ./.env/lib/python3.11/site-packages (from huggingface-hub>=0.22.0->datasets) (4.12.2)
+Requirement already satisfied: charset-normalizer<4,>=2 in ./.env/lib/python3.11/site-packages (from requests>=2.32.2->datasets) (3.3.2)
+Requirement already satisfied: idna<4,>=2.5 in ./.env/lib/python3.11/site-packages (from requests>=2.32.2->datasets) (3.10)
+Requirement already satisfied: urllib3<3,>=1.21.1 in ./.env/lib/python3.11/site-packages (from requests>=2.32.2->datasets) (2.2.3)
+Requirement already satisfied: certifi>=2017.4.17 in ./.env/lib/python3.11/site-packages (from requests>=2.32.2->datasets) (2024.8.30)
+INFO: pip is looking at multiple versions of multiprocess to determine which version is compatible with other requirements. This could take a while.
+Collecting multiprocess (from datasets)
+  Using cached multiprocess-0.70.16-py311-none-any.whl.metadata (7.2 kB)
+Collecting python-dateutil>=2.8.2 (from pandas->datasets)
+  Using cached python_dateutil-2.9.0.post0-py2.py3-none-any.whl.metadata (8.4 kB)
+Collecting pytz>=2020.1 (from pandas->datasets)
+  Using cached pytz-2024.2-py2.py3-none-any.whl.metadata (22 kB)
+Collecting tzdata>=2022.7 (from pandas->datasets)
+  Using cached tzdata-2024.2-py2.py3-none-any.whl.metadata (1.4 kB)
+Requirement already satisfied: six>=1.5 in ./.env/lib/python3.11/site-packages (from python-dateutil>=2.8.2->pandas->datasets) (1.16.0)
+Using cached datasets-3.0.1-py3-none-any.whl (471 kB)
+Using cached dill-0.3.8-py3-none-any.whl (116 kB)
+Using cached fsspec-2024.6.1-py3-none-any.whl (177 kB)
+Using cached aiohttp-3.10.9-cp311-cp311-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (1.3 MB)
+Using cached pyarrow-17.0.0-cp311-cp311-manylinux_2_28_x86_64.whl (39.9 MB)
+Using cached multiprocess-0.70.16-py311-none-any.whl (143 kB)
+Using cached pandas-2.2.3-cp311-cp311-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (13.1 MB)
+Using cached xxhash-3.5.0-cp311-cp311-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (194 kB)
+Using cached aiohappyeyeballs-2.4.3-py3-none-any.whl (14 kB)
+Using cached aiosignal-1.3.1-py3-none-any.whl (7.6 kB)
+Using cached attrs-24.2.0-py3-none-any.whl (63 kB)
+Using cached frozenlist-1.4.1-cp311-cp311-manylinux_2_5_x86_64.manylinux1_x86_64.manylinux_2_17_x86_64.manylinux2014_x86_64.whl (272 kB)
+Using cached multidict-6.1.0-cp311-cp311-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (129 kB)
+Using cached python_dateutil-2.9.0.post0-py2.py3-none-any.whl (229 kB)
+Using cached pytz-2024.2-py2.py3-none-any.whl (508 kB)
+Using cached tzdata-2024.2-py2.py3-none-any.whl (346 kB)
+Using cached yarl-1.13.1-cp311-cp311-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (488 kB)
+Installing collected packages: pytz, xxhash, tzdata, python-dateutil, pyarrow, multidict, fsspec, frozenlist, dill, attrs, aiohappyeyeballs, yarl, pandas, multiprocess, aiosignal, aiohttp, datasets
+  Attempting uninstall: fsspec
+    Found existing installation: fsspec 2024.9.0
+    Uninstalling fsspec-2024.9.0:
+      Successfully uninstalled fsspec-2024.9.0
+Successfully installed aiohappyeyeballs-2.4.3 aiohttp-3.10.9 aiosignal-1.3.1 attrs-24.2.0 datasets-3.0.1 dill-0.3.8 frozenlist-1.4.1 fsspec-2024.6.1 multidict-6.1.0 multiprocess-0.70.16 pandas-2.2.3 pyarrow-17.0.0 python-dateutil-2.9.0.post0 pytz-2024.2 tzdata-2024.2 xxhash-3.5.0 yarl-1.13.1
+Collecting evaluate
+  Using cached evaluate-0.4.3-py3-none-any.whl.metadata (9.2 kB)
+Requirement already satisfied: datasets>=2.0.0 in ./.env/lib/python3.11/site-packages (from evaluate) (3.0.1)
+Requirement already satisfied: numpy>=1.17 in ./.env/lib/python3.11/site-packages (from evaluate) (2.1.2)
+Requirement already satisfied: dill in ./.env/lib/python3.11/site-packages (from evaluate) (0.3.8)
+Requirement already satisfied: pandas in ./.env/lib/python3.11/site-packages (from evaluate) (2.2.3)
+Requirement already satisfied: requests>=2.19.0 in ./.env/lib/python3.11/site-packages (from evaluate) (2.32.3)
+Requirement already satisfied: tqdm>=4.62.1 in ./.env/lib/python3.11/site-packages (from evaluate) (4.66.5)
+Requirement already satisfied: xxhash in ./.env/lib/python3.11/site-packages (from evaluate) (3.5.0)
+Requirement already satisfied: multiprocess in ./.env/lib/python3.11/site-packages (from evaluate) (0.70.16)
+Requirement already satisfied: fsspec>=2021.05.0 in ./.env/lib/python3.11/site-packages (from fsspec[http]>=2021.05.0->evaluate) (2024.6.1)
+Requirement already satisfied: huggingface-hub>=0.7.0 in ./.env/lib/python3.11/site-packages (from evaluate) (0.25.1)
+Requirement already satisfied: packaging in ./.env/lib/python3.11/site-packages (from evaluate) (24.1)
+Requirement already satisfied: filelock in ./.env/lib/python3.11/site-packages (from datasets>=2.0.0->evaluate) (3.16.1)
+Requirement already satisfied: pyarrow>=15.0.0 in ./.env/lib/python3.11/site-packages (from datasets>=2.0.0->evaluate) (17.0.0)
+Requirement already satisfied: aiohttp in ./.env/lib/python3.11/site-packages (from datasets>=2.0.0->evaluate) (3.10.9)
+Requirement already satisfied: pyyaml>=5.1 in ./.env/lib/python3.11/site-packages (from datasets>=2.0.0->evaluate) (6.0.2)
+Requirement already satisfied: typing-extensions>=3.7.4.3 in ./.env/lib/python3.11/site-packages (from huggingface-hub>=0.7.0->evaluate) (4.12.2)
+Requirement already satisfied: charset-normalizer<4,>=2 in ./.env/lib/python3.11/site-packages (from requests>=2.19.0->evaluate) (3.3.2)
+Requirement already satisfied: idna<4,>=2.5 in ./.env/lib/python3.11/site-packages (from requests>=2.19.0->evaluate) (3.10)
+Requirement already satisfied: urllib3<3,>=1.21.1 in ./.env/lib/python3.11/site-packages (from requests>=2.19.0->evaluate) (2.2.3)
+Requirement already satisfied: certifi>=2017.4.17 in ./.env/lib/python3.11/site-packages (from requests>=2.19.0->evaluate) (2024.8.30)
+Requirement already satisfied: python-dateutil>=2.8.2 in ./.env/lib/python3.11/site-packages (from pandas->evaluate) (2.9.0.post0)
+Requirement already satisfied: pytz>=2020.1 in ./.env/lib/python3.11/site-packages (from pandas->evaluate) (2024.2)
+Requirement already satisfied: tzdata>=2022.7 in ./.env/lib/python3.11/site-packages (from pandas->evaluate) (2024.2)
+Requirement already satisfied: aiohappyeyeballs>=2.3.0 in ./.env/lib/python3.11/site-packages (from aiohttp->datasets>=2.0.0->evaluate) (2.4.3)
+Requirement already satisfied: aiosignal>=1.1.2 in ./.env/lib/python3.11/site-packages (from aiohttp->datasets>=2.0.0->evaluate) (1.3.1)
+Requirement already satisfied: attrs>=17.3.0 in ./.env/lib/python3.11/site-packages (from aiohttp->datasets>=2.0.0->evaluate) (24.2.0)
+Requirement already satisfied: frozenlist>=1.1.1 in ./.env/lib/python3.11/site-packages (from aiohttp->datasets>=2.0.0->evaluate) (1.4.1)
+Requirement already satisfied: multidict<7.0,>=4.5 in ./.env/lib/python3.11/site-packages (from aiohttp->datasets>=2.0.0->evaluate) (6.1.0)
+Requirement already satisfied: yarl<2.0,>=1.12.0 in ./.env/lib/python3.11/site-packages (from aiohttp->datasets>=2.0.0->evaluate) (1.13.1)
+Requirement already satisfied: six>=1.5 in ./.env/lib/python3.11/site-packages (from python-dateutil>=2.8.2->pandas->evaluate) (1.16.0)
+Using cached evaluate-0.4.3-py3-none-any.whl (84 kB)
+Installing collected packages: evaluate
+Successfully installed evaluate-0.4.3
+Collecting deepspeed==0.13.1
+  Using cached deepspeed-0.13.1-py3-none-any.whl
+Collecting hjson (from deepspeed==0.13.1)
+  Using cached hjson-3.1.0-py3-none-any.whl.metadata (2.6 kB)
+Collecting ninja (from deepspeed==0.13.1)
+  Using cached ninja-1.11.1.1-py2.py3-none-manylinux1_x86_64.manylinux_2_5_x86_64.whl.metadata (5.3 kB)
+Requirement already satisfied: numpy in ./.env/lib/python3.11/site-packages (from deepspeed==0.13.1) (2.1.2)
+Requirement already satisfied: packaging>=20.0 in ./.env/lib/python3.11/site-packages (from deepspeed==0.13.1) (24.1)
+Requirement already satisfied: psutil in ./.env/lib/python3.11/site-packages (from deepspeed==0.13.1) (6.0.0)
+Collecting py-cpuinfo (from deepspeed==0.13.1)
+  Using cached py_cpuinfo-9.0.0-py3-none-any.whl.metadata (794 bytes)
+Collecting pydantic (from deepspeed==0.13.1)
+  Using cached pydantic-2.9.2-py3-none-any.whl.metadata (149 kB)
+Collecting pynvml (from deepspeed==0.13.1)
+  Using cached pynvml-11.5.3-py3-none-any.whl.metadata (8.8 kB)
+Requirement already satisfied: torch in ./.env/lib/python3.11/site-packages (from deepspeed==0.13.1) (2.4.1)
+Requirement already satisfied: tqdm in ./.env/lib/python3.11/site-packages (from deepspeed==0.13.1) (4.66.5)
+Collecting annotated-types>=0.6.0 (from pydantic->deepspeed==0.13.1)
+  Using cached annotated_types-0.7.0-py3-none-any.whl.metadata (15 kB)
+Collecting pydantic-core==2.23.4 (from pydantic->deepspeed==0.13.1)
+  Using cached pydantic_core-2.23.4-cp311-cp311-manylinux_2_17_x86_64.manylinux2014_x86_64.whl.metadata (6.6 kB)
+Requirement already satisfied: typing-extensions>=4.6.1 in ./.env/lib/python3.11/site-packages (from pydantic->deepspeed==0.13.1) (4.12.2)
+Requirement already satisfied: filelock in ./.env/lib/python3.11/site-packages (from torch->deepspeed==0.13.1) (3.16.1)
+Requirement already satisfied: sympy in ./.env/lib/python3.11/site-packages (from torch->deepspeed==0.13.1) (1.13.3)
+Requirement already satisfied: networkx in ./.env/lib/python3.11/site-packages (from torch->deepspeed==0.13.1) (3.3)
+Requirement already satisfied: jinja2 in ./.env/lib/python3.11/site-packages (from torch->deepspeed==0.13.1) (3.1.4)
+Requirement already satisfied: fsspec in ./.env/lib/python3.11/site-packages (from torch->deepspeed==0.13.1) (2024.6.1)
+Requirement already satisfied: nvidia-cuda-nvrtc-cu12==12.1.105 in ./.env/lib/python3.11/site-packages (from torch->deepspeed==0.13.1) (12.1.105)
+Requirement already satisfied: nvidia-cuda-runtime-cu12==12.1.105 in ./.env/lib/python3.11/site-packages (from torch->deepspeed==0.13.1) (12.1.105)
+Requirement already satisfied: nvidia-cuda-cupti-cu12==12.1.105 in ./.env/lib/python3.11/site-packages (from torch->deepspeed==0.13.1) (12.1.105)
+Requirement already satisfied: nvidia-cudnn-cu12==9.1.0.70 in ./.env/lib/python3.11/site-packages (from torch->deepspeed==0.13.1) (9.1.0.70)
+Requirement already satisfied: nvidia-cublas-cu12==12.1.3.1 in ./.env/lib/python3.11/site-packages (from torch->deepspeed==0.13.1) (12.1.3.1)
+Requirement already satisfied: nvidia-cufft-cu12==11.0.2.54 in ./.env/lib/python3.11/site-packages (from torch->deepspeed==0.13.1) (11.0.2.54)
+Requirement already satisfied: nvidia-curand-cu12==10.3.2.106 in ./.env/lib/python3.11/site-packages (from torch->deepspeed==0.13.1) (10.3.2.106)
+Requirement already satisfied: nvidia-cusolver-cu12==11.4.5.107 in ./.env/lib/python3.11/site-packages (from torch->deepspeed==0.13.1) (11.4.5.107)
+Requirement already satisfied: nvidia-cusparse-cu12==12.1.0.106 in ./.env/lib/python3.11/site-packages (from torch->deepspeed==0.13.1) (12.1.0.106)
+Requirement already satisfied: nvidia-nccl-cu12==2.20.5 in ./.env/lib/python3.11/site-packages (from torch->deepspeed==0.13.1) (2.20.5)
+Requirement already satisfied: nvidia-nvtx-cu12==12.1.105 in ./.env/lib/python3.11/site-packages (from torch->deepspeed==0.13.1) (12.1.105)
+Requirement already satisfied: triton==3.0.0 in ./.env/lib/python3.11/site-packages (from torch->deepspeed==0.13.1) (3.0.0)
+Requirement already satisfied: nvidia-nvjitlink-cu12 in ./.env/lib/python3.11/site-packages (from nvidia-cusolver-cu12==11.4.5.107->torch->deepspeed==0.13.1) (12.6.77)
+Requirement already satisfied: MarkupSafe>=2.0 in ./.env/lib/python3.11/site-packages (from jinja2->torch->deepspeed==0.13.1) (2.1.5)
+Requirement already satisfied: mpmath<1.4,>=1.1.0 in ./.env/lib/python3.11/site-packages (from sympy->torch->deepspeed==0.13.1) (1.3.0)
+Using cached hjson-3.1.0-py3-none-any.whl (54 kB)
+Using cached ninja-1.11.1.1-py2.py3-none-manylinux1_x86_64.manylinux_2_5_x86_64.whl (307 kB)
+Using cached py_cpuinfo-9.0.0-py3-none-any.whl (22 kB)
+Using cached pydantic-2.9.2-py3-none-any.whl (434 kB)
+Using cached pydantic_core-2.23.4-cp311-cp311-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (2.1 MB)
+Using cached pynvml-11.5.3-py3-none-any.whl (53 kB)
+Using cached annotated_types-0.7.0-py3-none-any.whl (13 kB)
+Installing collected packages: py-cpuinfo, ninja, hjson, pynvml, pydantic-core, annotated-types, pydantic, deepspeed
+Successfully installed annotated-types-0.7.0 deepspeed-0.13.1 hjson-3.1.0 ninja-1.11.1.1 py-cpuinfo-9.0.0 pydantic-2.9.2 pydantic-core-2.23.4 pynvml-11.5.3
+Collecting einops
+  Using cached einops-0.8.0-py3-none-any.whl.metadata (12 kB)
+Using cached einops-0.8.0-py3-none-any.whl (43 kB)
+Installing collected packages: einops
+Successfully installed einops-0.8.0
+Collecting wandb
+  Using cached wandb-0.18.3-py3-none-manylinux_2_17_x86_64.manylinux2014_x86_64.whl.metadata (9.7 kB)
+Collecting click!=8.0.0,>=7.1 (from wandb)
+  Using cached click-8.1.7-py3-none-any.whl.metadata (3.0 kB)
+Collecting docker-pycreds>=0.4.0 (from wandb)
+  Using cached docker_pycreds-0.4.0-py2.py3-none-any.whl.metadata (1.8 kB)
+Collecting gitpython!=3.1.29,>=1.0.0 (from wandb)
+  Using cached GitPython-3.1.43-py3-none-any.whl.metadata (13 kB)
+Collecting platformdirs (from wandb)
+  Using cached platformdirs-4.3.6-py3-none-any.whl.metadata (11 kB)
+Collecting protobuf!=4.21.0,!=5.28.0,<6,>=3.19.0 (from wandb)
+  Using cached protobuf-5.28.2-cp38-abi3-manylinux2014_x86_64.whl.metadata (592 bytes)
+Requirement already satisfied: psutil>=5.0.0 in ./.env/lib/python3.11/site-packages (from wandb) (6.0.0)
+Requirement already satisfied: pyyaml in ./.env/lib/python3.11/site-packages (from wandb) (6.0.2)
+Requirement already satisfied: requests<3,>=2.0.0 in ./.env/lib/python3.11/site-packages (from wandb) (2.32.3)
+Collecting sentry-sdk>=1.0.0 (from wandb)
+  Using cached sentry_sdk-2.15.0-py2.py3-none-any.whl.metadata (9.7 kB)
+Collecting setproctitle (from wandb)
+  Using cached setproctitle-1.3.3-cp311-cp311-manylinux_2_5_x86_64.manylinux1_x86_64.manylinux_2_17_x86_64.manylinux2014_x86_64.whl.metadata (9.9 kB)
+Requirement already satisfied: setuptools in ./.env/lib/python3.11/site-packages (from wandb) (75.1.0)
+Requirement already satisfied: six>=1.4.0 in ./.env/lib/python3.11/site-packages (from docker-pycreds>=0.4.0->wandb) (1.16.0)
+Collecting gitdb<5,>=4.0.1 (from gitpython!=3.1.29,>=1.0.0->wandb)
+  Using cached gitdb-4.0.11-py3-none-any.whl.metadata (1.2 kB)
+Requirement already satisfied: charset-normalizer<4,>=2 in ./.env/lib/python3.11/site-packages (from requests<3,>=2.0.0->wandb) (3.3.2)
+Requirement already satisfied: idna<4,>=2.5 in ./.env/lib/python3.11/site-packages (from requests<3,>=2.0.0->wandb) (3.10)
+Requirement already satisfied: urllib3<3,>=1.21.1 in ./.env/lib/python3.11/site-packages (from requests<3,>=2.0.0->wandb) (2.2.3)
+Requirement already satisfied: certifi>=2017.4.17 in ./.env/lib/python3.11/site-packages (from requests<3,>=2.0.0->wandb) (2024.8.30)
+Collecting smmap<6,>=3.0.1 (from gitdb<5,>=4.0.1->gitpython!=3.1.29,>=1.0.0->wandb)
+  Using cached smmap-5.0.1-py3-none-any.whl.metadata (4.3 kB)
+Using cached wandb-0.18.3-py3-none-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (13.0 MB)
+Using cached click-8.1.7-py3-none-any.whl (97 kB)
+Using cached docker_pycreds-0.4.0-py2.py3-none-any.whl (9.0 kB)
+Using cached GitPython-3.1.43-py3-none-any.whl (207 kB)
+Using cached protobuf-5.28.2-cp38-abi3-manylinux2014_x86_64.whl (316 kB)
+Using cached sentry_sdk-2.15.0-py2.py3-none-any.whl (310 kB)
+Using cached platformdirs-4.3.6-py3-none-any.whl (18 kB)
+Using cached setproctitle-1.3.3-cp311-cp311-manylinux_2_5_x86_64.manylinux1_x86_64.manylinux_2_17_x86_64.manylinux2014_x86_64.whl (31 kB)
+Using cached gitdb-4.0.11-py3-none-any.whl (62 kB)
+Using cached smmap-5.0.1-py3-none-any.whl (24 kB)
+Installing collected packages: smmap, setproctitle, sentry-sdk, protobuf, platformdirs, docker-pycreds, click, gitdb, gitpython, wandb
+Successfully installed click-8.1.7 docker-pycreds-0.4.0 gitdb-4.0.11 gitpython-3.1.43 platformdirs-4.3.6 protobuf-5.28.2 sentry-sdk-2.15.0 setproctitle-1.3.3 smmap-5.0.1 wandb-0.18.3
+Collecting zstandard
+  Using cached zstandard-0.23.0-cp311-cp311-manylinux_2_17_x86_64.manylinux2014_x86_64.whl.metadata (3.0 kB)
+Using cached zstandard-0.23.0-cp311-cp311-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (5.4 MB)
+Installing collected packages: zstandard
+Successfully installed zstandard-0.23.0
+Collecting accelerate==0.27.2
+  Using cached accelerate-0.27.2-py3-none-any.whl.metadata (18 kB)
+Requirement already satisfied: numpy>=1.17 in ./.env/lib/python3.11/site-packages (from accelerate==0.27.2) (2.1.2)
+Requirement already satisfied: packaging>=20.0 in ./.env/lib/python3.11/site-packages (from accelerate==0.27.2) (24.1)
+Requirement already satisfied: psutil in ./.env/lib/python3.11/site-packages (from accelerate==0.27.2) (6.0.0)
+Requirement already satisfied: pyyaml in ./.env/lib/python3.11/site-packages (from accelerate==0.27.2) (6.0.2)
+Requirement already satisfied: torch>=1.10.0 in ./.env/lib/python3.11/site-packages (from accelerate==0.27.2) (2.4.1)
+Requirement already satisfied: huggingface-hub in ./.env/lib/python3.11/site-packages (from accelerate==0.27.2) (0.25.1)
+Requirement already satisfied: safetensors>=0.3.1 in ./.env/lib/python3.11/site-packages (from accelerate==0.27.2) (0.4.5)
+Requirement already satisfied: filelock in ./.env/lib/python3.11/site-packages (from torch>=1.10.0->accelerate==0.27.2) (3.16.1)
+Requirement already satisfied: typing-extensions>=4.8.0 in ./.env/lib/python3.11/site-packages (from torch>=1.10.0->accelerate==0.27.2) (4.12.2)
+Requirement already satisfied: sympy in ./.env/lib/python3.11/site-packages (from torch>=1.10.0->accelerate==0.27.2) (1.13.3)
+Requirement already satisfied: networkx in ./.env/lib/python3.11/site-packages (from torch>=1.10.0->accelerate==0.27.2) (3.3)
+Requirement already satisfied: jinja2 in ./.env/lib/python3.11/site-packages (from torch>=1.10.0->accelerate==0.27.2) (3.1.4)
+Requirement already satisfied: fsspec in ./.env/lib/python3.11/site-packages (from torch>=1.10.0->accelerate==0.27.2) (2024.6.1)
+Requirement already satisfied: nvidia-cuda-nvrtc-cu12==12.1.105 in ./.env/lib/python3.11/site-packages (from torch>=1.10.0->accelerate==0.27.2) (12.1.105)
+Requirement already satisfied: nvidia-cuda-runtime-cu12==12.1.105 in ./.env/lib/python3.11/site-packages (from torch>=1.10.0->accelerate==0.27.2) (12.1.105)
+Requirement already satisfied: nvidia-cuda-cupti-cu12==12.1.105 in ./.env/lib/python3.11/site-packages (from torch>=1.10.0->accelerate==0.27.2) (12.1.105)
+Requirement already satisfied: nvidia-cudnn-cu12==9.1.0.70 in ./.env/lib/python3.11/site-packages (from torch>=1.10.0->accelerate==0.27.2) (9.1.0.70)
+Requirement already satisfied: nvidia-cublas-cu12==12.1.3.1 in ./.env/lib/python3.11/site-packages (from torch>=1.10.0->accelerate==0.27.2) (12.1.3.1)
+Requirement already satisfied: nvidia-cufft-cu12==11.0.2.54 in ./.env/lib/python3.11/site-packages (from torch>=1.10.0->accelerate==0.27.2) (11.0.2.54)
+Requirement already satisfied: nvidia-curand-cu12==10.3.2.106 in ./.env/lib/python3.11/site-packages (from torch>=1.10.0->accelerate==0.27.2) (10.3.2.106)
+Requirement already satisfied: nvidia-cusolver-cu12==11.4.5.107 in ./.env/lib/python3.11/site-packages (from torch>=1.10.0->accelerate==0.27.2) (11.4.5.107)
+Requirement already satisfied: nvidia-cusparse-cu12==12.1.0.106 in ./.env/lib/python3.11/site-packages (from torch>=1.10.0->accelerate==0.27.2) (12.1.0.106)
+Requirement already satisfied: nvidia-nccl-cu12==2.20.5 in ./.env/lib/python3.11/site-packages (from torch>=1.10.0->accelerate==0.27.2) (2.20.5)
+Requirement already satisfied: nvidia-nvtx-cu12==12.1.105 in ./.env/lib/python3.11/site-packages (from torch>=1.10.0->accelerate==0.27.2) (12.1.105)
+Requirement already satisfied: triton==3.0.0 in ./.env/lib/python3.11/site-packages (from torch>=1.10.0->accelerate==0.27.2) (3.0.0)
+Requirement already satisfied: nvidia-nvjitlink-cu12 in ./.env/lib/python3.11/site-packages (from nvidia-cusolver-cu12==11.4.5.107->torch>=1.10.0->accelerate==0.27.2) (12.6.77)
+Requirement already satisfied: requests in ./.env/lib/python3.11/site-packages (from huggingface-hub->accelerate==0.27.2) (2.32.3)
+Requirement already satisfied: tqdm>=4.42.1 in ./.env/lib/python3.11/site-packages (from huggingface-hub->accelerate==0.27.2) (4.66.5)
+Requirement already satisfied: MarkupSafe>=2.0 in ./.env/lib/python3.11/site-packages (from jinja2->torch>=1.10.0->accelerate==0.27.2) (2.1.5)
+Requirement already satisfied: charset-normalizer<4,>=2 in ./.env/lib/python3.11/site-packages (from requests->huggingface-hub->accelerate==0.27.2) (3.3.2)
+Requirement already satisfied: idna<4,>=2.5 in ./.env/lib/python3.11/site-packages (from requests->huggingface-hub->accelerate==0.27.2) (3.10)
+Requirement already satisfied: urllib3<3,>=1.21.1 in ./.env/lib/python3.11/site-packages (from requests->huggingface-hub->accelerate==0.27.2) (2.2.3)
+Requirement already satisfied: certifi>=2017.4.17 in ./.env/lib/python3.11/site-packages (from requests->huggingface-hub->accelerate==0.27.2) (2024.8.30)
+Requirement already satisfied: mpmath<1.4,>=1.1.0 in ./.env/lib/python3.11/site-packages (from sympy->torch>=1.10.0->accelerate==0.27.2) (1.3.0)
+Using cached accelerate-0.27.2-py3-none-any.whl (279 kB)
+Installing collected packages: accelerate
+  Attempting uninstall: accelerate
+    Found existing installation: accelerate 1.0.0
+    Uninstalling accelerate-1.0.0:
+      Successfully uninstalled accelerate-1.0.0
+Successfully installed accelerate-0.27.2
+Collecting jsonlines
+  Using cached jsonlines-4.0.0-py3-none-any.whl.metadata (1.6 kB)
+Requirement already satisfied: attrs>=19.2.0 in ./.env/lib/python3.11/site-packages (from jsonlines) (24.2.0)
+Using cached jsonlines-4.0.0-py3-none-any.whl (8.7 kB)
+Installing collected packages: jsonlines
+Successfully installed jsonlines-4.0.0
+Collecting trl
+  Using cached trl-0.11.2-py3-none-any.whl.metadata (12 kB)
+Requirement already satisfied: torch>=1.4.0 in ./.env/lib/python3.11/site-packages (from trl) (2.4.1)
+Requirement already satisfied: transformers>=4.40.0 in ./.env/lib/python3.11/site-packages (from trl) (4.45.2)
+Requirement already satisfied: accelerate in ./.env/lib/python3.11/site-packages (from trl) (0.27.2)
+Requirement already satisfied: datasets in ./.env/lib/python3.11/site-packages (from trl) (3.0.1)
+Collecting tyro>=0.5.11 (from trl)
+  Using cached tyro-0.8.11-py3-none-any.whl.metadata (8.4 kB)
+Requirement already satisfied: numpy>=1.18.2 in ./.env/lib/python3.11/site-packages (from trl) (2.1.2)
+Requirement already satisfied: filelock in ./.env/lib/python3.11/site-packages (from torch>=1.4.0->trl) (3.16.1)
+Requirement already satisfied: typing-extensions>=4.8.0 in ./.env/lib/python3.11/site-packages (from torch>=1.4.0->trl) (4.12.2)
+Requirement already satisfied: sympy in ./.env/lib/python3.11/site-packages (from torch>=1.4.0->trl) (1.13.3)
+Requirement already satisfied: networkx in ./.env/lib/python3.11/site-packages (from torch>=1.4.0->trl) (3.3)
+Requirement already satisfied: jinja2 in ./.env/lib/python3.11/site-packages (from torch>=1.4.0->trl) (3.1.4)
+Requirement already satisfied: fsspec in ./.env/lib/python3.11/site-packages (from torch>=1.4.0->trl) (2024.6.1)
+Requirement already satisfied: nvidia-cuda-nvrtc-cu12==12.1.105 in ./.env/lib/python3.11/site-packages (from torch>=1.4.0->trl) (12.1.105)
+Requirement already satisfied: nvidia-cuda-runtime-cu12==12.1.105 in ./.env/lib/python3.11/site-packages (from torch>=1.4.0->trl) (12.1.105)
+Requirement already satisfied: nvidia-cuda-cupti-cu12==12.1.105 in ./.env/lib/python3.11/site-packages (from torch>=1.4.0->trl) (12.1.105)
+Requirement already satisfied: nvidia-cudnn-cu12==9.1.0.70 in ./.env/lib/python3.11/site-packages (from torch>=1.4.0->trl) (9.1.0.70)
+Requirement already satisfied: nvidia-cublas-cu12==12.1.3.1 in ./.env/lib/python3.11/site-packages (from torch>=1.4.0->trl) (12.1.3.1)
+Requirement already satisfied: nvidia-cufft-cu12==11.0.2.54 in ./.env/lib/python3.11/site-packages (from torch>=1.4.0->trl) (11.0.2.54)
+Requirement already satisfied: nvidia-curand-cu12==10.3.2.106 in ./.env/lib/python3.11/site-packages (from torch>=1.4.0->trl) (10.3.2.106)
+Requirement already satisfied: nvidia-cusolver-cu12==11.4.5.107 in ./.env/lib/python3.11/site-packages (from torch>=1.4.0->trl) (11.4.5.107)
+Requirement already satisfied: nvidia-cusparse-cu12==12.1.0.106 in ./.env/lib/python3.11/site-packages (from torch>=1.4.0->trl) (12.1.0.106)
+Requirement already satisfied: nvidia-nccl-cu12==2.20.5 in ./.env/lib/python3.11/site-packages (from torch>=1.4.0->trl) (2.20.5)
+Requirement already satisfied: nvidia-nvtx-cu12==12.1.105 in ./.env/lib/python3.11/site-packages (from torch>=1.4.0->trl) (12.1.105)
+Requirement already satisfied: triton==3.0.0 in ./.env/lib/python3.11/site-packages (from torch>=1.4.0->trl) (3.0.0)
+Requirement already satisfied: nvidia-nvjitlink-cu12 in ./.env/lib/python3.11/site-packages (from nvidia-cusolver-cu12==11.4.5.107->torch>=1.4.0->trl) (12.6.77)
+Requirement already satisfied: huggingface-hub<1.0,>=0.23.2 in ./.env/lib/python3.11/site-packages (from transformers>=4.40.0->trl) (0.25.1)
+Requirement already satisfied: packaging>=20.0 in ./.env/lib/python3.11/site-packages (from transformers>=4.40.0->trl) (24.1)
+Requirement already satisfied: pyyaml>=5.1 in ./.env/lib/python3.11/site-packages (from transformers>=4.40.0->trl) (6.0.2)
+Requirement already satisfied: regex!=2019.12.17 in ./.env/lib/python3.11/site-packages (from transformers>=4.40.0->trl) (2024.9.11)
+Requirement already satisfied: requests in ./.env/lib/python3.11/site-packages (from transformers>=4.40.0->trl) (2.32.3)
+Requirement already satisfied: safetensors>=0.4.1 in ./.env/lib/python3.11/site-packages (from transformers>=4.40.0->trl) (0.4.5)
+Requirement already satisfied: tokenizers<0.21,>=0.20 in ./.env/lib/python3.11/site-packages (from transformers>=4.40.0->trl) (0.20.0)
+Requirement already satisfied: tqdm>=4.27 in ./.env/lib/python3.11/site-packages (from transformers>=4.40.0->trl) (4.66.5)
+Collecting docstring-parser>=0.16 (from tyro>=0.5.11->trl)
+  Using cached docstring_parser-0.16-py3-none-any.whl.metadata (3.0 kB)
+Collecting rich>=11.1.0 (from tyro>=0.5.11->trl)
+  Using cached rich-13.9.2-py3-none-any.whl.metadata (18 kB)
+Collecting shtab>=1.5.6 (from tyro>=0.5.11->trl)
+  Using cached shtab-1.7.1-py3-none-any.whl.metadata (7.3 kB)
+Requirement already satisfied: psutil in ./.env/lib/python3.11/site-packages (from accelerate->trl) (6.0.0)
+Requirement already satisfied: pyarrow>=15.0.0 in ./.env/lib/python3.11/site-packages (from datasets->trl) (17.0.0)
+Requirement already satisfied: dill<0.3.9,>=0.3.0 in ./.env/lib/python3.11/site-packages (from datasets->trl) (0.3.8)
+Requirement already satisfied: pandas in ./.env/lib/python3.11/site-packages (from datasets->trl) (2.2.3)
+Requirement already satisfied: xxhash in ./.env/lib/python3.11/site-packages (from datasets->trl) (3.5.0)
+Requirement already satisfied: multiprocess in ./.env/lib/python3.11/site-packages (from datasets->trl) (0.70.16)
+Requirement already satisfied: aiohttp in ./.env/lib/python3.11/site-packages (from datasets->trl) (3.10.9)
+Requirement already satisfied: aiohappyeyeballs>=2.3.0 in ./.env/lib/python3.11/site-packages (from aiohttp->datasets->trl) (2.4.3)
+Requirement already satisfied: aiosignal>=1.1.2 in ./.env/lib/python3.11/site-packages (from aiohttp->datasets->trl) (1.3.1)
+Requirement already satisfied: attrs>=17.3.0 in ./.env/lib/python3.11/site-packages (from aiohttp->datasets->trl) (24.2.0)
+Requirement already satisfied: frozenlist>=1.1.1 in ./.env/lib/python3.11/site-packages (from aiohttp->datasets->trl) (1.4.1)
+Requirement already satisfied: multidict<7.0,>=4.5 in ./.env/lib/python3.11/site-packages (from aiohttp->datasets->trl) (6.1.0)
+Requirement already satisfied: yarl<2.0,>=1.12.0 in ./.env/lib/python3.11/site-packages (from aiohttp->datasets->trl) (1.13.1)
+Requirement already satisfied: charset-normalizer<4,>=2 in ./.env/lib/python3.11/site-packages (from requests->transformers>=4.40.0->trl) (3.3.2)
+Requirement already satisfied: idna<4,>=2.5 in ./.env/lib/python3.11/site-packages (from requests->transformers>=4.40.0->trl) (3.10)
+Requirement already satisfied: urllib3<3,>=1.21.1 in ./.env/lib/python3.11/site-packages (from requests->transformers>=4.40.0->trl) (2.2.3)
+Requirement already satisfied: certifi>=2017.4.17 in ./.env/lib/python3.11/site-packages (from requests->transformers>=4.40.0->trl) (2024.8.30)
+Collecting markdown-it-py>=2.2.0 (from rich>=11.1.0->tyro>=0.5.11->trl)
+  Using cached markdown_it_py-3.0.0-py3-none-any.whl.metadata (6.9 kB)
+Requirement already satisfied: pygments<3.0.0,>=2.13.0 in ./.env/lib/python3.11/site-packages (from rich>=11.1.0->tyro>=0.5.11->trl) (2.18.0)
+Requirement already satisfied: MarkupSafe>=2.0 in ./.env/lib/python3.11/site-packages (from jinja2->torch>=1.4.0->trl) (2.1.5)
+Requirement already satisfied: python-dateutil>=2.8.2 in ./.env/lib/python3.11/site-packages (from pandas->datasets->trl) (2.9.0.post0)
+Requirement already satisfied: pytz>=2020.1 in ./.env/lib/python3.11/site-packages (from pandas->datasets->trl) (2024.2)
+Requirement already satisfied: tzdata>=2022.7 in ./.env/lib/python3.11/site-packages (from pandas->datasets->trl) (2024.2)
+Requirement already satisfied: mpmath<1.4,>=1.1.0 in ./.env/lib/python3.11/site-packages (from sympy->torch>=1.4.0->trl) (1.3.0)
+Collecting mdurl~=0.1 (from markdown-it-py>=2.2.0->rich>=11.1.0->tyro>=0.5.11->trl)
+  Using cached mdurl-0.1.2-py3-none-any.whl.metadata (1.6 kB)
+Requirement already satisfied: six>=1.5 in ./.env/lib/python3.11/site-packages (from python-dateutil>=2.8.2->pandas->datasets->trl) (1.16.0)
+Using cached trl-0.11.2-py3-none-any.whl (316 kB)
+Using cached tyro-0.8.11-py3-none-any.whl (105 kB)
+Using cached docstring_parser-0.16-py3-none-any.whl (36 kB)
+Using cached rich-13.9.2-py3-none-any.whl (242 kB)
+Using cached shtab-1.7.1-py3-none-any.whl (14 kB)
+Using cached markdown_it_py-3.0.0-py3-none-any.whl (87 kB)
+Using cached mdurl-0.1.2-py3-none-any.whl (10.0 kB)
+Installing collected packages: shtab, mdurl, docstring-parser, markdown-it-py, rich, tyro, trl
+Successfully installed docstring-parser-0.16 markdown-it-py-3.0.0 mdurl-0.1.2 rich-13.9.2 shtab-1.7.1 trl-0.11.2 tyro-0.8.11
+Collecting unbabel-comet
+  Using cached unbabel_comet-2.2.2-py3-none-any.whl.metadata (15 kB)
+Collecting entmax<2.0,>=1.1 (from unbabel-comet)
+  Using cached entmax-1.3-py3-none-any.whl.metadata (348 bytes)
+Requirement already satisfied: huggingface-hub<1.0,>=0.19.3 in ./.env/lib/python3.11/site-packages (from unbabel-comet) (0.25.1)
+Collecting jsonargparse==3.13.1 (from unbabel-comet)
+  Using cached jsonargparse-3.13.1-py3-none-any.whl.metadata (55 kB)
+Collecting numpy<2.0.0,>=1.20.0 (from unbabel-comet)
+  Using cached numpy-1.26.4-cp311-cp311-manylinux_2_17_x86_64.manylinux2014_x86_64.whl.metadata (61 kB)
+Requirement already satisfied: pandas>=1.4.1 in ./.env/lib/python3.11/site-packages (from unbabel-comet) (2.2.3)
+Collecting protobuf<5.0.0,>=4.24.4 (from unbabel-comet)
+  Using cached protobuf-4.25.5-cp37-abi3-manylinux2014_x86_64.whl.metadata (541 bytes)
+Collecting pytorch-lightning<3.0.0,>=2.0.0 (from unbabel-comet)
+  Using cached pytorch_lightning-2.4.0-py3-none-any.whl.metadata (21 kB)
+Requirement already satisfied: sacrebleu<3.0.0,>=2.0.0 in ./.env/lib/python3.11/site-packages (from unbabel-comet) (2.4.3)
+Collecting scipy<2.0.0,>=1.5.4 (from unbabel-comet)
+  Using cached scipy-1.14.1-cp311-cp311-manylinux_2_17_x86_64.manylinux2014_x86_64.whl.metadata (60 kB)
+Collecting sentencepiece<0.2.0,>=0.1.96 (from unbabel-comet)
+  Using cached sentencepiece-0.1.99-cp311-cp311-manylinux_2_17_x86_64.manylinux2014_x86_64.whl.metadata (7.7 kB)
+Requirement already satisfied: torch>=1.6.0 in ./.env/lib/python3.11/site-packages (from unbabel-comet) (2.4.1)
+Collecting torchmetrics<0.11.0,>=0.10.2 (from unbabel-comet)
+  Using cached torchmetrics-0.10.3-py3-none-any.whl.metadata (15 kB)
+Requirement already satisfied: transformers<5.0,>=4.17 in ./.env/lib/python3.11/site-packages (from unbabel-comet) (4.45.2)
+Requirement already satisfied: PyYAML>=3.13 in ./.env/lib/python3.11/site-packages (from jsonargparse==3.13.1->unbabel-comet) (6.0.2)
+Requirement already satisfied: filelock in ./.env/lib/python3.11/site-packages (from huggingface-hub<1.0,>=0.19.3->unbabel-comet) (3.16.1)
+Requirement already satisfied: fsspec>=2023.5.0 in ./.env/lib/python3.11/site-packages (from huggingface-hub<1.0,>=0.19.3->unbabel-comet) (2024.6.1)
+Requirement already satisfied: packaging>=20.9 in ./.env/lib/python3.11/site-packages (from huggingface-hub<1.0,>=0.19.3->unbabel-comet) (24.1)
+Requirement already satisfied: requests in ./.env/lib/python3.11/site-packages (from huggingface-hub<1.0,>=0.19.3->unbabel-comet) (2.32.3)
+Requirement already satisfied: tqdm>=4.42.1 in ./.env/lib/python3.11/site-packages (from huggingface-hub<1.0,>=0.19.3->unbabel-comet) (4.66.5)
+Requirement already satisfied: typing-extensions>=3.7.4.3 in ./.env/lib/python3.11/site-packages (from huggingface-hub<1.0,>=0.19.3->unbabel-comet) (4.12.2)
+Requirement already satisfied: python-dateutil>=2.8.2 in ./.env/lib/python3.11/site-packages (from pandas>=1.4.1->unbabel-comet) (2.9.0.post0)
+Requirement already satisfied: pytz>=2020.1 in ./.env/lib/python3.11/site-packages (from pandas>=1.4.1->unbabel-comet) (2024.2)
+Requirement already satisfied: tzdata>=2022.7 in ./.env/lib/python3.11/site-packages (from pandas>=1.4.1->unbabel-comet) (2024.2)
+Collecting lightning-utilities>=0.10.0 (from pytorch-lightning<3.0.0,>=2.0.0->unbabel-comet)
+  Using cached lightning_utilities-0.11.7-py3-none-any.whl.metadata (5.2 kB)
+Requirement already satisfied: portalocker in ./.env/lib/python3.11/site-packages (from sacrebleu<3.0.0,>=2.0.0->unbabel-comet) (2.10.1)
+Requirement already satisfied: regex in ./.env/lib/python3.11/site-packages (from sacrebleu<3.0.0,>=2.0.0->unbabel-comet) (2024.9.11)
+Requirement already satisfied: tabulate>=0.8.9 in ./.env/lib/python3.11/site-packages (from sacrebleu<3.0.0,>=2.0.0->unbabel-comet) (0.9.0)
+Requirement already satisfied: colorama in ./.env/lib/python3.11/site-packages (from sacrebleu<3.0.0,>=2.0.0->unbabel-comet) (0.4.6)
+Requirement already satisfied: lxml in ./.env/lib/python3.11/site-packages (from sacrebleu<3.0.0,>=2.0.0->unbabel-comet) (5.3.0)
+Requirement already satisfied: sympy in ./.env/lib/python3.11/site-packages (from torch>=1.6.0->unbabel-comet) (1.13.3)
+Requirement already satisfied: networkx in ./.env/lib/python3.11/site-packages (from torch>=1.6.0->unbabel-comet) (3.3)
+Requirement already satisfied: jinja2 in ./.env/lib/python3.11/site-packages (from torch>=1.6.0->unbabel-comet) (3.1.4)
+Requirement already satisfied: nvidia-cuda-nvrtc-cu12==12.1.105 in ./.env/lib/python3.11/site-packages (from torch>=1.6.0->unbabel-comet) (12.1.105)
+Requirement already satisfied: nvidia-cuda-runtime-cu12==12.1.105 in ./.env/lib/python3.11/site-packages (from torch>=1.6.0->unbabel-comet) (12.1.105)
+Requirement already satisfied: nvidia-cuda-cupti-cu12==12.1.105 in ./.env/lib/python3.11/site-packages (from torch>=1.6.0->unbabel-comet) (12.1.105)
+Requirement already satisfied: nvidia-cudnn-cu12==9.1.0.70 in ./.env/lib/python3.11/site-packages (from torch>=1.6.0->unbabel-comet) (9.1.0.70)
+Requirement already satisfied: nvidia-cublas-cu12==12.1.3.1 in ./.env/lib/python3.11/site-packages (from torch>=1.6.0->unbabel-comet) (12.1.3.1)
+Requirement already satisfied: nvidia-cufft-cu12==11.0.2.54 in ./.env/lib/python3.11/site-packages (from torch>=1.6.0->unbabel-comet) (11.0.2.54)
+Requirement already satisfied: nvidia-curand-cu12==10.3.2.106 in ./.env/lib/python3.11/site-packages (from torch>=1.6.0->unbabel-comet) (10.3.2.106)
+Requirement already satisfied: nvidia-cusolver-cu12==11.4.5.107 in ./.env/lib/python3.11/site-packages (from torch>=1.6.0->unbabel-comet) (11.4.5.107)
+Requirement already satisfied: nvidia-cusparse-cu12==12.1.0.106 in ./.env/lib/python3.11/site-packages (from torch>=1.6.0->unbabel-comet) (12.1.0.106)
+Requirement already satisfied: nvidia-nccl-cu12==2.20.5 in ./.env/lib/python3.11/site-packages (from torch>=1.6.0->unbabel-comet) (2.20.5)
+Requirement already satisfied: nvidia-nvtx-cu12==12.1.105 in ./.env/lib/python3.11/site-packages (from torch>=1.6.0->unbabel-comet) (12.1.105)
+Requirement already satisfied: triton==3.0.0 in ./.env/lib/python3.11/site-packages (from torch>=1.6.0->unbabel-comet) (3.0.0)
+Requirement already satisfied: nvidia-nvjitlink-cu12 in ./.env/lib/python3.11/site-packages (from nvidia-cusolver-cu12==11.4.5.107->torch>=1.6.0->unbabel-comet) (12.6.77)
+Requirement already satisfied: safetensors>=0.4.1 in ./.env/lib/python3.11/site-packages (from transformers<5.0,>=4.17->unbabel-comet) (0.4.5)
+Requirement already satisfied: tokenizers<0.21,>=0.20 in ./.env/lib/python3.11/site-packages (from transformers<5.0,>=4.17->unbabel-comet) (0.20.0)
+Requirement already satisfied: aiohttp!=4.0.0a0,!=4.0.0a1 in ./.env/lib/python3.11/site-packages (from fsspec[http]>=2022.5.0->pytorch-lightning<3.0.0,>=2.0.0->unbabel-comet) (3.10.9)
+Requirement already satisfied: setuptools in ./.env/lib/python3.11/site-packages (from lightning-utilities>=0.10.0->pytorch-lightning<3.0.0,>=2.0.0->unbabel-comet) (75.1.0)
+Requirement already satisfied: six>=1.5 in ./.env/lib/python3.11/site-packages (from python-dateutil>=2.8.2->pandas>=1.4.1->unbabel-comet) (1.16.0)
+Requirement already satisfied: MarkupSafe>=2.0 in ./.env/lib/python3.11/site-packages (from jinja2->torch>=1.6.0->unbabel-comet) (2.1.5)
+Requirement already satisfied: charset-normalizer<4,>=2 in ./.env/lib/python3.11/site-packages (from requests->huggingface-hub<1.0,>=0.19.3->unbabel-comet) (3.3.2)
+Requirement already satisfied: idna<4,>=2.5 in ./.env/lib/python3.11/site-packages (from requests->huggingface-hub<1.0,>=0.19.3->unbabel-comet) (3.10)
+Requirement already satisfied: urllib3<3,>=1.21.1 in ./.env/lib/python3.11/site-packages (from requests->huggingface-hub<1.0,>=0.19.3->unbabel-comet) (2.2.3)
+Requirement already satisfied: certifi>=2017.4.17 in ./.env/lib/python3.11/site-packages (from requests->huggingface-hub<1.0,>=0.19.3->unbabel-comet) (2024.8.30)
+Requirement already satisfied: mpmath<1.4,>=1.1.0 in ./.env/lib/python3.11/site-packages (from sympy->torch>=1.6.0->unbabel-comet) (1.3.0)
+Requirement already satisfied: aiohappyeyeballs>=2.3.0 in ./.env/lib/python3.11/site-packages (from aiohttp!=4.0.0a0,!=4.0.0a1->fsspec[http]>=2022.5.0->pytorch-lightning<3.0.0,>=2.0.0->unbabel-comet) (2.4.3)
+Requirement already satisfied: aiosignal>=1.1.2 in ./.env/lib/python3.11/site-packages (from aiohttp!=4.0.0a0,!=4.0.0a1->fsspec[http]>=2022.5.0->pytorch-lightning<3.0.0,>=2.0.0->unbabel-comet) (1.3.1)
+Requirement already satisfied: attrs>=17.3.0 in ./.env/lib/python3.11/site-packages (from aiohttp!=4.0.0a0,!=4.0.0a1->fsspec[http]>=2022.5.0->pytorch-lightning<3.0.0,>=2.0.0->unbabel-comet) (24.2.0)
+Requirement already satisfied: frozenlist>=1.1.1 in ./.env/lib/python3.11/site-packages (from aiohttp!=4.0.0a0,!=4.0.0a1->fsspec[http]>=2022.5.0->pytorch-lightning<3.0.0,>=2.0.0->unbabel-comet) (1.4.1)
+Requirement already satisfied: multidict<7.0,>=4.5 in ./.env/lib/python3.11/site-packages (from aiohttp!=4.0.0a0,!=4.0.0a1->fsspec[http]>=2022.5.0->pytorch-lightning<3.0.0,>=2.0.0->unbabel-comet) (6.1.0)
+Requirement already satisfied: yarl<2.0,>=1.12.0 in ./.env/lib/python3.11/site-packages (from aiohttp!=4.0.0a0,!=4.0.0a1->fsspec[http]>=2022.5.0->pytorch-lightning<3.0.0,>=2.0.0->unbabel-comet) (1.13.1)
+Using cached unbabel_comet-2.2.2-py3-none-any.whl (93 kB)
+Using cached jsonargparse-3.13.1-py3-none-any.whl (101 kB)
+Using cached entmax-1.3-py3-none-any.whl (13 kB)
+Using cached numpy-1.26.4-cp311-cp311-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (18.3 MB)
+Using cached protobuf-4.25.5-cp37-abi3-manylinux2014_x86_64.whl (294 kB)
+Using cached pytorch_lightning-2.4.0-py3-none-any.whl (815 kB)
+Using cached scipy-1.14.1-cp311-cp311-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (41.2 MB)
+Using cached sentencepiece-0.1.99-cp311-cp311-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (1.3 MB)
+Using cached torchmetrics-0.10.3-py3-none-any.whl (529 kB)
+Using cached lightning_utilities-0.11.7-py3-none-any.whl (26 kB)
+Installing collected packages: sentencepiece, protobuf, numpy, lightning-utilities, jsonargparse, scipy, torchmetrics, entmax, pytorch-lightning, unbabel-comet
+  Attempting uninstall: sentencepiece
+    Found existing installation: sentencepiece 0.2.0
+    Uninstalling sentencepiece-0.2.0:
+      Successfully uninstalled sentencepiece-0.2.0
+  Attempting uninstall: protobuf
+    Found existing installation: protobuf 5.28.2
+    Uninstalling protobuf-5.28.2:
+      Successfully uninstalled protobuf-5.28.2
+  Attempting uninstall: numpy
+    Found existing installation: numpy 2.1.2
+    Uninstalling numpy-2.1.2:
+      Successfully uninstalled numpy-2.1.2
+Successfully installed entmax-1.3 jsonargparse-3.13.1 lightning-utilities-0.11.7 numpy-1.26.4 protobuf-4.25.5 pytorch-lightning-2.4.0 scipy-1.14.1 sentencepiece-0.1.99 torchmetrics-0.10.3 unbabel-comet-2.2.2
+Collecting rouge-score
+  Using cached rouge_score-0.1.2-py3-none-any.whl
+Collecting absl-py (from rouge-score)
+  Using cached absl_py-2.1.0-py3-none-any.whl.metadata (2.3 kB)
+Collecting nltk (from rouge-score)
+  Using cached nltk-3.9.1-py3-none-any.whl.metadata (2.9 kB)
+Requirement already satisfied: numpy in ./.env/lib/python3.11/site-packages (from rouge-score) (1.26.4)
+Requirement already satisfied: six>=1.14.0 in ./.env/lib/python3.11/site-packages (from rouge-score) (1.16.0)
+Requirement already satisfied: click in ./.env/lib/python3.11/site-packages (from nltk->rouge-score) (8.1.7)
+Collecting joblib (from nltk->rouge-score)
+  Using cached joblib-1.4.2-py3-none-any.whl.metadata (5.4 kB)
+Requirement already satisfied: regex>=2021.8.3 in ./.env/lib/python3.11/site-packages (from nltk->rouge-score) (2024.9.11)
+Requirement already satisfied: tqdm in ./.env/lib/python3.11/site-packages (from nltk->rouge-score) (4.66.5)
+Using cached absl_py-2.1.0-py3-none-any.whl (133 kB)
+Using cached nltk-3.9.1-py3-none-any.whl (1.5 MB)
+Using cached joblib-1.4.2-py3-none-any.whl (301 kB)
+Installing collected packages: joblib, absl-py, nltk, rouge-score
+Successfully installed absl-py-2.1.0 joblib-1.4.2 nltk-3.9.1 rouge-score-0.1.2
+Collecting bitsandbytes
+  Using cached bitsandbytes-0.44.1-py3-none-manylinux_2_24_x86_64.whl.metadata (3.5 kB)
+Requirement already satisfied: torch in ./.env/lib/python3.11/site-packages (from bitsandbytes) (2.4.1)
+Requirement already satisfied: numpy in ./.env/lib/python3.11/site-packages (from bitsandbytes) (1.26.4)
+Requirement already satisfied: filelock in ./.env/lib/python3.11/site-packages (from torch->bitsandbytes) (3.16.1)
+Requirement already satisfied: typing-extensions>=4.8.0 in ./.env/lib/python3.11/site-packages (from torch->bitsandbytes) (4.12.2)
+Requirement already satisfied: sympy in ./.env/lib/python3.11/site-packages (from torch->bitsandbytes) (1.13.3)
+Requirement already satisfied: networkx in ./.env/lib/python3.11/site-packages (from torch->bitsandbytes) (3.3)
+Requirement already satisfied: jinja2 in ./.env/lib/python3.11/site-packages (from torch->bitsandbytes) (3.1.4)
+Requirement already satisfied: fsspec in ./.env/lib/python3.11/site-packages (from torch->bitsandbytes) (2024.6.1)
+Requirement already satisfied: nvidia-cuda-nvrtc-cu12==12.1.105 in ./.env/lib/python3.11/site-packages (from torch->bitsandbytes) (12.1.105)
+Requirement already satisfied: nvidia-cuda-runtime-cu12==12.1.105 in ./.env/lib/python3.11/site-packages (from torch->bitsandbytes) (12.1.105)
+Requirement already satisfied: nvidia-cuda-cupti-cu12==12.1.105 in ./.env/lib/python3.11/site-packages (from torch->bitsandbytes) (12.1.105)
+Requirement already satisfied: nvidia-cudnn-cu12==9.1.0.70 in ./.env/lib/python3.11/site-packages (from torch->bitsandbytes) (9.1.0.70)
+Requirement already satisfied: nvidia-cublas-cu12==12.1.3.1 in ./.env/lib/python3.11/site-packages (from torch->bitsandbytes) (12.1.3.1)
+Requirement already satisfied: nvidia-cufft-cu12==11.0.2.54 in ./.env/lib/python3.11/site-packages (from torch->bitsandbytes) (11.0.2.54)
+Requirement already satisfied: nvidia-curand-cu12==10.3.2.106 in ./.env/lib/python3.11/site-packages (from torch->bitsandbytes) (10.3.2.106)
+Requirement already satisfied: nvidia-cusolver-cu12==11.4.5.107 in ./.env/lib/python3.11/site-packages (from torch->bitsandbytes) (11.4.5.107)
+Requirement already satisfied: nvidia-cusparse-cu12==12.1.0.106 in ./.env/lib/python3.11/site-packages (from torch->bitsandbytes) (12.1.0.106)
+Requirement already satisfied: nvidia-nccl-cu12==2.20.5 in ./.env/lib/python3.11/site-packages (from torch->bitsandbytes) (2.20.5)
+Requirement already satisfied: nvidia-nvtx-cu12==12.1.105 in ./.env/lib/python3.11/site-packages (from torch->bitsandbytes) (12.1.105)
+Requirement already satisfied: triton==3.0.0 in ./.env/lib/python3.11/site-packages (from torch->bitsandbytes) (3.0.0)
+Requirement already satisfied: nvidia-nvjitlink-cu12 in ./.env/lib/python3.11/site-packages (from nvidia-cusolver-cu12==11.4.5.107->torch->bitsandbytes) (12.6.77)
+Requirement already satisfied: MarkupSafe>=2.0 in ./.env/lib/python3.11/site-packages (from jinja2->torch->bitsandbytes) (2.1.5)
+Requirement already satisfied: mpmath<1.4,>=1.1.0 in ./.env/lib/python3.11/site-packages (from sympy->torch->bitsandbytes) (1.3.0)
+Using cached bitsandbytes-0.44.1-py3-none-manylinux_2_24_x86_64.whl (122.4 MB)
+Installing collected packages: bitsandbytes
+Successfully installed bitsandbytes-0.44.1
+Looking in indexes: https://download.pytorch.org/whl/cu118
+Collecting torch==2.4.0
+  Using cached https://download.pytorch.org/whl/cu118/torch-2.4.0%2Bcu118-cp311-cp311-linux_x86_64.whl (857.8 MB)
+Collecting torchvision==0.19.0
+  Using cached https://download.pytorch.org/whl/cu118/torchvision-0.19.0%2Bcu118-cp311-cp311-linux_x86_64.whl (6.3 MB)
+Collecting torchaudio==2.4.0
+  Using cached https://download.pytorch.org/whl/cu118/torchaudio-2.4.0%2Bcu118-cp311-cp311-linux_x86_64.whl (3.3 MB)
+Requirement already satisfied: filelock in ./.env/lib/python3.11/site-packages (from torch==2.4.0) (3.16.1)
+Requirement already satisfied: typing-extensions>=4.8.0 in ./.env/lib/python3.11/site-packages (from torch==2.4.0) (4.12.2)
+Requirement already satisfied: sympy in ./.env/lib/python3.11/site-packages (from torch==2.4.0) (1.13.3)
+Requirement already satisfied: networkx in ./.env/lib/python3.11/site-packages (from torch==2.4.0) (3.3)
+Requirement already satisfied: jinja2 in ./.env/lib/python3.11/site-packages (from torch==2.4.0) (3.1.4)
+Requirement already satisfied: fsspec in ./.env/lib/python3.11/site-packages (from torch==2.4.0) (2024.6.1)
+Collecting nvidia-cuda-nvrtc-cu11==11.8.89 (from torch==2.4.0)
+  Using cached https://download.pytorch.org/whl/cu118/nvidia_cuda_nvrtc_cu11-11.8.89-py3-none-manylinux1_x86_64.whl (23.2 MB)
+Collecting nvidia-cuda-runtime-cu11==11.8.89 (from torch==2.4.0)
+  Using cached https://download.pytorch.org/whl/cu118/nvidia_cuda_runtime_cu11-11.8.89-py3-none-manylinux1_x86_64.whl (875 kB)
+Collecting nvidia-cuda-cupti-cu11==11.8.87 (from torch==2.4.0)
+  Using cached https://download.pytorch.org/whl/cu118/nvidia_cuda_cupti_cu11-11.8.87-py3-none-manylinux1_x86_64.whl (13.1 MB)
+Collecting nvidia-cudnn-cu11==9.1.0.70 (from torch==2.4.0)
+  Using cached https://download.pytorch.org/whl/cu118/nvidia_cudnn_cu11-9.1.0.70-py3-none-manylinux2014_x86_64.whl (663.9 MB)
+Collecting nvidia-cublas-cu11==11.11.3.6 (from torch==2.4.0)
+  Using cached https://download.pytorch.org/whl/cu118/nvidia_cublas_cu11-11.11.3.6-py3-none-manylinux1_x86_64.whl (417.9 MB)
+Collecting nvidia-cufft-cu11==10.9.0.58 (from torch==2.4.0)
+  Using cached https://download.pytorch.org/whl/cu118/nvidia_cufft_cu11-10.9.0.58-py3-none-manylinux1_x86_64.whl (168.4 MB)
+Collecting nvidia-curand-cu11==10.3.0.86 (from torch==2.4.0)
+  Using cached https://download.pytorch.org/whl/cu118/nvidia_curand_cu11-10.3.0.86-py3-none-manylinux1_x86_64.whl (58.1 MB)
+Collecting nvidia-cusolver-cu11==11.4.1.48 (from torch==2.4.0)
+  Using cached https://download.pytorch.org/whl/cu118/nvidia_cusolver_cu11-11.4.1.48-py3-none-manylinux1_x86_64.whl (128.2 MB)
+Collecting nvidia-cusparse-cu11==11.7.5.86 (from torch==2.4.0)
+  Using cached https://download.pytorch.org/whl/cu118/nvidia_cusparse_cu11-11.7.5.86-py3-none-manylinux1_x86_64.whl (204.1 MB)
+Collecting nvidia-nccl-cu11==2.20.5 (from torch==2.4.0)
+  Using cached https://download.pytorch.org/whl/cu118/nvidia_nccl_cu11-2.20.5-py3-none-manylinux2014_x86_64.whl (142.9 MB)
+Collecting nvidia-nvtx-cu11==11.8.86 (from torch==2.4.0)
+  Using cached https://download.pytorch.org/whl/cu118/nvidia_nvtx_cu11-11.8.86-py3-none-manylinux1_x86_64.whl (99 kB)
+Requirement already satisfied: triton==3.0.0 in ./.env/lib/python3.11/site-packages (from torch==2.4.0) (3.0.0)
+Requirement already satisfied: numpy in ./.env/lib/python3.11/site-packages (from torchvision==0.19.0) (1.26.4)
+Collecting pillow!=8.3.*,>=5.3.0 (from torchvision==0.19.0)
+  Using cached https://download.pytorch.org/whl/pillow-10.2.0-cp311-cp311-manylinux_2_28_x86_64.whl (4.5 MB)
+Requirement already satisfied: MarkupSafe>=2.0 in ./.env/lib/python3.11/site-packages (from jinja2->torch==2.4.0) (2.1.5)
+Requirement already satisfied: mpmath<1.4,>=1.1.0 in ./.env/lib/python3.11/site-packages (from sympy->torch==2.4.0) (1.3.0)
+Installing collected packages: pillow, nvidia-nvtx-cu11, nvidia-nccl-cu11, nvidia-cusparse-cu11, nvidia-curand-cu11, nvidia-cufft-cu11, nvidia-cuda-runtime-cu11, nvidia-cuda-nvrtc-cu11, nvidia-cuda-cupti-cu11, nvidia-cublas-cu11, nvidia-cusolver-cu11, nvidia-cudnn-cu11, torch, torchvision, torchaudio
+  Attempting uninstall: torch
+    Found existing installation: torch 2.4.1
+    Uninstalling torch-2.4.1:
+      Successfully uninstalled torch-2.4.1
+Successfully installed nvidia-cublas-cu11-11.11.3.6 nvidia-cuda-cupti-cu11-11.8.87 nvidia-cuda-nvrtc-cu11-11.8.89 nvidia-cuda-runtime-cu11-11.8.89 nvidia-cudnn-cu11-9.1.0.70 nvidia-cufft-cu11-10.9.0.58 nvidia-curand-cu11-10.3.0.86 nvidia-cusolver-cu11-11.4.1.48 nvidia-cusparse-cu11-11.7.5.86 nvidia-nccl-cu11-2.20.5 nvidia-nvtx-cu11-11.8.86 pillow-10.2.0 torch-2.4.0+cu118 torchaudio-2.4.0+cu118 torchvision-0.19.0+cu118
+
+JOB STATISTICS
+==============
+Job ID: 8109580
+Cluster: snellius
+User/Group: scur1746/scur1746
+State: RUNNING
+Nodes: 1
+Cores per node: 18
+CPU Utilized: 00:00:00
+CPU Efficiency: 0.00% of 01:30:36 core-walltime
+Job Wall-clock time: 00:05:02
+Memory Utilized: 0.00 MB (estimated maximum)
+Memory Efficiency: 0.00% of 120.00 GB (120.00 GB/node)
+WARNING: Efficiency statistics may be misleading for RUNNING jobs.
