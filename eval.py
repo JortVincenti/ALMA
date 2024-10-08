@@ -94,8 +94,6 @@ def main():
     tokenizer = LlamaTokenizer.from_pretrained(args.tokenizer)
     tokenizer.pad_token_id = tokenizer.eos_token_id
 
-    initial_vram = torch.cuda.memory_allocated()
-
     src = LANG_MAP[args.src]
     tgt = LANG_MAP[args.tgt]
 
@@ -146,7 +144,6 @@ def main():
 
         torch.cuda.synchronize()
         with torch.no_grad():
-            # before_infernce_vram = torch.cuda.memory_allocated()
             start.record()
             generated_ids = model.generate(
                 input_ids=inputs.input_ids,
@@ -196,10 +193,9 @@ def main():
     bleu = sacrebleu.corpus_bleu(generated_translations, [targets])
     print(f"BLEU score: {bleu.score}")
 
-    print(download_model.available_legacy_metrics())
-    model_scorer = download_model("Unbabel/wmt22-comet-da") # torch.load("model.ckpt", weights_only=True)
-    model_scorer = load_from_checkpoint(model_scorer)
-
+    model_path = download_model("Unbabel/wmt22-comet-da")
+    model_scorer = load_from_checkpoint(model_path)
+    
     comet = model_scorer.predict(comet_score, batch_size=args.batch_size, gpus=1)
     print (f"Comet score:{comet}")
     average_comet_score = sum(comet['scores']) / len(comet['scores'])
