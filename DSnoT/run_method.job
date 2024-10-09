@@ -1,22 +1,24 @@
 #!/bin/bash
 
-#SBATCH --partition=gpu
+#SBATCH --partition=gpu_h100
 #SBATCH --gpus=1
+#SBATCH --gpus-per-node=1
 #SBATCH --job-name=RunMethod
 #SBATCH --ntasks=1
 #SBATCH --cpus-per-task=18
-#SBATCH --time=08:00:00
+#SBATCH --time=00:30:00
 #SBATCH --output=RunMethod_%A.out
 
 module purge
-module load 2022
-module load Anaconda3/2022.05
+module load 2023
+module load Anaconda3/2023.07-2
 
 # Activate your environment
 source activate DSnoT
 
 # conda install conda-forge::sacrebleu
 # conda install conda-forge::rouge-score
+# conda install conda-forge::comet
 
 # # Create directories in scratch-shared
 # mkdir -p /scratch-shared/scur1448/my_model
@@ -37,9 +39,11 @@ srun python main.py \
     --pow_of_var_regrowing 1 \
     --source_lang cs \
     --target_lang en \
-    --save_model pruned_model/DSnoT/cs-en \
+    --save_model pruned_model/DSnoT/ \
     --beam 5 \
-    --dtype "float16" 
+    --dtype "float16" \
+    --nsamples 128
+    # --nsamples 512
 
 # #IF NEEDED
 # # Use scratch-shared paths for model cache and dataset

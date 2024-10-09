@@ -140,9 +140,7 @@ def main():
     ################################################################
     
     if args.save_model:
-        print("came in here")
         model.save_pretrained(args.save_model)
-        print("should have saved now")
         tokenizer.save_pretrained(args.save_model)
 
     # dataset = 'wikitext2'

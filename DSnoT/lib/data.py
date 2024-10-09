@@ -39,101 +39,159 @@ def get_wikitext2(nsamples, seed, seqlen, tokenizer):
         trainloader.append((inp, tar))
     return trainloader, testenc
 
+LANG_MAP = {
+    'en': 'English',
+    'de': 'German',
+    'cs': 'Czech',
+    'ru': 'Russian',
+    'zh': 'Chinese',
+    'is': 'Icelandic'
+}
 
 def get_alma(nsamples, seed, seqlen, tokenizer, source_lang, target_lang):
     from datasets import Dataset
-    from datasets import get_dataset_config_names
-
     import pandas as pd
+    import random
 
-    # Load the ALMA-Human-Parallel dataset with the specified language pair
-    # dataset = load_dataset("haoranxu/ALMA-Human-Parallel", "de-en")
-
-    configs = get_dataset_config_names("haoranxu/ALMA-Human-Parallel")
-    print("Available configs: ", configs)
-
-    print(f"Loading dataset with source_lang={source_lang} and target_lang={target_lang}")
-    # Load the dataset as a Pandas DataFrame
-    splits = {'train': 'cs-en/train-00000-of-00001-3a60b130a713425b.parquet', 'validation': 'cs-en/validation-00000-of-00001-d1f9a3fc339fbc84.parquet'}
-    train_df = pd.read_parquet("hf://datasets/haoranxu/ALMA-Human-Parallel/" + splits["train"])
-    val_df = pd.read_parquet("hf://datasets/haoranxu/ALMA-Human-Parallel/" + splits["validation"])
-
-    # Convert the Pandas DataFrame back into a Hugging Face Dataset
-    traindata = Dataset.from_pandas(train_df)
-    valdata = Dataset.from_pandas(val_df)
-
-    # Check if source_lang and target_lang exist in the dataset's fields
-    sample_entry = traindata[0]
-    print("Loaded dataset. Sample entry", sample_entry)
-    available_fields = list(sample_entry.keys())
-    if 'translation' not in available_fields:
-        raise ValueError(f"Expected field 'translation', but found {available_fields}")
-
-    # if source_lang not in available_fields or target_lang not in available_fields:
-    #     raise ValueError(f"Expected fields {source_lang} and {target_lang}, but found {available_fields}")
-
+    # Define all language directions
+    full_alma_splits = {
+        'train': {
+            'cs-en': 'cs-en/train-00000-of-00001-3a60b130a713425b.parquet', # ok
+            'de-en': 'de-en/train-00000-of-00001-39460826cd7ac756.parquet', # ok 
+            # 'is-en': 'is-en/train-00000-of-00001-f71a989f63b28d68.parquet', # ok
+            'ru-en': 'ru-en/train-00000-of-00001-3ba3fad04eea46f0.parquet', # ok
+            'zh-en': 'zh-en/train-00000-of-00001-6bd744feceb30dbf.parquet'  # ok
+        },
+        'validation': {
+            'cs-en': 'cs-en/validation-00000-of-00001-d1f9a3fc339fbc84.parquet', # ok
+            'de-en': 'de-en/validation-00000-of-00001-34198d3f975c1787.parquet', # ok
+            # 'is-en': 'is-en/validation-00000-of-00001-bb3b8280f4b7ff31.parquet',
+            'ru-en': 'ru-en/validation-00000-of-00001-e9c97fe731036b74.parquet', # ok
+            'zh-en': 'zh-en/validation-00000-of-00001-d1cc83e30e3dcdb2.parquet'  # ok
+        }
+    }
+   
     # Set seed for reproducibility
     random.seed(seed)
 
     # Prepare the data loader
     trainloader = []
-    for _ in range(nsamples):
-        while True:
-            i = random.randint(0, len(traindata) - 1)
-            translations = traindata[i]['translation']
-            source_text = translations.get(source_lang)
-            target_text = translations.get(target_lang)
-            if source_text is None or target_text is None:
-                raise ValueError(f"Source or target language not found in translation. Entry: {translations}")
-            # Tokenize source and target text
-            source_enc = tokenizer(source_text, return_tensors='pt', max_length=seqlen, truncation=True)
-            target_enc = tokenizer(target_text, return_tensors='pt', max_length=seqlen, truncation=True)
-            
-            # Ensure the source sequence length meets the requirement # Proceed only if the sequence fits within the seqlen
-            if source_enc.input_ids.shape[1] <= seqlen:
-                break  
+    all_validation_texts = []
 
-            
-        # Ensure that the tokenized sequence length is at least seqlen
-        if source_enc.input_ids.shape[1] >= seqlen:
-            # Randomly select a sequence length window within the input
-            i = random.randint(0, source_enc.input_ids.shape[1] - seqlen - 1)
-            j = i + seqlen
-            # Prepare the input and target sequences
-            inp = source_enc.input_ids[:, i:j]
-            tar = target_enc.input_ids[:, i:j].clone()
+    # Iterate over all language directions
+    for lang_pair in full_alma_splits['train'].keys():
+        print(f"Loading dataset for {lang_pair}")
+
+        # Load train and validation splits
+        train_split_path = f"hf://datasets/haoranxu/ALMA-Human-Parallel/{full_alma_splits['train'][lang_pair]}"
+        print("Train link: ", train_split_path)
+        train_df = pd.read_parquet(train_split_path)
+
+        # Handle the 'is-en' case by splitting off validation data
+        if lang_pair == 'is-en':
+            print(f"Splitting 'is-en' training data into train and validation sets")
+            # Split 10% of the training data into validation
+            train_df, val_df = train_test_split(train_df, test_size=0.1, random_state=seed)
+            valdata = Dataset.from_pandas(val_df)
         else:
-            # If the sequence is shorter than seqlen, just take the whole sequence
+            val_split_path = f"hf://datasets/haoranxu/ALMA-Human-Parallel/{full_alma_splits['validation'][lang_pair]}"
+            print("Validation link: ", val_split_path)
+            val_df = pd.read_parquet(val_split_path)
+            valdata = Dataset.from_pandas(val_df)
+            
+        # Convert DataFrames to Hugging Face Dataset
+        traindata = Dataset.from_pandas(train_df)
+        valdata = Dataset.from_pandas(val_df)
+
+        source_lang, target_lang = lang_pair.split('-')
+
+        # Sample data for training
+        for _ in range(nsamples):
+            while True:
+                i = random.randint(0, len(traindata) - 1)
+                translations = traindata[i]['translation']
+                source_text = translations.get(source_lang)
+                target_text = translations.get(target_lang)
+
+                if source_text is None or target_text is None:
+                    continue  # Skip this entry if either source or target text is missing
+
+                prompt = (
+                    f"Translate this from {LANG_MAP[source_lang]} to {LANG_MAP[target_lang]}:\n"
+                    f"{LANG_MAP[source_lang]}: {source_text}\n"
+                    f"{LANG_MAP[target_lang]}:"
+                )
+
+                # Tokenize source and target text
+                source_enc = tokenizer(prompt, return_tensors='pt', max_length=seqlen, truncation=True)
+                target_enc = tokenizer(target_text, return_tensors='pt', max_length=seqlen, truncation=True)
+
+                if source_enc.input_ids.shape[1] <= seqlen:
+                    break
+
+            # Prepare the input and target sequences for training
+            inp = source_enc.input_ids
+            tar = target_enc.input_ids.clone()
+            trainloader.append((inp, tar))
+        
+        # Collect validation data
+        source_texts = [entry['translation'][source_lang] for entry in valdata if 'translation' in entry]
+        all_validation_texts.extend(source_texts)
+
+        # Handle inverted language pairs (e.g., en-cs, en-de, en-ru, etc.)
+        inverted_lang_pair = f"{target_lang}-{source_lang}"
+        print(f"Handling inverted pair: {inverted_lang_pair}")
+
+        # Sample data by inverting source and target
+        for _ in range(nsamples):
+            while True:
+                i = random.randint(0, len(traindata) - 1)
+                translations = traindata[i]['translation']
+                source_text = translations.get(target_lang)  # Inverted: use target as source
+                target_text = translations.get(source_lang)  # Inverted: use source as target
+
+                if source_text is None or target_text is None:
+                    continue  # Skip this entry if either source or target text is missing
+
+                prompt = (
+                    f"Translate this from {LANG_MAP[target_lang]} to {LANG_MAP[source_lang]}:\n"
+                    f"{LANG_MAP[target_lang]}: {source_text}\n"
+                    f"{LANG_MAP[source_lang]}:"
+                )
+                # Tokenize source and target text (inverted)
+                source_enc = tokenizer(prompt, return_tensors='pt', max_length=seqlen, truncation=True)
+                target_enc = tokenizer(target_text, return_tensors='pt', max_length=seqlen, truncation=True)
+
+                if source_enc.input_ids.shape[1] <= seqlen:
+                    break
+
+            # Prepare the input and target sequences for training (inverted)
             inp = source_enc.input_ids
             tar = target_enc.input_ids.clone()
             trainloader.append((inp, tar))
 
-    # DEBUG statements
-    # Print the available fields in valdata
-    # print("valdata features:", valdata.features)
-    # for entry in valdata[:1100]:
-    #     print(entry) 
-    
-    source_texts = [entry['translation'][source_lang] for entry in valdata if isinstance(entry, dict) and 'translation' in entry]
-    joined_source_text = ' '.join(source_texts)
-    
-    # Tokenize the joined source texts for validation
+    # Join all validation texts from multiple languages
+    joined_source_text = ' '.join(all_validation_texts)
+
+
+    # Tokenize validation data
     valenc = tokenizer(
         joined_source_text,
         return_tensors='pt', 
         max_length=(256 * seqlen), 
         truncation=True
     )
-
     valenc = valenc.input_ids[:, :(256 * seqlen)]
 
     if valenc is None:
         raise ValueError("Validation data could not be processed properly.")
-        
+
     # Wrap validation data for compatibility
     valenc = TokenizerWrapper(valenc)
 
     return trainloader, valenc
+
+
 
 # def get_alma_test(seqlen, tokenizer, source_lang, target_lang):
 #     import pandas as pd

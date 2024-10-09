@@ -7,6 +7,7 @@ import pandas as pd
 import sacrebleu
 from rouge_score import rouge_scorer
 import time
+import numpy as np
 
 # def get_parser():
 #     parser = argparse.ArgumentParser()
@@ -33,6 +34,19 @@ LANG_MAP = {
     'zh': 'Chinese',
     'is': 'Icelandic'
 }
+
+def print_model_size(model):
+    # https://discuss.pytorch.org/t/finding-model-size/130275
+    param_size = 0
+    for param in model.parameters():
+        param_size += param.nelement() * param.element_size()
+    buffer_size = 0
+    for buffer in model.buffers():
+        buffer_size += buffer.nelement() * buffer.element_size()
+
+    size_all_mb = (param_size + buffer_size) / 1024**2
+    return size_all_mb
+
 
 def dynamic_batching(tokenizer, texts, batch_size, max_length):
     """
@@ -61,6 +75,9 @@ def alma_eval(model, tokenizer, args, device=torch.device("cuda:0")):
     dtype_map = {'bfloat16': torch.bfloat16, 'float16': torch.float16, 'float32': torch.float32}
     dtype = dtype_map.get(args.dtype, torch.float)
 
+    initial_vram = torch.cuda.memory_allocated()
+    size_all_mb = print_model_size(model)
+
     # NOT NECESSARY IF CALLED BY MAIN
     # load model and tokenizer
     # model = AutoModelForCausalLM.from_pretrained(args.model, 
@@ -69,6 +86,7 @@ def alma_eval(model, tokenizer, args, device=torch.device("cuda:0")):
     #                                              offload_folder="./offload"
     #                                              )
     #model = PeftModel.from_pretrained(model, args.ckpt) # load when you have lora
+    
     model.eval()
     # tokenizer = LlamaTokenizer.from_pretrained(args.tokenizer)
     tokenizer.pad_token_id = tokenizer.eos_token_id
@@ -100,17 +118,19 @@ def alma_eval(model, tokenizer, args, device=torch.device("cuda:0")):
         lines.append(f"{source_sentence}\n")
         targets.append(f"{target_translation}\n")
 
-    # for idx, example in test_df.iloc[:len_samples].iterrows():
-    #     source_sentence = example[args.source_lang]
-    #     target_translation = example[args.target_lang]
-    #     lines.append(f"{source_sentence}\n")
-    #     targets.append(f"{target_translation}\n")
-
     # generate
     total_batches = (len(lines) + args.batch_size - 1) // args.batch_size  # calculate the number of batches
     # Initialize empty lists to store the generated translations and targets
     generated_translations = []
-    total_time = 0
+    total_vram_per_batch = []
+    latency_per_batch = []
+
+    start = torch.cuda.Event(enable_timing=True)
+    end = torch.cuda.Event(enable_timing=True)
+
+    comet_score = []
+    increment = 0
+
     for batch in tqdm(dynamic_batching(tokenizer, lines, args.batch_size, args.gen_max_tokens), total=total_batches, desc="Processing Batches"):
         prompts = []
         for line in batch:
@@ -123,17 +143,25 @@ def alma_eval(model, tokenizer, args, device=torch.device("cuda:0")):
         inputs = tokenizer(prompts, return_tensors="pt", padding=True, ).to('cuda') if torch.cuda.is_available() else tokenizer(prompts, return_tensors="pt", padding=True, ).to('cpu')
 
         # generate
+        torch.cuda.synchronize()
         with torch.no_grad():
-            start = time.time()
+            start.record()
+            print("gen_max_tokens", args.gen_max_tokens)
             generated_ids = model.generate(
                 input_ids=inputs.input_ids,
                 attention_mask=inputs.attention_mask,
                 num_beams=args.beam, # beam size
                 max_new_tokens=args.gen_max_tokens
             )
-            end_time = time.time() - start
+            end.record()
+        torch.cuda.synchronize()
+        
+        latency_per_batch.append(start.elapsed_time(end))    
+        final_vram = torch.cuda.memory_allocated()
 
-        total_time += end_time        
+        model_memory_per_batch = ((final_vram - initial_vram) // (1024 ** 2))
+        total_vram_per_batch.append(model_memory_per_batch)
+
         outputs = tokenizer.batch_decode(generated_ids, skip_special_tokens=True)
 
         # Process and write the translations
@@ -141,29 +169,39 @@ def alma_eval(model, tokenizer, args, device=torch.device("cuda:0")):
             translation = output[len(prompt):].strip()
             generated_translations.append(translation)
 
+            comet_score.append({
+                    "src": prompt,
+                    "mt": translation,
+                    "ref": targets[increment]
+                } 
+            )
+            increment += 1
+
+    model_average_vram = sum(total_vram_per_batch) / len(total_vram_per_batch)
+    
+    temp_times = np.array(latency_per_batch)
+    mean_time = temp_times[abs(temp_times - np.mean(temp_times)) < np.std(temp_times)].mean()
+
+    del model
+    torch.cuda.empty_cache()
+
     print("*"*100)
     print("Evaluation Results:")
-    print(f"Time taken for generation: {total_time:.2f} seconds")
-    print(f"Average generation time: {total_time / len(lines)} seconds")
+    print(f"Avg Time taken for generation: {mean_time:.2f} ms")
+    print(f"Average VRAM usage: {model_average_vram} MB with model")
+    print(f"Model size is: {size_all_mb:.2f}")
 
     # BLEU Score
     bleu = sacrebleu.corpus_bleu(generated_translations, [targets])
     print(f"BLEU score: {bleu.score}")
 
-    # ROUGE Score
-    scorer = rouge_scorer.RougeScorer(['rouge1', 'rouge2', 'rougeL'], use_stemmer=True)
-    rouge_scores = []
-    for generated_translation, target in zip(generated_translations, targets):
-        rouge_scores.append(scorer.score(generated_translation, target))
-
-    # Display average ROUGE scores
-    average_rouge1 = sum([score['rouge1'].fmeasure for score in rouge_scores]) / len(rouge_scores)
-    average_rouge2 = sum([score['rouge2'].fmeasure for score in rouge_scores]) / len(rouge_scores)
-    average_rougeL = sum([score['rougeL'].fmeasure for score in rouge_scores]) / len(rouge_scores)
-
-    print(f"Average ROUGE-1 F1 score: {average_rouge1}")
-    print(f"Average ROUGE-2 F1 score: {average_rouge2}")
-    print(f"Average ROUGE-L F1 score: {average_rougeL}")
+    model_path = download_model("Unbabel/wmt22-comet-da")
+    model_scorer = load_from_checkpoint(model_path)
+    
+    comet = model_scorer.predict(comet_score, batch_size=args.batch_size, gpus=1)
+    print (f"Comet score:{comet}")
+    average_comet_score = sum(comet['scores']) / len(comet['scores'])
+    print(f"Average COMET score: {average_comet_score}")
 
     print("*"*100)
 
