@@ -1,0 +1,383 @@
+============================================================================================== 
+Warning! Mixing Conda and module environments may lead to corruption of the
+user environment. 
+We do not recommend users mixing those two environments unless absolutely
+necessary. Note that 
+SURF does not provide any support for Conda environment.
+For more information, please refer to our software policy page:
+https://servicedesk.surf.nl/wiki/display/WIKI/Software+policy+Snellius#SoftwarepolicySnellius-UseofAnacondaandMinicondaenvironmentsonSnellius 
+
+Remember that many packages have already been installed on the system and can
+be loaded using 
+the 'module load <package__name>' command. If you are uncertain if a package is
+already available 
+on the system, please use 'module avail' or 'module spider' to search for it.
+============================================================================================== 
+
+===================================BUG REPORT===================================
+Welcome to bitsandbytes. For bug reports, please run
+
+python -m bitsandbytes
+
+ and submit this information together with your error trace to: https://github.com/TimDettmers/bitsandbytes/issues
+================================================================================
+bin /home/scur1762/.conda/envs/DSnoT/lib/python3.8/site-packages/bitsandbytes/libbitsandbytes_cuda117.so
+CUDA SETUP: CUDA runtime path found: /home/scur1762/.conda/envs/DSnoT/lib/libcudart.so.11.0
+CUDA SETUP: Highest compute capability among GPUs detected: 9.0
+CUDA SETUP: Detected CUDA version 117
+CUDA SETUP: Loading binary /home/scur1762/.conda/envs/DSnoT/lib/python3.8/site-packages/bitsandbytes/libbitsandbytes_cuda117.so...
+torch 2.4.1
+transformers 4.28.0
+accelerate 0.18.0
+# of gpus:  1
+Model path: haoranxu/ALMA-7B
+Model type: None
+source and target lang: en, is
+model type: llama
+loading llm model haoranxu/ALMA-7B
+/home/scur1762/.conda/envs/DSnoT/lib/python3.8/site-packages/torchvision/io/image.py:13: UserWarning: Failed to load image Python extension: libtorch_cuda_cu.so: cannot open shared object file: No such file or directory
+  warn(f"Failed to load image Python extension: {e}")
+/home/scur1762/.conda/envs/DSnoT/lib/python3.8/site-packages/huggingface_hub/file_download.py:1142: FutureWarning: `resume_download` is deprecated and will be removed in version 1.0.0. Downloads always resume when possible. If you want to force a new download, use `force_download=True`.
+  warnings.warn(
+Loading checkpoint shards:   0%|          | 0/3 [00:00<?, ?it/s]/home/scur1762/.conda/envs/DSnoT/lib/python3.8/site-packages/transformers/modeling_utils.py:442: FutureWarning: You are using `torch.load` with `weights_only=False` (the current default value), which uses the default pickle module implicitly. It is possible to construct malicious pickle data which will execute arbitrary code during unpickling (See https://github.com/pytorch/pytorch/blob/main/SECURITY.md#untrusted-models for more details). In a future release, the default value for `weights_only` will be flipped to `True`. This limits the functions that could be executed during unpickling. Arbitrary objects will no longer be allowed to be loaded via this mode unless they are explicitly allowlisted by the user via `torch.serialization.add_safe_globals`. We recommend you start setting `weights_only=True` for any use case where you don't have full control of the loaded file. Please open an issue on GitHub for any issues related to this experimental feature.
+  return torch.load(checkpoint_file, map_location="cpu")
+use device  cuda:0
+pruning starts
+Loading calibration data...
+Loading dataset for cs-en
+Train link:  hf://datasets/haoranxu/ALMA-Human-Parallel/cs-en/train-00000-of-00001-3a60b130a713425b.parquet
+Validation link:  hf://datasets/haoranxu/ALMA-Human-Parallel/cs-en/validation-00000-of-00001-d1f9a3fc339fbc84.parquet
+Handling inverted pair: en-cs
+Loading dataset for de-en
+Train link:  hf://datasets/haoranxu/ALMA-Human-Parallel/de-en/train-00000-of-00001-39460826cd7ac756.parquet
+Validation link:  hf://datasets/haoranxu/ALMA-Human-Parallel/de-en/validation-00000-of-00001-34198d3f975c1787.parquet
+Handling inverted pair: en-de
+Loading dataset for ru-en
+Train link:  hf://datasets/haoranxu/ALMA-Human-Parallel/ru-en/train-00000-of-00001-3ba3fad04eea46f0.parquet
+Validation link:  hf://datasets/haoranxu/ALMA-Human-Parallel/ru-en/validation-00000-of-00001-e9c97fe731036b74.parquet
+Handling inverted pair: en-ru
+Loading dataset for zh-en
+Train link:  hf://datasets/haoranxu/ALMA-Human-Parallel/zh-en/train-00000-of-00001-6bd744feceb30dbf.parquet
+Validation link:  hf://datasets/haoranxu/ALMA-Human-Parallel/zh-en/validation-00000-of-00001-d1cc83e30e3dcdb2.parquet
+Handling inverted pair: en-zh
+dataset loading complete
+Wanda pruning layer 0 name self_attn.q_proj
+Wanda pruning layer 0 name self_attn.k_proj
+Wanda pruning layer 0 name self_attn.v_proj
+Wanda pruning layer 0 name self_attn.o_proj
+Wanda pruning layer 0 name mlp.gate_proj
+Wanda pruning layer 0 name mlp.down_proj
+Wanda pruning layer 0 name mlp.up_proj
+Wanda pruning layer 1 name self_attn.q_proj
+Wanda pruning layer 1 name self_attn.k_proj
+Wanda pruning layer 1 name self_attn.v_proj
+Wanda pruning layer 1 name self_attn.o_proj
+Wanda pruning layer 1 name mlp.gate_proj
+Wanda pruning layer 1 name mlp.down_proj
+Wanda pruning layer 1 name mlp.up_proj
+Wanda pruning layer 2 name self_attn.q_proj
+Wanda pruning layer 2 name self_attn.k_proj
+Wanda pruning layer 2 name self_attn.v_proj
+Wanda pruning layer 2 name self_attn.o_proj
+Wanda pruning layer 2 name mlp.gate_proj
+Wanda pruning layer 2 name mlp.down_proj
+Wanda pruning layer 2 name mlp.up_proj
+Wanda pruning layer 3 name self_attn.q_proj
+Wanda pruning layer 3 name self_attn.k_proj
+Wanda pruning layer 3 name self_attn.v_proj
+Wanda pruning layer 3 name self_attn.o_proj
+Wanda pruning layer 3 name mlp.gate_proj
+Wanda pruning layer 3 name mlp.down_proj
+Wanda pruning layer 3 name mlp.up_proj
+Wanda pruning layer 4 name self_attn.q_proj
+Wanda pruning layer 4 name self_attn.k_proj
+Wanda pruning layer 4 name self_attn.v_proj
+Wanda pruning layer 4 name self_attn.o_proj
+Wanda pruning layer 4 name mlp.gate_proj
+Wanda pruning layer 4 name mlp.down_proj
+Wanda pruning layer 4 name mlp.up_proj
+Wanda pruning layer 5 name self_attn.q_proj
+Wanda pruning layer 5 name self_attn.k_proj
+Wanda pruning layer 5 name self_attn.v_proj
+Wanda pruning layer 5 name self_attn.o_proj
+Wanda pruning layer 5 name mlp.gate_proj
+Wanda pruning layer 5 name mlp.down_proj
+Wanda pruning layer 5 name mlp.up_proj
+Wanda pruning layer 6 name self_attn.q_proj
+Wanda pruning layer 6 name self_attn.k_proj
+Wanda pruning layer 6 name self_attn.v_proj
+Wanda pruning layer 6 name self_attn.o_proj
+Wanda pruning layer 6 name mlp.gate_proj
+Wanda pruning layer 6 name mlp.down_proj
+Wanda pruning layer 6 name mlp.up_proj
+Wanda pruning layer 7 name self_attn.q_proj
+Wanda pruning layer 7 name self_attn.k_proj
+Wanda pruning layer 7 name self_attn.v_proj
+Wanda pruning layer 7 name self_attn.o_proj
+Wanda pruning layer 7 name mlp.gate_proj
+Wanda pruning layer 7 name mlp.down_proj
+Wanda pruning layer 7 name mlp.up_proj
+Wanda pruning layer 8 name self_attn.q_proj
+Wanda pruning layer 8 name self_attn.k_proj
+Wanda pruning layer 8 name self_attn.v_proj
+Wanda pruning layer 8 name self_attn.o_proj
+Wanda pruning layer 8 name mlp.gate_proj
+Wanda pruning layer 8 name mlp.down_proj
+Wanda pruning layer 8 name mlp.up_proj
+Wanda pruning layer 9 name self_attn.q_proj
+Wanda pruning layer 9 name self_attn.k_proj
+Wanda pruning layer 9 name self_attn.v_proj
+Wanda pruning layer 9 name self_attn.o_proj
+Wanda pruning layer 9 name mlp.gate_proj
+Wanda pruning layer 9 name mlp.down_proj
+Wanda pruning layer 9 name mlp.up_proj
+Wanda pruning layer 10 name self_attn.q_proj
+Wanda pruning layer 10 name self_attn.k_proj
+Wanda pruning layer 10 name self_attn.v_proj
+Wanda pruning layer 10 name self_attn.o_proj
+Wanda pruning layer 10 name mlp.gate_proj
+Wanda pruning layer 10 name mlp.down_proj
+Wanda pruning layer 10 name mlp.up_proj
+Wanda pruning layer 11 name self_attn.q_proj
+Wanda pruning layer 11 name self_attn.k_proj
+Wanda pruning layer 11 name self_attn.v_proj
+Wanda pruning layer 11 name self_attn.o_proj
+Wanda pruning layer 11 name mlp.gate_proj
+Wanda pruning layer 11 name mlp.down_proj
+Wanda pruning layer 11 name mlp.up_proj
+Wanda pruning layer 12 name self_attn.q_proj
+Wanda pruning layer 12 name self_attn.k_proj
+Wanda pruning layer 12 name self_attn.v_proj
+Wanda pruning layer 12 name self_attn.o_proj
+Wanda pruning layer 12 name mlp.gate_proj
+Wanda pruning layer 12 name mlp.down_proj
+Wanda pruning layer 12 name mlp.up_proj
+Wanda pruning layer 13 name self_attn.q_proj
+Wanda pruning layer 13 name self_attn.k_proj
+Wanda pruning layer 13 name self_attn.v_proj
+Wanda pruning layer 13 name self_attn.o_proj
+Wanda pruning layer 13 name mlp.gate_proj
+Wanda pruning layer 13 name mlp.down_proj
+Wanda pruning layer 13 name mlp.up_proj
+Wanda pruning layer 14 name self_attn.q_proj
+Wanda pruning layer 14 name self_attn.k_proj
+Wanda pruning layer 14 name self_attn.v_proj
+Wanda pruning layer 14 name self_attn.o_proj
+Wanda pruning layer 14 name mlp.gate_proj
+Wanda pruning layer 14 name mlp.down_proj
+Wanda pruning layer 14 name mlp.up_proj
+Wanda pruning layer 15 name self_attn.q_proj
+Wanda pruning layer 15 name self_attn.k_proj
+Wanda pruning layer 15 name self_attn.v_proj
+Wanda pruning layer 15 name self_attn.o_proj
+Wanda pruning layer 15 name mlp.gate_proj
+Wanda pruning layer 15 name mlp.down_proj
+Wanda pruning layer 15 name mlp.up_proj
+Wanda pruning layer 16 name self_attn.q_proj
+Wanda pruning layer 16 name self_attn.k_proj
+Wanda pruning layer 16 name self_attn.v_proj
+Wanda pruning layer 16 name self_attn.o_proj
+Wanda pruning layer 16 name mlp.gate_proj
+Wanda pruning layer 16 name mlp.down_proj
+Wanda pruning layer 16 name mlp.up_proj
+Wanda pruning layer 17 name self_attn.q_proj
+Wanda pruning layer 17 name self_attn.k_proj
+Wanda pruning layer 17 name self_attn.v_proj
+Wanda pruning layer 17 name self_attn.o_proj
+Wanda pruning layer 17 name mlp.gate_proj
+Wanda pruning layer 17 name mlp.down_proj
+Wanda pruning layer 17 name mlp.up_proj
+Wanda pruning layer 18 name self_attn.q_proj
+Wanda pruning layer 18 name self_attn.k_proj
+Wanda pruning layer 18 name self_attn.v_proj
+Wanda pruning layer 18 name self_attn.o_proj
+Wanda pruning layer 18 name mlp.gate_proj
+Wanda pruning layer 18 name mlp.down_proj
+Wanda pruning layer 18 name mlp.up_proj
+Wanda pruning layer 19 name self_attn.q_proj
+Wanda pruning layer 19 name self_attn.k_proj
+Wanda pruning layer 19 name self_attn.v_proj
+Wanda pruning layer 19 name self_attn.o_proj
+Wanda pruning layer 19 name mlp.gate_proj
+Wanda pruning layer 19 name mlp.down_proj
+Wanda pruning layer 19 name mlp.up_proj
+Wanda pruning layer 20 name self_attn.q_proj
+Wanda pruning layer 20 name self_attn.k_proj
+Wanda pruning layer 20 name self_attn.v_proj
+Wanda pruning layer 20 name self_attn.o_proj
+Wanda pruning layer 20 name mlp.gate_proj
+Wanda pruning layer 20 name mlp.down_proj
+Wanda pruning layer 20 name mlp.up_proj
+Wanda pruning layer 21 name self_attn.q_proj
+Wanda pruning layer 21 name self_attn.k_proj
+Wanda pruning layer 21 name self_attn.v_proj
+Wanda pruning layer 21 name self_attn.o_proj
+Wanda pruning layer 21 name mlp.gate_proj
+Wanda pruning layer 21 name mlp.down_proj
+Wanda pruning layer 21 name mlp.up_proj
+Wanda pruning layer 22 name self_attn.q_proj
+Wanda pruning layer 22 name self_attn.k_proj
+Wanda pruning layer 22 name self_attn.v_proj
+Wanda pruning layer 22 name self_attn.o_proj
+Wanda pruning layer 22 name mlp.gate_proj
+Wanda pruning layer 22 name mlp.down_proj
+Wanda pruning layer 22 name mlp.up_proj
+Wanda pruning layer 23 name self_attn.q_proj
+Loading checkpoint shards:  33%|███▎      | 1/3 [00:03<00:06,  3.30s/it]Loading checkpoint shards:  67%|██████▋   | 2/3 [00:05<00:02,  2.73s/it]Loading checkpoint shards: 100%|██████████| 3/3 [00:07<00:00,  2.27s/it]Loading checkpoint shards: 100%|██████████| 3/3 [00:07<00:00,  2.45s/it]
+Wanda pruning layer 23 name self_attn.k_proj
+Wanda pruning layer 23 name self_attn.v_proj
+Wanda pruning layer 23 name self_attn.o_proj
+Wanda pruning layer 23 name mlp.gate_proj
+Wanda pruning layer 23 name mlp.down_proj
+Wanda pruning layer 23 name mlp.up_proj
+Wanda pruning layer 24 name self_attn.q_proj
+Wanda pruning layer 24 name self_attn.k_proj
+Wanda pruning layer 24 name self_attn.v_proj
+Wanda pruning layer 24 name self_attn.o_proj
+Wanda pruning layer 24 name mlp.gate_proj
+Wanda pruning layer 24 name mlp.down_proj
+Wanda pruning layer 24 name mlp.up_proj
+Wanda pruning layer 25 name self_attn.q_proj
+Wanda pruning layer 25 name self_attn.k_proj
+Wanda pruning layer 25 name self_attn.v_proj
+Wanda pruning layer 25 name self_attn.o_proj
+Wanda pruning layer 25 name mlp.gate_proj
+Wanda pruning layer 25 name mlp.down_proj
+Wanda pruning layer 25 name mlp.up_proj
+Wanda pruning layer 26 name self_attn.q_proj
+Wanda pruning layer 26 name self_attn.k_proj
+Wanda pruning layer 26 name self_attn.v_proj
+Wanda pruning layer 26 name self_attn.o_proj
+Wanda pruning layer 26 name mlp.gate_proj
+Wanda pruning layer 26 name mlp.down_proj
+Wanda pruning layer 26 name mlp.up_proj
+Wanda pruning layer 27 name self_attn.q_proj
+Wanda pruning layer 27 name self_attn.k_proj
+Wanda pruning layer 27 name self_attn.v_proj
+Wanda pruning layer 27 name self_attn.o_proj
+Wanda pruning layer 27 name mlp.gate_proj
+Wanda pruning layer 27 name mlp.down_proj
+Wanda pruning layer 27 name mlp.up_proj
+Wanda pruning layer 28 name self_attn.q_proj
+Wanda pruning layer 28 name self_attn.k_proj
+Wanda pruning layer 28 name self_attn.v_proj
+Wanda pruning layer 28 name self_attn.o_proj
+Wanda pruning layer 28 name mlp.gate_proj
+Wanda pruning layer 28 name mlp.down_proj
+Wanda pruning layer 28 name mlp.up_proj
+Wanda pruning layer 29 name self_attn.q_proj
+Wanda pruning layer 29 name self_attn.k_proj
+Wanda pruning layer 29 name self_attn.v_proj
+Wanda pruning layer 29 name self_attn.o_proj
+Wanda pruning layer 29 name mlp.gate_proj
+Wanda pruning layer 29 name mlp.down_proj
+Wanda pruning layer 29 name mlp.up_proj
+Wanda pruning layer 30 name self_attn.q_proj
+Wanda pruning layer 30 name self_attn.k_proj
+Wanda pruning layer 30 name self_attn.v_proj
+Wanda pruning layer 30 name self_attn.o_proj
+Wanda pruning layer 30 name mlp.gate_proj
+Wanda pruning layer 30 name mlp.down_proj
+Wanda pruning layer 30 name mlp.up_proj
+Wanda pruning layer 31 name self_attn.q_proj
+Wanda pruning layer 31 name self_attn.k_proj
+Wanda pruning layer 31 name self_attn.v_proj
+Wanda pruning layer 31 name self_attn.o_proj
+Wanda pruning layer 31 name mlp.gate_proj
+Wanda pruning layer 31 name mlp.down_proj
+Wanda pruning layer 31 name mlp.up_proj
+******************************
+layer 0 sparsity 0.399920
+layer 1 sparsity 0.399920
+layer 2 sparsity 0.399920
+layer 3 sparsity 0.399920
+layer 4 sparsity 0.399920
+layer 5 sparsity 0.399920
+layer 6 sparsity 0.399920
+layer 7 sparsity 0.399920
+layer 8 sparsity 0.399920
+layer 9 sparsity 0.399920
+layer 10 sparsity 0.399920
+layer 11 sparsity 0.399920
+layer 12 sparsity 0.399920
+layer 13 sparsity 0.399920
+layer 14 sparsity 0.399920
+layer 15 sparsity 0.399920
+layer 16 sparsity 0.399920
+layer 17 sparsity 0.399920
+layer 18 sparsity 0.399920
+layer 19 sparsity 0.399920
+layer 20 sparsity 0.399920
+layer 21 sparsity 0.399920
+layer 22 sparsity 0.399920
+layer 23 sparsity 0.399920
+layer 24 sparsity 0.399920
+layer 25 sparsity 0.399920
+layer 26 sparsity 0.399920
+layer 27 sparsity 0.399920
+layer 28 sparsity 0.399920
+layer 29 sparsity 0.399920
+layer 30 sparsity 0.399920
+layer 31 sparsity 0.399920
+sparsity sanity check 0.3999
+******************************
+Saving smoothed model to /scratch-shared/scur1762/pruned_model/wanda/en-is
+test_df.columns: Index(['en-is'], dtype='object')
+dataset loaded: hf://datasets/haoranxu/WMT22-Test/en-is/test-00000-of-00001-872ab78ba9548351.parquet
+length of dataframes 'path' lang direction: 1000
+length of test_df: 1000
+Index(['en-is'], dtype='object')
+Processing Batches:   0%|          | 0/250 [00:00<?, ?it/s]Processing Batches:   0%|          | 1/250 [00:07<32:30,  7.83s/it]Processing Batches:   1%|          | 2/250 [00:12<25:38,  6.21s/it]Processing Batches:   1%|          | 3/250 [00:14<17:47,  4.32s/it]Processing Batches:   2%|▏         | 4/250 [00:18<16:30,  4.02s/it]Processing Batches:   2%|▏         | 5/250 [00:20<13:23,  3.28s/it]Processing Batches:   2%|▏         | 6/250 [00:22<12:02,  2.96s/it]Processing Batches:   3%|▎         | 7/250 [00:31<19:10,  4.73s/it]Processing Batches:   3%|▎         | 8/250 [00:35<18:15,  4.53s/it]Processing Batches:   4%|▎         | 9/250 [00:40<19:18,  4.81s/it]Processing Batches:   4%|▍         | 10/250 [00:44<17:42,  4.43s/it]Processing Batches:   4%|▍         | 11/250 [00:46<15:09,  3.81s/it]Processing Batches:   5%|▍         | 12/250 [00:48<13:05,  3.30s/it]Processing Batches:   5%|▌         | 13/250 [00:52<13:08,  3.33s/it]Processing Batches:   6%|▌         | 14/250 [00:55<13:05,  3.33s/it]Processing Batches:   6%|▌         | 15/250 [00:58<12:28,  3.18s/it]Processing Batches:   6%|▋         | 16/250 [01:02<13:12,  3.39s/it]Processing Batches:   7%|▋         | 17/250 [01:05<12:51,  3.31s/it]Processing Batches:   7%|▋         | 18/250 [01:09<14:13,  3.68s/it]Processing Batches:   8%|▊         | 19/250 [01:13<13:41,  3.56s/it]Processing Batches:   8%|▊         | 20/250 [01:17<14:03,  3.67s/it]Processing Batches:   8%|▊         | 21/250 [01:19<12:39,  3.32s/it]Processing Batches:   9%|▉         | 22/250 [01:21<10:50,  2.85s/it]Processing Batches:   9%|▉         | 23/250 [01:24<10:59,  2.91s/it]Processing Batches:  10%|▉         | 24/250 [01:28<12:40,  3.36s/it]Processing Batches:  10%|█         | 25/250 [01:31<11:38,  3.10s/it]Processing Batches:  10%|█         | 26/250 [01:34<11:56,  3.20s/it]Processing Batches:  11%|█         | 27/250 [01:38<12:33,  3.38s/it]Processing Batches:  11%|█         | 28/250 [01:41<12:16,  3.32s/it]Processing Batches:  12%|█▏        | 29/250 [01:43<10:27,  2.84s/it]Processing Batches:  12%|█▏        | 30/250 [01:45<09:24,  2.56s/it]Processing Batches:  12%|█▏        | 31/250 [01:47<08:19,  2.28s/it]Processing Batches:  13%|█▎        | 32/250 [01:49<08:59,  2.48s/it]Processing Batches:  13%|█▎        | 33/250 [01:51<08:18,  2.30s/it]Processing Batches:  14%|█▎        | 34/250 [01:56<10:51,  3.02s/it]Processing Batches:  14%|█▍        | 35/250 [01:59<10:52,  3.04s/it]Processing Batches:  14%|█▍        | 36/250 [02:03<11:29,  3.22s/it]Processing Batches:  15%|█▍        | 37/250 [02:05<10:08,  2.86s/it]Processing Batches:  15%|█▌        | 38/250 [02:07<09:08,  2.59s/it]Processing Batches:  16%|█▌        | 39/250 [02:09<08:36,  2.45s/it]Processing Batches:  16%|█▌        | 40/250 [02:12<09:05,  2.60s/it]Processing Batches:  16%|█▋        | 41/250 [02:14<08:49,  2.53s/it]Processing Batches:  17%|█▋        | 42/250 [02:19<11:04,  3.19s/it]Processing Batches:  17%|█▋        | 43/250 [02:22<10:25,  3.02s/it]Processing Batches:  18%|█▊        | 44/250 [02:25<10:21,  3.02s/it]Processing Batches:  18%|█▊        | 45/250 [02:26<09:07,  2.67s/it]Processing Batches:  18%|█▊        | 46/250 [02:29<09:27,  2.78s/it]Processing Batches:  19%|█▉        | 47/250 [02:32<09:05,  2.69s/it]Processing Batches:  19%|█▉        | 48/250 [02:37<11:17,  3.35s/it]Processing Batches:  20%|█▉        | 49/250 [02:39<10:26,  3.11s/it]Processing Batches:  20%|██        | 50/250 [02:44<11:52,  3.56s/it]Processing Batches:  20%|██        | 51/250 [02:47<11:01,  3.32s/it]Processing Batches:  21%|██        | 52/250 [02:49<10:09,  3.08s/it]Processing Batches:  21%|██        | 53/250 [02:54<11:54,  3.62s/it]Processing Batches:  22%|██▏       | 54/250 [03:00<13:45,  4.21s/it]Processing Batches:  22%|██▏       | 55/250 [03:02<11:58,  3.69s/it]Processing Batches:  22%|██▏       | 56/250 [03:04<10:11,  3.15s/it]Processing Batches:  23%|██▎       | 57/250 [03:07<09:39,  3.00s/it]Processing Batches:  23%|██▎       | 58/250 [03:11<10:34,  3.31s/it]Processing Batches:  24%|██▎       | 59/250 [03:18<14:19,  4.50s/it]Processing Batches:  24%|██▍       | 60/250 [03:21<12:26,  3.93s/it]Processing Batches:  24%|██▍       | 61/250 [03:24<11:21,  3.61s/it]Processing Batches:  25%|██▍       | 62/250 [03:27<10:53,  3.48s/it]Processing Batches:  25%|██▌       | 63/250 [03:28<09:13,  2.96s/it]Processing Batches:  26%|██▌       | 64/250 [03:31<09:09,  2.96s/it]Processing Batches:  26%|██▌       | 65/250 [03:34<08:30,  2.76s/it]Processing Batches:  26%|██▋       | 66/250 [03:37<08:31,  2.78s/it]Processing Batches:  27%|██▋       | 67/250 [03:39<07:48,  2.56s/it]Processing Batches:  27%|██▋       | 68/250 [03:40<07:11,  2.37s/it]Processing Batches:  28%|██▊       | 69/250 [03:45<08:41,  2.88s/it]Processing Batches:  28%|██▊       | 70/250 [03:47<08:09,  2.72s/it]Processing Batches:  28%|██▊       | 71/250 [03:50<08:49,  2.96s/it]Processing Batches:  29%|██▉       | 72/250 [03:53<08:14,  2.78s/it]Processing Batches:  29%|██▉       | 73/250 [03:55<07:53,  2.67s/it]Processing Batches:  30%|██▉       | 74/250 [04:00<09:19,  3.18s/it]Processing Batches:  30%|███       | 75/250 [04:03<09:45,  3.34s/it]Processing Batches:  30%|███       | 76/250 [04:05<08:26,  2.91s/it]Processing Batches:  31%|███       | 77/250 [04:07<07:49,  2.71s/it]Processing Batches:  31%|███       | 78/250 [04:11<08:25,  2.94s/it]Processing Batches:  32%|███▏      | 79/250 [04:14<08:53,  3.12s/it]Processing Batches:  32%|███▏      | 80/250 [04:18<09:31,  3.36s/it]Processing Batches:  32%|███▏      | 81/250 [04:23<10:15,  3.64s/it]Processing Batches:  33%|███▎      | 82/250 [04:27<11:04,  3.95s/it]Processing Batches:  33%|███▎      | 83/250 [04:36<15:05,  5.42s/it]Processing Batches:  34%|███▎      | 84/250 [04:39<13:08,  4.75s/it]Processing Batches:  34%|███▍      | 85/250 [04:43<12:08,  4.41s/it]Processing Batches:  34%|███▍      | 86/250 [04:46<10:45,  3.93s/it]Processing Batches:  35%|███▍      | 87/250 [04:48<09:25,  3.47s/it]Processing Batches:  35%|███▌      | 88/250 [04:51<08:53,  3.29s/it]Processing Batches:  36%|███▌      | 89/250 [04:56<10:17,  3.83s/it]Processing Batches:  36%|███▌      | 90/250 [04:58<08:59,  3.37s/it]Processing Batches:  36%|███▋      | 91/250 [05:01<08:22,  3.16s/it]Processing Batches:  37%|███▋      | 92/250 [05:04<07:58,  3.03s/it]Processing Batches:  37%|███▋      | 93/250 [05:08<08:27,  3.23s/it]Processing Batches:  38%|███▊      | 94/250 [05:12<08:58,  3.45s/it]Processing Batches:  38%|███▊      | 95/250 [05:14<08:25,  3.26s/it]Processing Batches:  38%|███▊      | 96/250 [05:18<08:34,  3.34s/it]Processing Batches:  39%|███▉      | 97/250 [05:20<07:23,  2.90s/it]Processing Batches:  39%|███▉      | 98/250 [05:22<06:53,  2.72s/it]Processing Batches:  40%|███▉      | 99/250 [05:26<07:23,  2.94s/it]Processing Batches:  40%|████      | 100/250 [05:28<07:19,  2.93s/it]Processing Batches:  40%|████      | 101/250 [05:35<09:49,  3.95s/it]Processing Batches:  41%|████      | 102/250 [05:37<08:39,  3.51s/it]Processing Batches:  41%|████      | 103/250 [05:40<07:45,  3.17s/it]Processing Batches:  42%|████▏     | 104/250 [05:43<07:31,  3.09s/it]Processing Batches:  42%|████▏     | 105/250 [05:45<07:06,  2.94s/it]Processing Batches:  42%|████▏     | 106/250 [05:47<06:17,  2.62s/it]Processing Batches:  43%|████▎     | 107/250 [05:49<05:34,  2.34s/it]Processing Batches:  43%|████▎     | 108/250 [05:51<05:11,  2.20s/it]Processing Batches:  44%|████▎     | 109/250 [05:53<05:12,  2.21s/it]Processing Batches:  44%|████▍     | 110/250 [05:55<04:51,  2.08s/it]Processing Batches:  44%|████▍     | 111/250 [05:56<04:18,  1.86s/it]Processing Batches:  45%|████▍     | 112/250 [05:58<04:27,  1.94s/it]Processing Batches:  45%|████▌     | 113/250 [06:02<05:36,  2.46s/it]Processing Batches:  46%|████▌     | 114/250 [06:07<07:41,  3.39s/it]Processing Batches:  46%|████▌     | 115/250 [06:09<06:43,  2.99s/it]Processing Batches:  46%|████▋     | 116/250 [06:12<06:16,  2.81s/it]Processing Batches:  47%|████▋     | 117/250 [06:13<05:24,  2.44s/it]Processing Batches:  47%|████▋     | 118/250 [06:16<05:14,  2.38s/it]Processing Batches:  48%|████▊     | 119/250 [06:17<04:32,  2.08s/it]Processing Batches:  48%|████▊     | 120/250 [06:19<04:27,  2.06s/it]Processing Batches:  48%|████▊     | 121/250 [06:20<03:45,  1.75s/it]Processing Batches:  49%|████▉     | 122/250 [06:23<04:21,  2.04s/it]Processing Batches:  49%|████▉     | 123/250 [06:26<05:24,  2.56s/it]Processing Batches:  50%|████▉     | 124/250 [06:29<05:30,  2.63s/it]Processing Batches:  50%|█████     | 125/250 [06:32<05:16,  2.53s/it]Processing Batches:  50%|█████     | 126/250 [06:36<06:23,  3.09s/it]Processing Batches:  51%|█████     | 127/250 [06:39<06:13,  3.04s/it]Processing Batches:  51%|█████     | 128/250 [06:41<05:41,  2.80s/it]Processing Batches:  52%|█████▏    | 129/250 [06:43<05:08,  2.55s/it]Processing Batches:  52%|█████▏    | 130/250 [06:44<04:20,  2.17s/it]Processing Batches:  52%|█████▏    | 131/250 [06:46<04:02,  2.04s/it]Processing Batches:  53%|█████▎    | 132/250 [06:49<04:48,  2.45s/it]Processing Batches:  53%|█████▎    | 133/250 [06:52<05:03,  2.59s/it]Processing Batches:  54%|█████▎    | 134/250 [06:55<04:56,  2.55s/it]Processing Batches:  54%|█████▍    | 135/250 [06:59<05:33,  2.90s/it]Processing Batches:  54%|█████▍    | 136/250 [07:01<05:24,  2.84s/it]Processing Batches:  55%|█████▍    | 137/250 [07:03<04:34,  2.43s/it]Processing Batches:  55%|█████▌    | 138/250 [07:07<05:21,  2.87s/it]Processing Batches:  56%|█████▌    | 139/250 [07:09<05:16,  2.85s/it]Processing Batches:  56%|█████▌    | 140/250 [07:13<05:27,  2.97s/it]Processing Batches:  56%|█████▋    | 141/250 [07:19<06:58,  3.84s/it]Processing Batches:  57%|█████▋    | 142/250 [07:23<07:25,  4.12s/it]Processing Batches:  57%|█████▋    | 143/250 [07:25<06:17,  3.53s/it]Processing Batches:  58%|█████▊    | 144/250 [07:27<05:25,  3.07s/it]Processing Batches:  58%|█████▊    | 145/250 [07:31<05:49,  3.33s/it]Processing Batches:  58%|█████▊    | 146/250 [07:34<05:15,  3.03s/it]Processing Batches:  59%|█████▉    | 147/250 [07:38<05:34,  3.24s/it]Processing Batches:  59%|█████▉    | 148/250 [07:40<05:11,  3.05s/it]Processing Batches:  60%|█████▉    | 149/250 [07:44<05:22,  3.19s/it]Processing Batches:  60%|██████    | 150/250 [07:47<05:29,  3.30s/it]Processing Batches:  60%|██████    | 151/250 [07:51<05:42,  3.46s/it]Processing Batches:  61%|██████    | 152/250 [07:53<05:04,  3.11s/it]Processing Batches:  61%|██████    | 153/250 [07:57<05:05,  3.14s/it]Processing Batches:  62%|██████▏   | 154/250 [08:01<05:28,  3.42s/it]Processing Batches:  62%|██████▏   | 155/250 [08:04<05:34,  3.52s/it]Processing Batches:  62%|██████▏   | 156/250 [08:08<05:41,  3.64s/it]Processing Batches:  63%|██████▎   | 157/250 [08:11<05:21,  3.46s/it]Processing Batches:  63%|██████▎   | 158/250 [08:15<05:28,  3.57s/it]Processing Batches:  64%|██████▎   | 159/250 [08:18<04:54,  3.24s/it]Processing Batches:  64%|██████▍   | 160/250 [08:20<04:21,  2.90s/it]Processing Batches:  64%|██████▍   | 161/250 [08:21<03:35,  2.42s/it]Processing Batches:  65%|██████▍   | 162/250 [08:25<04:18,  2.93s/it]Processing Batches:  65%|██████▌   | 163/250 [08:30<04:53,  3.38s/it]Processing Batches:  66%|██████▌   | 164/250 [08:33<05:01,  3.50s/it]Processing Batches:  66%|██████▌   | 165/250 [08:37<04:51,  3.42s/it]Processing Batches:  66%|██████▋   | 166/250 [08:38<03:46,  2.69s/it]Processing Batches:  67%|██████▋   | 167/250 [08:41<04:05,  2.95s/it]Processing Batches:  67%|██████▋   | 168/250 [08:44<04:08,  3.03s/it]Processing Batches:  68%|██████▊   | 169/250 [08:48<04:10,  3.09s/it]Processing Batches:  68%|██████▊   | 170/250 [08:52<04:46,  3.58s/it]Processing Batches:  68%|██████▊   | 171/250 [08:55<04:27,  3.39s/it]Processing Batches:  69%|██████▉   | 172/250 [09:00<04:54,  3.78s/it]Processing Batches:  69%|██████▉   | 173/250 [09:03<04:26,  3.46s/it]Processing Batches:  70%|██████▉   | 174/250 [09:06<04:23,  3.46s/it]Processing Batches:  70%|███████   | 175/250 [09:08<03:40,  2.94s/it]Processing Batches:  70%|███████   | 176/250 [09:10<03:26,  2.80s/it]Processing Batches:  71%|███████   | 177/250 [09:13<03:11,  2.62s/it]Processing Batches:  71%|███████   | 178/250 [09:16<03:24,  2.84s/it]Processing Batches:  72%|███████▏  | 179/250 [09:18<03:07,  2.64s/it]Processing Batches:  72%|███████▏  | 180/250 [09:22<03:24,  2.92s/it]Processing Batches:  72%|███████▏  | 181/250 [09:29<04:46,  4.16s/it]Processing Batches:  73%|███████▎  | 182/250 [09:32<04:35,  4.05s/it]Processing Batches:  73%|███████▎  | 183/250 [09:38<04:54,  4.40s/it]Processing Batches:  74%|███████▎  | 184/250 [09:39<03:56,  3.59s/it]Processing Batches:  74%|███████▍  | 185/250 [09:42<03:28,  3.20s/it]Processing Batches:  74%|███████▍  | 186/250 [09:44<03:15,  3.05s/it]Processing Batches:  75%|███████▍  | 187/250 [09:49<03:47,  3.62s/it]Processing Batches:  75%|███████▌  | 188/250 [09:52<03:26,  3.33s/it]Processing Batches:  76%|███████▌  | 189/250 [09:54<03:05,  3.05s/it]Processing Batches:  76%|███████▌  | 190/250 [09:58<03:12,  3.21s/it]Processing Batches:  76%|███████▋  | 191/250 [10:02<03:21,  3.41s/it]Processing Batches:  77%|███████▋  | 192/250 [10:05<03:16,  3.39s/it]Processing Batches:  77%|███████▋  | 193/250 [10:08<03:08,  3.31s/it]Processing Batches:  78%|███████▊  | 194/250 [10:11<02:48,  3.00s/it]Processing Batches:  78%|███████▊  | 195/250 [10:13<02:30,  2.74s/it]Processing Batches:  78%|███████▊  | 196/250 [10:18<03:01,  3.36s/it]Processing Batches:  79%|███████▉  | 197/250 [10:19<02:33,  2.89s/it]Processing Batches:  79%|███████▉  | 198/250 [10:22<02:31,  2.92s/it]Processing Batches:  80%|███████▉  | 199/250 [10:24<02:08,  2.53s/it]Processing Batches:  80%|████████  | 200/250 [10:26<02:03,  2.48s/it]Processing Batches:  80%|████████  | 201/250 [10:28<01:56,  2.38s/it]Processing Batches:  81%|████████  | 202/250 [10:34<02:33,  3.21s/it]Processing Batches:  81%|████████  | 203/250 [10:38<02:45,  3.53s/it]Processing Batches:  82%|████████▏ | 204/250 [10:43<03:03,  3.99s/it]Processing Batches:  82%|████████▏ | 205/250 [10:48<03:18,  4.40s/it]Processing Batches:  82%|████████▏ | 206/250 [10:50<02:44,  3.75s/it]Processing Batches:  83%|████████▎ | 207/250 [10:54<02:39,  3.71s/it]Processing Batches:  83%|████████▎ | 208/250 [10:56<02:14,  3.20s/it]Processing Batches:  84%|████████▎ | 209/250 [10:59<02:06,  3.08s/it]Processing Batches:  84%|████████▍ | 210/250 [11:04<02:23,  3.59s/it]Processing Batches:  84%|████████▍ | 211/250 [11:07<02:14,  3.44s/it]Processing Batches:  85%|████████▍ | 212/250 [11:10<02:08,  3.37s/it]Processing Batches:  85%|████████▌ | 213/250 [11:13<02:02,  3.31s/it]Processing Batches:  86%|████████▌ | 214/250 [11:15<01:43,  2.88s/it]Processing Batches:  86%|████████▌ | 215/250 [11:19<01:51,  3.19s/it]Processing Batches:  86%|████████▋ | 216/250 [11:22<01:50,  3.26s/it]Processing Batches:  87%|████████▋ | 217/250 [11:25<01:45,  3.20s/it]Processing Batches:  87%|████████▋ | 218/250 [11:27<01:30,  2.84s/it]Processing Batches:  88%|████████▊ | 219/250 [11:30<01:23,  2.69s/it]Processing Batches:  88%|████████▊ | 220/250 [11:33<01:25,  2.87s/it]Processing Batches:  88%|████████▊ | 221/250 [11:36<01:27,  3.01s/it]Processing Batches:  89%|████████▉ | 222/250 [11:40<01:30,  3.24s/it]Processing Batches:  89%|████████▉ | 223/250 [11:44<01:31,  3.39s/it]Processing Batches:  90%|████████▉ | 224/250 [11:47<01:25,  3.30s/it]Processing Batches:  90%|█████████ | 225/250 [11:50<01:17,  3.09s/it]Processing Batches:  90%|█████████ | 226/250 [11:52<01:05,  2.74s/it]Processing Batches:  91%|█████████ | 227/250 [11:53<00:56,  2.46s/it]Processing Batches:  91%|█████████ | 228/250 [11:55<00:46,  2.09s/it]Processing Batches:  92%|█████████▏| 229/250 [11:58<00:50,  2.40s/it]Processing Batches:  92%|█████████▏| 230/250 [12:00<00:48,  2.43s/it]Processing Batches:  92%|█████████▏| 231/250 [12:05<00:58,  3.08s/it]Processing Batches:  93%|█████████▎| 232/250 [12:09<01:03,  3.54s/it]Processing Batches:  93%|█████████▎| 233/250 [12:12<00:57,  3.39s/it]Processing Batches:  94%|█████████▎| 234/250 [12:16<00:54,  3.40s/it]Processing Batches:  94%|█████████▍| 235/250 [12:20<00:53,  3.57s/it]Processing Batches:  94%|█████████▍| 236/250 [12:24<00:51,  3.69s/it]Processing Batches:  95%|█████████▍| 237/250 [12:27<00:45,  3.46s/it]Processing Batches:  95%|█████████▌| 238/250 [12:29<00:38,  3.19s/it]Processing Batches:  96%|█████████▌| 239/250 [12:33<00:38,  3.48s/it]Processing Batches:  96%|█████████▌| 240/250 [12:41<00:48,  4.83s/it]Processing Batches:  96%|█████████▋| 241/250 [12:47<00:45,  5.08s/it]Processing Batches:  97%|█████████▋| 242/250 [12:49<00:33,  4.24s/it]Processing Batches:  97%|█████████▋| 243/250 [12:52<00:26,  3.79s/it]Processing Batches:  98%|█████████▊| 244/250 [12:56<00:22,  3.75s/it]Processing Batches:  98%|█████████▊| 245/250 [12:58<00:16,  3.39s/it]Processing Batches:  98%|█████████▊| 246/250 [13:01<00:12,  3.22s/it]Processing Batches:  99%|█████████▉| 247/250 [13:04<00:09,  3.05s/it]Processing Batches:  99%|█████████▉| 248/250 [13:06<00:05,  2.80s/it]Processing Batches: 100%|█████████▉| 249/250 [13:09<00:02,  2.84s/it]Processing Batches: 100%|██████████| 250/250 [13:12<00:00,  2.88s/it]Processing Batches: 100%|██████████| 250/250 [13:12<00:00,  3.17s/it]
+****************************************************************************************************
+Evaluation Results:
+Avg Time taken for generation: 2967.99 ms
+Average VRAM usage: 0.0 MB with model
+Peak VRAM usage: 32351 MB with model
+Model size is: 12980.52
+Total batches processed: 250
+BLEU score: 21.516752361098693
+Fetching 5 files:   0%|          | 0/5 [00:00<?, ?it/s]Fetching 5 files: 100%|██████████| 5/5 [00:00<00:00, 6500.78it/s]
+Lightning automatically upgraded your loaded checkpoint from v1.8.3.post1 to v2.4.0. To apply the upgrade to your files permanently, run `python -m pytorch_lightning.utilities.upgrade_checkpoint ../../../../home/scur1762/.cache/huggingface/hub/models--Unbabel--wmt22-comet-da/snapshots/371e9839ca4e213dde891b066cf3080f75ec7e72/checkpoints/model.ckpt`
+/home/scur1762/.conda/envs/DSnoT/lib/python3.8/site-packages/huggingface_hub/file_download.py:1142: FutureWarning: `resume_download` is deprecated and will be removed in version 1.0.0. Downloads always resume when possible. If you want to force a new download, use `force_download=True`.
+  warnings.warn(
+Encoder model frozen.
+GPU available: True (cuda), used: True
+TPU available: False, using: 0 TPU cores
+HPU available: False, using: 0 HPUs
+You are using a CUDA device ('NVIDIA H100') that has Tensor Cores. To properly utilize them, you should set `torch.set_float32_matmul_precision('medium' | 'high')` which will trade-off precision for performance. For more details, read https://pytorch.org/docs/stable/generated/torch.set_float32_matmul_precision.html#torch.set_float32_matmul_precision
+LOCAL_RANK: 0 - CUDA_VISIBLE_DEVICES: [0]
+SLURM auto-requeueing enabled. Setting signal handlers.
+Predicting: 0it [00:00, ?it/s]Predicting:   0%|          | 0/250 [00:00<?, ?it/s]Predicting DataLoader 0:   0%|          | 0/250 [00:00<?, ?it/s]Predicting DataLoader 0:   0%|          | 1/250 [00:00<00:35,  6.94it/s]Predicting DataLoader 0:   1%|          | 2/250 [00:00<00:21, 11.58it/s]Predicting DataLoader 0:   1%|          | 3/250 [00:00<00:16, 15.08it/s]Predicting DataLoader 0:   2%|▏         | 4/250 [00:00<00:14, 17.46it/s]Predicting DataLoader 0:   2%|▏         | 5/250 [00:00<00:12, 19.37it/s]Predicting DataLoader 0:   2%|▏         | 6/250 [00:00<00:11, 20.84it/s]Predicting DataLoader 0:   3%|▎         | 7/250 [00:00<00:11, 22.07it/s]Predicting DataLoader 0:   3%|▎         | 8/250 [00:00<00:10, 23.04it/s]Predicting DataLoader 0:   4%|▎         | 9/250 [00:00<00:10, 23.83it/s]Predicting DataLoader 0:   4%|▍         | 10/250 [00:00<00:09, 24.52it/s]Predicting DataLoader 0:   4%|▍         | 11/250 [00:00<00:09, 24.66it/s]Predicting DataLoader 0:   5%|▍         | 12/250 [00:00<00:09, 25.25it/s]Predicting DataLoader 0:   5%|▌         | 13/250 [00:00<00:09, 25.62it/s]Predicting DataLoader 0:   6%|▌         | 14/250 [00:00<00:09, 26.04it/s]Predicting DataLoader 0:   6%|▌         | 15/250 [00:00<00:08, 26.34it/s]Predicting DataLoader 0:   6%|▋         | 16/250 [00:00<00:08, 26.67it/s]Predicting DataLoader 0:   7%|▋         | 17/250 [00:00<00:08, 26.96it/s]Predicting DataLoader 0:   7%|▋         | 18/250 [00:00<00:08, 27.12it/s]Predicting DataLoader 0:   8%|▊         | 19/250 [00:00<00:08, 27.30it/s]Predicting DataLoader 0:   8%|▊         | 20/250 [00:00<00:08, 27.42it/s]Predicting DataLoader 0:   8%|▊         | 21/250 [00:00<00:08, 27.58it/s]Predicting DataLoader 0:   9%|▉         | 22/250 [00:00<00:08, 27.67it/s]Predicting DataLoader 0:   9%|▉         | 23/250 [00:00<00:08, 27.77it/s]Predicting DataLoader 0:  10%|▉         | 24/250 [00:00<00:08, 27.90it/s]Predicting DataLoader 0:  10%|█         | 25/250 [00:00<00:08, 28.02it/s]Predicting DataLoader 0:  10%|█         | 26/250 [00:00<00:07, 28.14it/s]Predicting DataLoader 0:  11%|█         | 27/250 [00:00<00:07, 28.28it/s]Predicting DataLoader 0:  11%|█         | 28/250 [00:00<00:07, 28.34it/s]Predicting DataLoader 0:  12%|█▏        | 29/250 [00:01<00:07, 28.43it/s]Predicting DataLoader 0:  12%|█▏        | 30/250 [00:01<00:07, 28.52it/s]Predicting DataLoader 0:  12%|█▏        | 31/250 [00:01<00:07, 28.59it/s]Predicting DataLoader 0:  13%|█▎        | 32/250 [00:01<00:07, 28.68it/s]Predicting DataLoader 0:  13%|█▎        | 33/250 [00:01<00:07, 28.72it/s]Predicting DataLoader 0:  14%|█▎        | 34/250 [00:01<00:07, 28.75it/s]Predicting DataLoader 0:  14%|█▍        | 35/250 [00:01<00:07, 28.82it/s]Predicting DataLoader 0:  14%|█▍        | 36/250 [00:01<00:07, 28.88it/s]Predicting DataLoader 0:  15%|█▍        | 37/250 [00:01<00:07, 28.95it/s]Predicting DataLoader 0:  15%|█▌        | 38/250 [00:01<00:07, 29.00it/s]Predicting DataLoader 0:  16%|█▌        | 39/250 [00:01<00:07, 29.03it/s]Predicting DataLoader 0:  16%|█▌        | 40/250 [00:01<00:07, 29.05it/s]Predicting DataLoader 0:  16%|█▋        | 41/250 [00:01<00:07, 29.10it/s]Predicting DataLoader 0:  17%|█▋        | 42/250 [00:01<00:07, 29.13it/s]Predicting DataLoader 0:  17%|█▋        | 43/250 [00:01<00:07, 29.14it/s]Predicting DataLoader 0:  18%|█▊        | 44/250 [00:01<00:07, 29.16it/s]Predicting DataLoader 0:  18%|█▊        | 45/250 [00:01<00:07, 29.21it/s]Predicting DataLoader 0:  18%|█▊        | 46/250 [00:01<00:06, 29.22it/s]Predicting DataLoader 0:  19%|█▉        | 47/250 [00:01<00:06, 29.24it/s]Predicting DataLoader 0:  19%|█▉        | 48/250 [00:01<00:06, 29.23it/s]Predicting DataLoader 0:  20%|█▉        | 49/250 [00:01<00:06, 29.27it/s]Predicting DataLoader 0:  20%|██        | 50/250 [00:01<00:06, 29.30it/s]Predicting DataLoader 0:  20%|██        | 51/250 [00:01<00:06, 29.30it/s]Predicting DataLoader 0:  21%|██        | 52/250 [00:01<00:06, 29.34it/s]Predicting DataLoader 0:  21%|██        | 53/250 [00:01<00:06, 29.35it/s]Predicting DataLoader 0:  22%|██▏       | 54/250 [00:01<00:06, 29.36it/s]Predicting DataLoader 0:  22%|██▏       | 55/250 [00:01<00:06, 29.37it/s]Predicting DataLoader 0:  22%|██▏       | 56/250 [00:01<00:06, 29.38it/s]Predicting DataLoader 0:  23%|██▎       | 57/250 [00:01<00:06, 29.39it/s]Predicting DataLoader 0:  23%|██▎       | 58/250 [00:01<00:06, 29.41it/s]Predicting DataLoader 0:  24%|██▎       | 59/250 [00:02<00:06, 29.42it/s]Predicting DataLoader 0:  24%|██▍       | 60/250 [00:02<00:06, 29.43it/s]Predicting DataLoader 0:  24%|██▍       | 61/250 [00:02<00:06, 29.44it/s]Predicting DataLoader 0:  25%|██▍       | 62/250 [00:02<00:06, 29.45it/s]Predicting DataLoader 0:  25%|██▌       | 63/250 [00:02<00:06, 29.46it/s]Predicting DataLoader 0:  26%|██▌       | 64/250 [00:02<00:06, 29.47it/s]Predicting DataLoader 0:  26%|██▌       | 65/250 [00:02<00:06, 29.48it/s]Predicting DataLoader 0:  26%|██▋       | 66/250 [00:02<00:06, 29.48it/s]Predicting DataLoader 0:  27%|██▋       | 67/250 [00:02<00:06, 29.49it/s]Predicting DataLoader 0:  27%|██▋       | 68/250 [00:02<00:06, 29.50it/s]Predicting DataLoader 0:  28%|██▊       | 69/250 [00:02<00:06, 29.51it/s]Predicting DataLoader 0:  28%|██▊       | 70/250 [00:02<00:06, 29.52it/s]Predicting DataLoader 0:  28%|██▊       | 71/250 [00:02<00:06, 29.52it/s]Predicting DataLoader 0:  29%|██▉       | 72/250 [00:02<00:06, 29.54it/s]Predicting DataLoader 0:  29%|██▉       | 73/250 [00:02<00:05, 29.54it/s]Predicting DataLoader 0:  30%|██▉       | 74/250 [00:02<00:05, 29.55it/s]Predicting DataLoader 0:  30%|███       | 75/250 [00:02<00:05, 29.55it/s]Predicting DataLoader 0:  30%|███       | 76/250 [00:02<00:05, 29.56it/s]Predicting DataLoader 0:  31%|███       | 77/250 [00:02<00:05, 29.57it/s]Predicting DataLoader 0:  31%|███       | 78/250 [00:02<00:05, 29.58it/s]Predicting DataLoader 0:  32%|███▏      | 79/250 [00:02<00:05, 29.58it/s]Predicting DataLoader 0:  32%|███▏      | 80/250 [00:02<00:05, 29.58it/s]Predicting DataLoader 0:  32%|███▏      | 81/250 [00:02<00:05, 29.59it/s]Predicting DataLoader 0:  33%|███▎      | 82/250 [00:02<00:05, 29.59it/s]Predicting DataLoader 0:  33%|███▎      | 83/250 [00:02<00:05, 29.60it/s]Predicting DataLoader 0:  34%|███▎      | 84/250 [00:02<00:05, 29.60it/s]Predicting DataLoader 0:  34%|███▍      | 85/250 [00:02<00:05, 29.60it/s]Predicting DataLoader 0:  34%|███▍      | 86/250 [00:02<00:05, 29.61it/s]Predicting DataLoader 0:  35%|███▍      | 87/250 [00:02<00:05, 29.61it/s]Predicting DataLoader 0:  35%|███▌      | 88/250 [00:02<00:05, 29.62it/s]Predicting DataLoader 0:  36%|███▌      | 89/250 [00:03<00:05, 29.62it/s]Predicting DataLoader 0:  36%|███▌      | 90/250 [00:03<00:05, 29.63it/s]Predicting DataLoader 0:  36%|███▋      | 91/250 [00:03<00:05, 29.63it/s]Predicting DataLoader 0:  37%|███▋      | 92/250 [00:03<00:05, 29.63it/s]Predicting DataLoader 0:  37%|███▋      | 93/250 [00:03<00:05, 29.64it/s]Predicting DataLoader 0:  38%|███▊      | 94/250 [00:03<00:05, 29.64it/s]Predicting DataLoader 0:  38%|███▊      | 95/250 [00:03<00:05, 29.65it/s]Predicting DataLoader 0:  38%|███▊      | 96/250 [00:03<00:05, 29.65it/s]Predicting DataLoader 0:  39%|███▉      | 97/250 [00:03<00:05, 29.65it/s]Predicting DataLoader 0:  39%|███▉      | 98/250 [00:03<00:05, 29.66it/s]Predicting DataLoader 0:  40%|███▉      | 99/250 [00:03<00:05, 29.66it/s]Predicting DataLoader 0:  40%|████      | 100/250 [00:03<00:05, 29.67it/s]Predicting DataLoader 0:  40%|████      | 101/250 [00:03<00:05, 29.67it/s]Predicting DataLoader 0:  41%|████      | 102/250 [00:03<00:04, 29.67it/s]Predicting DataLoader 0:  41%|████      | 103/250 [00:03<00:04, 29.67it/s]Predicting DataLoader 0:  42%|████▏     | 104/250 [00:03<00:04, 29.67it/s]Predicting DataLoader 0:  42%|████▏     | 105/250 [00:03<00:04, 29.67it/s]Predicting DataLoader 0:  42%|████▏     | 106/250 [00:03<00:04, 29.67it/s]Predicting DataLoader 0:  43%|████▎     | 107/250 [00:03<00:04, 29.67it/s]Predicting DataLoader 0:  43%|████▎     | 108/250 [00:03<00:04, 29.67it/s]Predicting DataLoader 0:  44%|████▎     | 109/250 [00:03<00:04, 29.67it/s]Predicting DataLoader 0:  44%|████▍     | 110/250 [00:03<00:04, 29.68it/s]Predicting DataLoader 0:  44%|████▍     | 111/250 [00:03<00:04, 29.68it/s]Predicting DataLoader 0:  45%|████▍     | 112/250 [00:03<00:04, 29.68it/s]Predicting DataLoader 0:  45%|████▌     | 113/250 [00:03<00:04, 29.68it/s]Predicting DataLoader 0:  46%|████▌     | 114/250 [00:03<00:04, 29.68it/s]Predicting DataLoader 0:  46%|████▌     | 115/250 [00:03<00:04, 29.69it/s]Predicting DataLoader 0:  46%|████▋     | 116/250 [00:03<00:04, 29.69it/s]Predicting DataLoader 0:  47%|████▋     | 117/250 [00:03<00:04, 29.69it/s]Predicting DataLoader 0:  47%|████▋     | 118/250 [00:03<00:04, 29.69it/s]Predicting DataLoader 0:  48%|████▊     | 119/250 [00:04<00:04, 29.69it/s]Predicting DataLoader 0:  48%|████▊     | 120/250 [00:04<00:04, 29.69it/s]Predicting DataLoader 0:  48%|████▊     | 121/250 [00:04<00:04, 29.69it/s]Predicting DataLoader 0:  49%|████▉     | 122/250 [00:04<00:04, 29.70it/s]Predicting DataLoader 0:  49%|████▉     | 123/250 [00:04<00:04, 29.70it/s]Predicting DataLoader 0:  50%|████▉     | 124/250 [00:04<00:04, 29.70it/s]Predicting DataLoader 0:  50%|█████     | 125/250 [00:04<00:04, 29.70it/s]Predicting DataLoader 0:  50%|█████     | 126/250 [00:04<00:04, 29.70it/s]Predicting DataLoader 0:  51%|█████     | 127/250 [00:04<00:04, 29.70it/s]Predicting DataLoader 0:  51%|█████     | 128/250 [00:04<00:04, 29.70it/s]Predicting DataLoader 0:  52%|█████▏    | 129/250 [00:04<00:04, 29.70it/s]Predicting DataLoader 0:  52%|█████▏    | 130/250 [00:04<00:04, 29.70it/s]Predicting DataLoader 0:  52%|█████▏    | 131/250 [00:04<00:04, 29.70it/s]Predicting DataLoader 0:  53%|█████▎    | 132/250 [00:04<00:03, 29.70it/s]Predicting DataLoader 0:  53%|█████▎    | 133/250 [00:04<00:03, 29.70it/s]Predicting DataLoader 0:  54%|█████▎    | 134/250 [00:04<00:03, 29.70it/s]Predicting DataLoader 0:  54%|█████▍    | 135/250 [00:04<00:03, 29.70it/s]Predicting DataLoader 0:  54%|█████▍    | 136/250 [00:04<00:03, 29.70it/s]Predicting DataLoader 0:  55%|█████▍    | 137/250 [00:04<00:03, 29.70it/s]Predicting DataLoader 0:  55%|█████▌    | 138/250 [00:04<00:03, 29.70it/s]Predicting DataLoader 0:  56%|█████▌    | 139/250 [00:04<00:03, 29.70it/s]Predicting DataLoader 0:  56%|█████▌    | 140/250 [00:04<00:03, 29.70it/s]Predicting DataLoader 0:  56%|█████▋    | 141/250 [00:04<00:03, 29.70it/s]Predicting DataLoader 0:  57%|█████▋    | 142/250 [00:04<00:03, 29.69it/s]Predicting DataLoader 0:  57%|█████▋    | 143/250 [00:04<00:03, 29.69it/s]Predicting DataLoader 0:  58%|█████▊    | 144/250 [00:04<00:03, 29.69it/s]Predicting DataLoader 0:  58%|█████▊    | 145/250 [00:04<00:03, 29.69it/s]Predicting DataLoader 0:  58%|█████▊    | 146/250 [00:04<00:03, 29.69it/s]Predicting DataLoader 0:  59%|█████▉    | 147/250 [00:04<00:03, 29.68it/s]Predicting DataLoader 0:  59%|█████▉    | 148/250 [00:04<00:03, 29.68it/s]Predicting DataLoader 0:  60%|█████▉    | 149/250 [00:05<00:03, 29.68it/s]Predicting DataLoader 0:  60%|██████    | 150/250 [00:05<00:03, 29.67it/s]Predicting DataLoader 0:  60%|██████    | 151/250 [00:05<00:03, 29.67it/s]Predicting DataLoader 0:  61%|██████    | 152/250 [00:05<00:03, 29.67it/s]Predicting DataLoader 0:  61%|██████    | 153/250 [00:05<00:03, 29.67it/s]Predicting DataLoader 0:  62%|██████▏   | 154/250 [00:05<00:03, 29.67it/s]Predicting DataLoader 0:  62%|██████▏   | 155/250 [00:05<00:03, 29.67it/s]Predicting DataLoader 0:  62%|██████▏   | 156/250 [00:05<00:03, 29.67it/s]Predicting DataLoader 0:  63%|██████▎   | 157/250 [00:05<00:03, 29.66it/s]Predicting DataLoader 0:  63%|██████▎   | 158/250 [00:05<00:03, 29.66it/s]Predicting DataLoader 0:  64%|██████▎   | 159/250 [00:05<00:03, 29.65it/s]Predicting DataLoader 0:  64%|██████▍   | 160/250 [00:05<00:03, 29.64it/s]Predicting DataLoader 0:  64%|██████▍   | 161/250 [00:05<00:03, 29.64it/s]Predicting DataLoader 0:  65%|██████▍   | 162/250 [00:05<00:02, 29.63it/s]Predicting DataLoader 0:  65%|██████▌   | 163/250 [00:05<00:02, 29.63it/s]Predicting DataLoader 0:  66%|██████▌   | 164/250 [00:05<00:02, 29.63it/s]Predicting DataLoader 0:  66%|██████▌   | 165/250 [00:05<00:02, 29.63it/s]Predicting DataLoader 0:  66%|██████▋   | 166/250 [00:05<00:02, 29.63it/s]Predicting DataLoader 0:  67%|██████▋   | 167/250 [00:05<00:02, 29.62it/s]Predicting DataLoader 0:  67%|██████▋   | 168/250 [00:05<00:02, 29.62it/s]Predicting DataLoader 0:  68%|██████▊   | 169/250 [00:05<00:02, 29.62it/s]Predicting DataLoader 0:  68%|██████▊   | 170/250 [00:05<00:02, 29.61it/s]Predicting DataLoader 0:  68%|██████▊   | 171/250 [00:05<00:02, 29.61it/s]Predicting DataLoader 0:  69%|██████▉   | 172/250 [00:05<00:02, 29.61it/s]Predicting DataLoader 0:  69%|██████▉   | 173/250 [00:05<00:02, 29.61it/s]Predicting DataLoader 0:  70%|██████▉   | 174/250 [00:05<00:02, 29.60it/s]Predicting DataLoader 0:  70%|███████   | 175/250 [00:05<00:02, 29.60it/s]Predicting DataLoader 0:  70%|███████   | 176/250 [00:05<00:02, 29.60it/s]Predicting DataLoader 0:  71%|███████   | 177/250 [00:05<00:02, 29.59it/s]Predicting DataLoader 0:  71%|███████   | 178/250 [00:06<00:02, 29.59it/s]Predicting DataLoader 0:  72%|███████▏  | 179/250 [00:06<00:02, 29.57it/s]Predicting DataLoader 0:  72%|███████▏  | 180/250 [00:06<00:02, 29.58it/s]Predicting DataLoader 0:  72%|███████▏  | 181/250 [00:06<00:02, 29.58it/s]Predicting DataLoader 0:  73%|███████▎  | 182/250 [00:06<00:02, 29.57it/s]Predicting DataLoader 0:  73%|███████▎  | 183/250 [00:06<00:02, 29.57it/s]Predicting DataLoader 0:  74%|███████▎  | 184/250 [00:06<00:02, 29.57it/s]Predicting DataLoader 0:  74%|███████▍  | 185/250 [00:06<00:02, 29.54it/s]Predicting DataLoader 0:  74%|███████▍  | 186/250 [00:06<00:02, 29.54it/s]Predicting DataLoader 0:  75%|███████▍  | 187/250 [00:06<00:02, 29.53it/s]Predicting DataLoader 0:  75%|███████▌  | 188/250 [00:06<00:02, 29.50it/s]Predicting DataLoader 0:  76%|███████▌  | 189/250 [00:06<00:02, 29.51it/s]Predicting DataLoader 0:  76%|███████▌  | 190/250 [00:06<00:02, 29.49it/s]Predicting DataLoader 0:  76%|███████▋  | 191/250 [00:06<00:02, 29.48it/s]Predicting DataLoader 0:  77%|███████▋  | 192/250 [00:06<00:01, 29.47it/s]Predicting DataLoader 0:  77%|███████▋  | 193/250 [00:06<00:01, 29.47it/s]Predicting DataLoader 0:  78%|███████▊  | 194/250 [00:06<00:01, 29.47it/s]Predicting DataLoader 0:  78%|███████▊  | 195/250 [00:06<00:01, 29.47it/s]Predicting DataLoader 0:  78%|███████▊  | 196/250 [00:06<00:01, 29.46it/s]Predicting DataLoader 0:  79%|███████▉  | 197/250 [00:06<00:01, 29.45it/s]Predicting DataLoader 0:  79%|███████▉  | 198/250 [00:06<00:01, 29.44it/s]Predicting DataLoader 0:  80%|███████▉  | 199/250 [00:06<00:01, 29.42it/s]Predicting DataLoader 0:  80%|████████  | 200/250 [00:06<00:01, 29.42it/s]Predicting DataLoader 0:  80%|████████  | 201/250 [00:06<00:01, 29.40it/s]Predicting DataLoader 0:  81%|████████  | 202/250 [00:06<00:01, 29.38it/s]Predicting DataLoader 0:  81%|████████  | 203/250 [00:06<00:01, 29.38it/s]Predicting DataLoader 0:  82%|████████▏ | 204/250 [00:06<00:01, 29.36it/s]Predicting DataLoader 0:  82%|████████▏ | 205/250 [00:06<00:01, 29.34it/s]Predicting DataLoader 0:  82%|████████▏ | 206/250 [00:07<00:01, 29.35it/s]Predicting DataLoader 0:  83%|████████▎ | 207/250 [00:07<00:01, 29.32it/s]Predicting DataLoader 0:  83%|████████▎ | 208/250 [00:07<00:01, 29.30it/s]Predicting DataLoader 0:  84%|████████▎ | 209/250 [00:07<00:01, 29.28it/s]Predicting DataLoader 0:  84%|████████▍ | 210/250 [00:07<00:01, 29.27it/s]Predicting DataLoader 0:  84%|████████▍ | 211/250 [00:07<00:01, 29.25it/s]Predicting DataLoader 0:  85%|████████▍ | 212/250 [00:07<00:01, 29.22it/s]Predicting DataLoader 0:  85%|████████▌ | 213/250 [00:07<00:01, 29.20it/s]Predicting DataLoader 0:  86%|████████▌ | 214/250 [00:07<00:01, 29.18it/s]Predicting DataLoader 0:  86%|████████▌ | 215/250 [00:07<00:01, 29.16it/s]Predicting DataLoader 0:  86%|████████▋ | 216/250 [00:07<00:01, 29.12it/s]Predicting DataLoader 0:  87%|████████▋ | 217/250 [00:07<00:01, 29.11it/s]Predicting DataLoader 0:  87%|████████▋ | 218/250 [00:07<00:01, 29.08it/s]Predicting DataLoader 0:  88%|████████▊ | 219/250 [00:07<00:01, 29.05it/s]Predicting DataLoader 0:  88%|████████▊ | 220/250 [00:07<00:01, 29.02it/s]Predicting DataLoader 0:  88%|████████▊ | 221/250 [00:07<00:00, 29.01it/s]Predicting DataLoader 0:  89%|████████▉ | 222/250 [00:07<00:00, 28.99it/s]Predicting DataLoader 0:  89%|████████▉ | 223/250 [00:07<00:00, 28.96it/s]Predicting DataLoader 0:  90%|████████▉ | 224/250 [00:07<00:00, 28.93it/s]Predicting DataLoader 0:  90%|█████████ | 225/250 [00:07<00:00, 28.91it/s]Predicting DataLoader 0:  90%|█████████ | 226/250 [00:07<00:00, 28.89it/s]Predicting DataLoader 0:  91%|█████████ | 227/250 [00:07<00:00, 28.87it/s]Predicting DataLoader 0:  91%|█████████ | 228/250 [00:07<00:00, 28.85it/s]Predicting DataLoader 0:  92%|█████████▏| 229/250 [00:07<00:00, 28.82it/s]Predicting DataLoader 0:  92%|█████████▏| 230/250 [00:07<00:00, 28.80it/s]Predicting DataLoader 0:  92%|█████████▏| 231/250 [00:08<00:00, 28.77it/s]Predicting DataLoader 0:  93%|█████████▎| 232/250 [00:08<00:00, 28.75it/s]Predicting DataLoader 0:  93%|█████████▎| 233/250 [00:08<00:00, 28.71it/s]Predicting DataLoader 0:  94%|█████████▎| 234/250 [00:08<00:00, 28.68it/s]Predicting DataLoader 0:  94%|█████████▍| 235/250 [00:08<00:00, 28.66it/s]Predicting DataLoader 0:  94%|█████████▍| 236/250 [00:08<00:00, 28.62it/s]Predicting DataLoader 0:  95%|█████████▍| 237/250 [00:08<00:00, 28.60it/s]Predicting DataLoader 0:  95%|█████████▌| 238/250 [00:08<00:00, 28.56it/s]Predicting DataLoader 0:  96%|█████████▌| 239/250 [00:08<00:00, 28.54it/s]Predicting DataLoader 0:  96%|█████████▌| 240/250 [00:08<00:00, 28.51it/s]Predicting DataLoader 0:  96%|█████████▋| 241/250 [00:08<00:00, 28.47it/s]Predicting DataLoader 0:  97%|█████████▋| 242/250 [00:08<00:00, 28.45it/s]Predicting DataLoader 0:  97%|█████████▋| 243/250 [00:08<00:00, 28.41it/s]Predicting DataLoader 0:  98%|█████████▊| 244/250 [00:08<00:00, 28.38it/s]Predicting DataLoader 0:  98%|█████████▊| 245/250 [00:08<00:00, 28.34it/s]Predicting DataLoader 0:  98%|█████████▊| 246/250 [00:08<00:00, 28.31it/s]Predicting DataLoader 0:  99%|█████████▉| 247/250 [00:08<00:00, 28.27it/s]Predicting DataLoader 0:  99%|█████████▉| 248/250 [00:08<00:00, 28.23it/s]Predicting DataLoader 0: 100%|█████████▉| 249/250 [00:08<00:00, 28.19it/s]Predicting DataLoader 0: 100%|██████████| 250/250 [00:08<00:00, 28.15it/s]Predicting DataLoader 0Comet score:Prediction([('scores', [0.7102941870689392, 0.816137969493866, 0.8461242318153381, 0.7998567819595337, 0.8504011034965515, 0.7450371980667114, 0.8518924713134766, 0.8138015866279602, 0.7692747712135315, 0.9107918739318848, 0.8075242638587952, 0.8688092231750488, 0.8226548433303833, 0.9372977614402771, 0.8843483328819275, 0.8574548363685608, 0.8436848521232605, 0.8705403208732605, 0.7770025134086609, 0.8881635069847107, 0.5649937987327576, 0.9399274587631226, 0.7050910592079163, 0.9192017912864685, 0.4918217360973358, 0.5521144270896912, 0.9153957962989807, 0.891919732093811, 0.6004239320755005, 0.8844450116157532, 0.8357881903648376, 0.9193615317344666, 0.8972625136375427, 0.8050444722175598, 0.7952166199684143, 0.8759915232658386, 0.7302777171134949, 0.7900105118751526, 0.7564188838005066, 0.8643472790718079, 0.6177449226379395, 0.8905670642852783, 0.8265532851219177, 0.7020705938339233, 0.7574390769004822, 0.931549072265625, 0.9218168258666992, 0.8371201157569885, 0.6902348399162292, 0.7573538422584534, 0.8178832530975342, 0.8760772943496704, 0.7699634432792664, 0.8877254724502563, 0.7837446331977844, 0.8254557847976685, 0.9074227213859558, 0.8510820865631104, 0.9228237271308899, 0.8524354100227356, 0.8721180558204651, 0.7934009432792664, 0.840567409992218, 0.8871665596961975, 0.8079280257225037, 0.9128819108009338, 0.8353293538093567, 0.7988277077674866, 0.8555023074150085, 0.8412100076675415, 0.7183606028556824, 0.8812215924263, 0.9024472236633301, 0.8472697734832764, 0.7890039682388306, 0.8379330039024353, 0.8874087929725647, 0.8266869783401489, 0.8796032071113586, 0.800481379032135, 0.9039909243583679, 0.9216014742851257, 0.7762902975082397, 0.8054435849189758, 0.8084357380867004, 0.8240562677383423, 0.9303590655326843, 0.8675872683525085, 0.5482110381126404, 0.7251275181770325, 0.497334748506546, 0.735111653804779, 0.7365432381629944, 0.7759001851081848, 0.8481184840202332, 0.7771238684654236, 0.8002704977989197, 0.5168864130973816, 0.6023792624473572, 0.6762579083442688, 0.6304113268852234, 0.765272319316864, 0.6342454552650452, 0.8194741606712341, 0.8068791627883911, 0.7322984337806702, 0.6680498719215393, 0.7971537709236145, 0.6970349550247192, 0.6693854331970215, 0.7144716382026672, 0.6624493598937988, 0.5448694825172424, 0.8783316016197205, 0.8151680827140808, 0.8904162645339966, 0.7860128283500671, 0.7114920020103455, 0.8346366882324219, 0.8174852132797241, 0.9205880761146545, 0.89078688621521, 0.8946098685264587, 0.8875122666358948, 0.9259656667709351, 0.8179448246955872, 0.867363691329956, 0.8720445036888123, 0.9311575293540955, 0.8065232038497925, 0.8782359957695007, 0.9168118834495544, 0.8939628601074219, 0.7399194836616516, 0.7714056372642517, 0.828976571559906, 0.8735362887382507, 0.9240640997886658, 0.88181072473526, 0.8192997574806213, 0.870919406414032, 0.7770155072212219, 0.9124058485031128, 0.8858523964881897, 0.7756496071815491, 0.7753823399543762, 0.8919234871864319, 0.875087559223175, 0.9256014227867126, 0.9080536961555481, 0.8028525710105896, 0.8718541264533997, 0.9265972971916199, 0.911709725856781, 0.8891779780387878, 0.8969327807426453, 0.923877477645874, 0.8967225551605225, 0.6033633351325989, 0.5634400248527527, 0.8624520301818848, 0.893638551235199, 0.9254807829856873, 0.8570951223373413, 0.8242085576057434, 0.8757168650627136, 0.9032652974128723, 0.9039594531059265, 0.8312028050422668, 0.44865742325782776, 0.9205886125564575, 0.8492820858955383, 0.8633182048797607, 0.8703511357307434, 0.8886697888374329, 0.8373129963874817, 0.9564923048019409, 0.9101858139038086, 0.7476070523262024, 0.84052973985672, 0.8795954585075378, 0.8737720847129822, 0.8192430138587952, 0.8739816546440125, 0.9069820642471313, 0.7520766258239746, 0.838008463382721, 0.8522471785545349, 0.9259419441223145, 0.8795276284217834, 0.7774998545646667, 0.7159056067466736, 0.9284897446632385, 0.8286747932434082, 0.9071634411811829, 0.898584246635437, 0.8714452385902405, 0.8612425923347473, 0.8955602049827576, 0.8801953792572021, 0.9275254607200623, 0.8174473643302917, 0.8783370852470398, 0.7645981907844543, 0.9398027658462524, 0.7872939109802246, 0.8620025515556335, 0.8486843705177307, 0.6341855525970459, 0.843070387840271, 0.6909113526344299, 0.8815481066703796, 0.9422642588615417, 0.7585409283638, 0.6853821277618408, 0.8395578265190125, 0.8704494833946228, 0.8397744297981262, 0.9191479086875916, 0.8389012217521667, 0.8508760333061218, 0.8825744390487671, 0.8287450075149536, 0.882544219493866, 0.868471086025238, 0.7302550673484802, 0.8925060033798218, 0.8299168944358826, 0.8663244247436523, 0.8303508758544922, 0.5535973310470581, 0.6446447372436523, 0.7782561182975769, 0.7533916234970093, 0.7428945899009705, 0.6890407204627991, 0.8767143487930298, 0.8280084729194641, 0.7850876450538635, 0.8894012570381165, 0.7581953406333923, 0.8590610027313232, 0.8568606972694397, 0.9285534024238586, 0.7839307188987732, 0.8740628361701965, 0.9202842116355896, 0.9124112725257874, 0.7881463170051575, 0.7713821530342102, 0.8950305581092834, 0.9121078848838806, 0.8418176770210266, 0.9208414554595947, 0.9141389727592468, 0.9420391321182251, 0.9298691153526306, 0.9276242256164551, 0.8060075640678406, 0.5744211077690125, 0.6698905229568481, 0.8762534856796265, 0.5321365594863892, 0.736869215965271, 0.801466703414917, 0.8561834692955017, 0.8990115523338318, 0.8100324869155884, 0.8579311966896057, 0.8222795128822327, 0.8289263844490051, 0.6127840876579285, 0.7528417110443115, 0.8275182247161865, 0.8909731507301331, 0.8835334181785583, 0.8519068360328674, 0.7966835498809814, 0.8402254581451416, 0.819195568561554, 0.8666292428970337, 0.8047805428504944, 0.8074853420257568, 0.8210218548774719, 0.7554237842559814, 0.693953812122345, 0.8153889775276184, 0.7483153343200684, 0.8370459675788879, 0.8635392785072327, 0.9028553366661072, 0.8343090415000916, 0.4676932394504547, 0.6271569132804871, 0.7884172201156616, 0.8406463265419006, 0.7794510722160339, 0.8532929420471191, 0.8322805762290955, 0.8899970650672913, 0.6889442801475525, 0.7418535351753235, 0.6542326807975769, 0.976678192615509, 0.9314897656440735, 0.9540042281150818, 0.850896954536438, 0.8140748739242554, 0.9009528756141663, 0.857492208480835, 0.8484785556793213, 0.8088623881340027, 0.8370580077171326, 0.8352643847465515, 0.8583434224128723, 0.7626238465309143, 0.8558428883552551, 0.8611100912094116, 0.9064635634422302, 0.8278782963752747, 0.8519971966743469, 0.6973378658294678, 0.8161076903343201, 0.7908094525337219, 0.8150508999824524, 0.8147026896476746, 0.8341901898384094, 0.6944082975387573, 0.8938837647438049, 0.8511165976524353, 0.7806100845336914, 0.9001218676567078, 0.8691990375518799, 0.7725744843482971, 0.8323363065719604, 0.9216628074645996, 0.8631195425987244, 0.7817203402519226, 0.8751690983772278, 0.9250769019126892, 0.5759425163269043, 0.5962347388267517, 0.7195457220077515, 0.8653901815414429, 0.9442735910415649, 0.9183434844017029, 0.8763154745101929, 0.8550480604171753, 0.704169511795044, 0.8967826962471008, 0.6913288235664368, 0.7094166874885559, 0.84080970287323, 0.7852873802185059, 0.8114417195320129, 0.9223183989524841, 0.9170824289321899, 0.852258026599884, 0.47772112488746643, 0.7182349562644958, 0.732530415058136, 0.7376094460487366, 0.7876390218734741, 0.8674365878105164, 0.8902314901351929, 0.8784871697425842, 0.7504842877388, 0.8591687083244324, 0.7547819018363953, 0.743675172328949, 0.6726064085960388, 0.816447913646698, 0.609866738319397, 0.8431205749511719, 0.7587516903877258, 0.7895911335945129, 0.6123208403587341, 0.7398310899734497, 0.7618924975395203, 0.803881049156189, 0.7835943102836609, 0.8618884682655334, 0.796683669090271, 0.5748538970947266, 0.8239237666130066, 0.8457526564598083, 0.836464524269104, 0.9254533052444458, 0.7824241518974304, 0.8694997429847717, 0.9278727173805237, 0.9018703103065491, 0.9227238297462463, 0.836059033870697, 0.7609657049179077, 0.893765389919281, 0.7288889288902283, 0.8588762879371643, 0.8811225891113281, 0.8948785662651062, 0.8166308403015137, 0.8318148255348206, 0.8349469900131226, 0.8521422743797302, 0.9203841686248779, 0.8812125325202942, 0.9010598659515381, 0.8870394229888916, 0.8952645063400269, 0.8985570073127747, 0.9307172298431396, 0.919640839099884, 0.7150449156761169, 0.8928998708724976, 0.8475564122200012, 0.8584676384925842, 0.8876676559448242, 0.9335247278213501, 0.8022143840789795, 0.8672998547554016, 0.7734645009040833, 0.8370566964149475, 0.975021243095398, 0.7025424838066101, 0.8733425736427307, 0.9139799475669861, 0.8986950516700745, 0.7957474589347839, 0.8887453675270081, 0.8277223110198975, 0.6777781844139099, 0.8429567217826843, 0.7549524903297424, 0.7882985472679138, 0.9537388682365417, 0.6776247620582581, 0.7194223403930664, 0.8501916527748108, 0.9759747385978699, 0.6859996914863586, 0.8519774079322815, 0.8164767026901245, 0.846984326839447, 0.9333085417747498, 0.7517669796943665, 0.8356364369392395, 0.8915203213691711, 0.8700787425041199, 0.7550041079521179, 0.8306237459182739, 0.8080480098724365, 0.6791456341743469, 0.8114389777183533, 0.9086647033691406, 0.8984706997871399, 0.8883253931999207, 0.8579607605934143, 0.8835222721099854, 0.5069804191589355, 0.7403753399848938, 0.8919064402580261, 0.8034918904304504, 0.7570818066596985, 0.7960445284843445, 0.7885803580284119, 0.7907835245132446, 0.9166917204856873, 0.8873381018638611, 0.6909405589103699, 0.8778800368309021, 0.9006149172782898, 0.7749517560005188, 0.5015677809715271, 0.8610928058624268, 0.908155620098114, 0.9287216067314148, 0.8885307908058167, 0.8212525844573975, 0.8726432919502258, 0.9256000518798828, 0.8752037286758423, 0.6124880909919739, 0.6075173020362854, 0.8595418930053711, 0.7825905680656433, 0.883459746837616, 0.8826249241828918, 0.7348901629447937, 0.8718674778938293, 0.7319233417510986, 0.8785275816917419, 0.8653910160064697, 0.8699074387550354, 0.9285144805908203, 0.9193913340568542, 0.9332150220870972, 0.9259145855903625, 0.9106393456459045, 0.9151701331138611, 0.9252641201019287, 0.906122088432312, 0.5732214450836182, 0.5227537751197815, 0.8608027100563049, 0.899505078792572, 0.9052397608757019, 0.4706951081752777, 0.7674651145935059, 0.8293413519859314, 0.8090234398841858, 0.9320476651191711, 0.9605540037155151, 0.5948403477668762, 0.8950653076171875, 0.8124457597732544, 0.880115807056427, 0.8741615414619446, 0.7170720100402832, 0.8706290125846863, 0.914374828338623, 0.8617687821388245, 0.9345554709434509, 0.7881590127944946, 0.8239046931266785, 0.8324664235115051, 0.5886158347129822, 0.7827102541923523, 0.6227088570594788, 0.7983540296554565, 0.6757714152336121, 0.792895495891571, 0.8861284852027893, 0.8748258948326111, 0.7529500722885132, 0.7354905605316162, 0.8150538802146912, 0.7297330498695374, 0.8804599046707153, 0.8197107315063477, 0.876696765422821, 0.7142407298088074, 0.7297081351280212, 0.653705894947052, 0.83290034532547, 0.6296062469482422, 0.8419644236564636, 0.6564756035804749, 0.8386868238449097, 0.8401828408241272, 0.9104866981506348, 0.7822824120521545, 0.7527136206626892, 0.8624305129051208, 0.8781636357307434, 0.8703694343566895, 0.8599852919578552, 0.707865297794342, 0.8710049390792847, 0.8604367971420288, 0.7925862669944763, 0.8168454170227051, 0.8334450125694275, 0.8862888216972351, 0.9157189130783081, 0.7900211215019226, 0.9069454669952393, 0.8620899319648743, 0.7578080296516418, 0.8006971478462219, 0.9133090972900391, 0.9302912354469299, 0.9248751997947693, 0.9162240624427795, 0.5349939465522766, 0.8676502704620361, 0.8779993653297424, 0.8983568549156189, 0.640500545501709, 0.7424820065498352, 0.8845648169517517, 0.8028837442398071, 0.3994760513305664, 0.782628059387207, 0.8290729522705078, 0.7095666527748108, 0.6609705090522766, 0.8108095526695251, 0.6391659379005432, 0.6065235137939453, 0.8131462931632996, 0.7501484751701355, 0.7376430630683899, 0.7739337682723999, 0.7754219174385071, 0.7980828881263733, 0.8351797461509705, 0.5290358662605286, 0.8619204163551331, 0.8815630078315735, 0.9165454506874084, 0.8916481733322144, 0.8045831322669983, 0.531143307685852, 0.8754547238349915, 0.6194595694541931, 0.8005921244621277, 0.7676981091499329, 0.8485259413719177, 0.9209985136985779, 0.850232720375061, 0.863677442073822, 0.8117719888687134, 0.5633371472358704, 0.8784371018409729, 0.7762384414672852, 0.8256720304489136, 0.7442771792411804, 0.750954270362854, 0.7870885133743286, 0.8435346484184265, 0.707801342010498, 0.8169799447059631, 0.7868987321853638, 0.8564546704292297, 0.8801619410514832, 0.832436740398407, 0.7524023652076721, 0.8690478801727295, 0.8113108277320862, 0.8117049336433411, 0.8078499436378479, 0.8588785529136658, 0.8044806122779846, 0.7370290160179138, 0.8238635659217834, 0.7030400037765503, 0.8925783634185791, 0.8619163632392883, 0.7719448208808899, 0.8266355395317078, 0.8792799115180969, 0.41417428851127625, 0.941200315952301, 0.8718942999839783, 0.8696374297142029, 0.8932980895042419, 0.9075847864151001, 0.8823364973068237, 0.9124590754508972, 0.8868194222450256, 0.8060001134872437, 0.8269651532173157, 0.8770838379859924, 0.8787423372268677, 0.9516466856002808, 0.9315453767776489, 0.9018355011940002, 0.7251003384590149, 0.5693003535270691, 0.6561883091926575, 0.7120302319526672, 0.8947868943214417, 0.8322491645812988, 0.8757942318916321, 0.9114933609962463, 0.8864430785179138, 0.9037469029426575, 0.9103896021842957, 0.8718928694725037, 0.8478773236274719, 0.9140005111694336, 0.8794147968292236, 0.9326866269111633, 0.7211343050003052, 0.868319034576416, 0.8875533938407898, 0.9401954412460327, 0.8347108364105225, 0.8524665832519531, 0.6404725313186646, 0.7547900080680847, 0.7542507648468018, 0.8862589597702026, 0.8447648882865906, 0.8830627799034119, 0.7969494462013245, 0.9209739565849304, 0.8983873128890991, 0.9061190485954285, 0.907268226146698, 0.7582767605781555, 0.5974211096763611, 0.7517899870872498, 0.8585436940193176, 0.7860314249992371, 0.8060017228126526, 0.6537719368934631, 0.8820891380310059, 0.9400650858879089, 0.6744466423988342, 0.59017413854599, 0.88507080078125, 0.7845607399940491, 0.9264678359031677, 0.774177074432373, 0.8168882727622986, 0.8071052432060242, 0.8221909999847412, 0.8288515210151672, 0.8892974853515625, 0.9161912798881531, 0.8586780428886414, 0.9276301264762878, 0.8843132853507996, 0.8693474531173706, 0.8278310298919678, 0.8887287974357605, 0.8450842499732971, 0.8326734304428101, 0.8256335258483887, 0.8229414224624634, 0.8443881273269653, 0.7438855171203613, 0.8506601452827454, 0.8897866606712341, 0.8983588814735413, 0.8988731503486633, 0.8271040320396423, 0.7529318928718567, 0.8071851134300232, 0.837790310382843, 0.899516761302948, 0.8396386504173279, 0.8566531538963318, 0.8594098091125488, 0.874558687210083, 0.9188088774681091, 0.7798457741737366, 0.6555944681167603, 0.8600149154663086, 0.8286731839179993, 0.9408331513404846, 0.8462833166122437, 0.9099973440170288, 0.8442760109901428, 0.8200357556343079, 0.614043653011322, 0.6980451345443726, 0.7979856133460999, 0.8598595857620239, 0.8722686767578125, 0.7918334007263184, 0.795954167842865, 0.6165180802345276, 0.6331548094749451, 0.7064663171768188, 0.8147403597831726, 0.6983157992362976, 0.6146124601364136, 0.868854284286499, 0.8525918126106262, 0.8435536026954651, 0.8214859366416931, 0.8441008925437927, 0.9161187410354614, 0.9143056273460388, 0.7881602048873901, 0.8718789219856262, 0.7703301310539246, 0.8241072297096252, 0.6604610085487366, 0.9237116575241089, 0.8947098851203918, 0.8394099473953247, 0.7849476337432861, 0.8500226140022278, 0.8881978392601013, 0.9260947108268738, 0.8861997723579407, 0.653681755065918, 0.7193910479545593, 0.7748222351074219, 0.7982571721076965, 0.8509740233421326, 0.8920378088951111, 0.7644249796867371, 0.7650129199028015, 0.7583143711090088, 0.8039759397506714, 0.8176705241203308, 0.8663058876991272, 0.8727532029151917, 0.8309014439582825, 0.8230152130126953, 0.7386994957923889, 0.7688243985176086, 0.8797503113746643, 0.5864657759666443, 0.7948237061500549, 0.8674813508987427, 0.8391640186309814, 0.8954615592956543, 0.857257068157196, 0.8271380662918091, 0.6831308603286743, 0.8988433480262756, 0.8542552590370178, 0.7479639649391174, 0.8448801040649414, 0.7203555703163147, 0.7862650752067566, 0.7084200382232666, 0.790377140045166, 0.8324902653694153, 0.8763691782951355, 0.8382375240325928, 0.9233489632606506, 0.8283117413520813, 0.8383851647377014, 0.766859233379364, 0.8501811623573303, 0.8246660232543945, 0.9234418272972107, 0.9007704854011536, 0.9170988202095032, 0.9066027402877808, 0.8829259872436523, 0.7199328541755676, 0.8707464337348938, 0.8816474080085754, 0.9195602536201477, 0.9135104417800903, 0.9251410365104675, 0.8737494349479675, 0.8740302920341492, 0.887147843837738, 0.7895647287368774, 0.874921977519989, 0.7448837161064148, 0.888456404209137, 0.8015279173851013, 0.9090996384620667, 0.8722205758094788, 0.8174869418144226, 0.9269374012947083, 0.9563831686973572, 0.8322647213935852, 0.6322378516197205, 0.7971646189689636, 0.9219552874565125, 0.9187080264091492, 0.8880446553230286, 0.9260323643684387, 0.9074988961219788, 0.8360872864723206, 0.8673495054244995, 0.8545400500297546, 0.7989606857299805, 0.9113098978996277, 0.8582075238227844, 0.9322791695594788, 0.8808131217956543, 0.8676193356513977, 0.885116457939148, 0.8306965231895447, 0.7761164307594299, 0.8613823056221008, 0.8660491108894348, 0.8580917716026306, 0.8611389994621277, 0.8731862902641296, 0.8301284313201904, 0.9174935817718506, 0.9076830744743347, 0.7954744100570679, 0.9038934111595154, 0.8152039647102356, 0.8038321137428284, 0.838285505771637, 0.8291409015655518, 0.9353877902030945, 0.8162841796875, 0.7632958889007568, 0.4038809835910797, 0.8025879263877869, 0.7446663975715637, 0.768913209438324, 0.6841549277305603, 0.8576898574829102, 0.8659020066261292, 0.7642375826835632, 0.8894957900047302, 0.8024262189865112, 0.8744296431541443, 0.7362751364707947, 0.7205796241760254, 0.8214682936668396, 0.8732159733772278, 0.8349696397781372, 0.8738341927528381, 0.624723494052887, 0.8356220126152039, 0.9001274704933167, 0.805658221244812, 0.8238728642463684, 0.8949447274208069, 0.8547675609588623, 0.9287652969360352, 0.8235034346580505, 0.8616957664489746, 0.9028851389884949, 0.8209224343299866, 0.8747828602790833, 0.8538351058959961, 0.800831139087677, 0.9100525379180908, 0.7655631899833679, 0.8978957533836365, 0.7788664698600769, 0.9122639298439026, 0.8562626242637634, 0.8510420918464661, 0.853884220123291, 0.5426374673843384, 0.7522582411766052, 0.849703848361969, 0.8193639516830444, 0.8829168677330017, 0.8898821473121643, 0.5432154536247253, 0.9301838874816895, 0.8858112692832947, 0.899973452091217, 0.8175998330116272, 0.8896792531013489, 0.891262412071228, 0.873873770236969, 0.846940815448761, 0.8644943237304688, 0.8903794884681702, 0.8947224020957947, 0.7755234837532043, 0.7464640736579895, 0.8869509100914001, 0.757651686668396, 0.8819254636764526, 0.8951604962348938, 0.7956356406211853, 0.8219475746154785, 0.8218833804130554, 0.6856656074523926, 0.8713706731796265, 0.8709787130355835, 0.8891693353652954, 0.7249045968055725, 0.8240935802459717, 0.8312518000602722, 0.8814249634742737, 0.7230302691459656, 0.7698941826820374, 0.8231469988822937, 0.8849908709526062, 0.8990625739097595, 0.9164726138114929, 0.6405050754547119, 0.9108057022094727, 0.6624419093132019, 0.8074090480804443, 0.7629284858703613, 0.7582636475563049, 0.8066591024398804, 0.8438515067100525, 0.8159242272377014, 0.8638390898704529, 0.8062708973884583, 0.911651611328125, 0.80194157361: 100%|██████████| 250/250 [00:08<00:00, 28.05it/s]
+98425, 0.8809738755226135, 0.7152308821678162, 0.5982750058174133, 0.9035605788230896, 0.8883054256439209, 0.8555975556373596, 0.9467352032661438, 0.9250046610832214, 0.9122616648674011, 0.8586887121200562, 0.7942580580711365, 0.9240120649337769, 0.8964813947677612, 0.9329087138175964, 0.9255062341690063, 0.90644371509552, 0.8630171418190002, 0.8481192588806152, 0.8786810636520386, 0.8498738408088684, 0.9245395064353943, 0.8990833163261414, 0.6182836890220642]), ('system_score', 0.8208533276319504)])
+Average COMET score: 0.8208533276319504
+****************************************************************************************************
+
+BLEU on WMT22-Test: 21.516752361098693
+
+model: haoranxu/ALMA-7B
+prune_method: wanda
+without_DSnoT: False
+initial_method: wanda
+skip_layer mlp, skip_sub_layer no_skip
+max_cycle_time: 50, update_threshold: 0.1
+pow_of_var_pruning:1, pow_of_var_regrowing:1.0
+without_same_sign:True
+sparse pattern: unstructured
+sample: 512
+sparsity sanity check 0.3999, ppl: 21.516752361098693
+
+
+
+JOB STATISTICS
+==============
+Job ID: 8163529
+Cluster: snellius
+User/Group: scur1762/scur1762
+State: COMPLETED (exit code 0)
+Nodes: 1
+Cores per node: 32
+CPU Utilized: 00:17:41
+CPU Efficiency: 3.09% of 09:32:48 core-walltime
+Job Wall-clock time: 00:17:54
+Memory Utilized: 5.69 GB
+Memory Efficiency: 3.16% of 180.00 GB
