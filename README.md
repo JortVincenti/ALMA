@@ -24,11 +24,6 @@ cd DSnoT
 ### Install Environment
 Use the environment.yaml file
 
-### Install Git LFS from source (needed to store the weights in the sratch directory)
-```bash
-
-```
-
 ## Running DSnoT
 ```bash
 sbatch run_method.job
