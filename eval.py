@@ -1,13 +1,21 @@
 import argparse
 import torch
 # from peft import PeftModel
-from transformers import AutoModelForCausalLM, LlamaTokenizer
+from transformers import AutoModelForCausalLM, LlamaTokenizer, GPTQConfig
+from auto_gptq import AutoGPTQForCausalLM, BaseQuantizeConfig
 from tqdm import tqdm 
 import pandas as pd
 import sacrebleu
 from rouge_score import rouge_scorer
 import numpy as np
 from comet import download_model, load_from_checkpoint
+from optimum.gptq import GPTQQuantizer, load_quantized_model
+from accelerate import init_empty_weights
+
+from typing import List
+import pandas as pd
+import random
+from datasets import Dataset
 
 import os
 os.environ["PROTOCOL_BUFFERS_PYTHON_IMPLEMENTATION"] = "python"
@@ -25,6 +33,8 @@ def get_parser():
     parser.add_argument('--gen_max_tokens', type=int, default=512)
     parser.add_argument('--batch_size', type=int, default=8, help='Batch size for generation')
     parser.add_argument('--eval_samples', type=int, required=False)
+    parser.add_argument('--gptq', type=str, required=False, default=False)
+    parser.add_argument('--autogptq', type=str, required=False, default=False)
     return parser
 
 LANG_MAP = {
@@ -46,6 +56,71 @@ def print_model_size(model):
 
     size_all_mb = (param_size + buffer_size) / 1024**2
     return size_all_mb
+
+
+
+def get_alma(nsamples: int, seed: int, seqlen: int, source_lang: str, target_lang: str) -> List[str]:
+    # Define all language directions
+    full_alma_splits = {
+        'train': {
+            'cs-en': 'cs-en/train-00000-of-00001-3a60b130a713425b.parquet',
+            'de-en': 'de-en/train-00000-of-00001-39460826cd7ac756.parquet',
+            'ru-en': 'ru-en/train-00000-of-00001-3ba3fad04eea46f0.parquet',
+            'zh-en': 'zh-en/train-00000-of-00001-6bd744feceb30dbf.parquet'
+        }
+    }
+
+    LANG_MAP = {
+        'cs': 'Czech', 'de': 'German', 'en': 'English', 'ru': 'Russian', 'zh': 'Chinese'
+    }
+   
+    # Set seed for reproducibility
+    random.seed(seed)
+
+    all_prompts = []
+
+    # Iterate over all language directions
+    for lang_pair, file_path in full_alma_splits['train'].items():
+        print(f"Loading dataset for {lang_pair}")
+
+        # Load train split
+        train_split_path = f"hf://datasets/haoranxu/ALMA-Human-Parallel/{file_path}"
+        print("Train link: ", train_split_path)
+        train_df = pd.read_parquet(train_split_path)
+
+        # Convert DataFrame to Hugging Face Dataset
+        traindata = Dataset.from_pandas(train_df)
+
+        src_lang, tgt_lang = lang_pair.split('-')
+
+        # Sample from the dataset
+        sampled_data = traindata.shuffle(seed=seed).select(range(min(nsamples, len(traindata))))
+
+        # Create prompts
+        for example in sampled_data:
+            source_text = example['translation'][src_lang]
+            prompt = (
+                f"Translate this from {LANG_MAP[src_lang]} to {LANG_MAP[tgt_lang]}:\n"
+                f"{LANG_MAP[src_lang]}: {source_text}\n"
+                f"{LANG_MAP[tgt_lang]}:"
+            )
+            
+            # Only add prompts that don't exceed the seqlen
+            if len(prompt.split()) <= seqlen:
+                all_prompts.append(prompt)
+            # print('all_prompts', all_prompts)
+
+    # Shuffle the combined prompts
+    random.shuffle(all_prompts)
+    
+    # Limit to nsamples if we have more
+    return all_prompts[:nsamples]
+
+def get_loaders_alma(name, nsamples=128, seed=0, seqlen=2048, tokenizer=None, source_lang="cs", target_lang="en"):
+    if "parallel" in name:
+        return get_alma(nsamples, seed, seqlen, source_lang, target_lang)
+        
+ 
 
 def dynamic_batching(tokenizer, texts, batch_size, max_length):
     """
@@ -76,12 +151,51 @@ def main():
     dtype_map = {'bfloat16': torch.bfloat16, 'float16': torch.float16, 'float32': torch.float32}
     dtype = dtype_map.get(args.dtype, torch.float)
 
-    model = AutoModelForCausalLM.from_pretrained(args.model, 
-                                                 torch_dtype=dtype, 
-                                                 device_map="auto",
-                                                 offload_folder="./offload"
-                                                 )
+    if args.gptq and not args.autogptq:
+        
+        # with init_empty_weights():
+
+        #     model_name='haoranxu/ALMA-7B'
+        #     empty_model = AutoModelForCausalLM.from_pretrained(model_name, torch_dtype=dtype)
+
+        # empty_model.tie_weights()
+        # model = load_quantized_model(empty_model, save_folder=args.model, device_map="auto")
+
+        # temp = args.model.split('checkpoint_')[1]
+        # bits = int(temp.split('bits')[0])
+        print('Using cuda fp16')
+        bits=4
+
+        tokenizer = LlamaTokenizer.from_pretrained(args.tokenizer)
+
+        dataset = get_loaders_alma(
+            "parallel",
+            nsamples=512, 
+            seed=0, 
+            seqlen=2048, 
+            tokenizer=tokenizer,
+            source_lang='en',
+            target_lang='de'
+        )
+
+        gptq_config = GPTQConfig(bits=bits, dataset=dataset, tokenizer=tokenizer, use_cuda_fp16=True)
+        model = AutoModelForCausalLM.from_pretrained(args.model,
+                                                     torch_dtype=dtype,  
+                                                     device_map="auto", 
+                                                     quantization_config=gptq_config)
     
+    if args.gptq and args.autogptq:
+        # load quantized model to the first GPU
+        model = AutoGPTQForCausalLM.from_quantized(args.model, device="cuda:0")
+
+
+    else:
+        model = AutoModelForCausalLM.from_pretrained(args.model, 
+                                                    torch_dtype=dtype, 
+                                                    device_map="auto",
+                                                    offload_folder="./offload"
+                                                    )
+        
     size_all_mb = print_model_size(model)
     # if "state_dict" in checkpoint:
     #     model_scorer.load_state_dict(checkpoint["state_dict"])

@@ -29,3 +29,11 @@ sbatch run_method.job
 ```bash
 sbatch run_eval.job
 ```
+## GPTQ quantization on ALMA 
+[GPTQ Repository for ALMA Quantization](https://github.com/MatteoNulli/gptq)
+
+## Getting the Evaluation Result for the GPTQ-like pruned ALMA-7B
+```bash
+cd scripts_gptq
+bash launch_eval_pair-gptq.sh
+```

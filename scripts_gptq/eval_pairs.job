@@ -1,0 +1,24 @@
+#!/bin/bash 
+
+#SBATCH --partition=gpu
+#SBATCH --gpus=1
+#SBATCH --gpus-per-node=1
+#SBATCH --ntasks=1
+#SBATCH --cpus-per-task=18
+#SBATCH --time=10:00:00
+#SBATCH --output=/home/scur1753/ALMA_prev/7b_4bit-alma-calibration-2/%x-%j.out
+
+# entire script fails if a single command fails
+set -e
+
+
+module purge
+module load 2022
+module load Mamba/4.14.0-0
+module load CUDA/11.8.0
+
+cd $HOME/ALMA
+
+source activate .env/
+
+python eval.py "$@"
