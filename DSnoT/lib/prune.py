@@ -92,14 +92,16 @@ def prepare_calibration_input(args, model, dataloader, device):
             attention_mask = kwargs.get("attention_mask", None)
             if attention_mask is not None:
                 # Ensure attention_mask is reshaped to 4D before expanding
-                if attention_mask.dim() == 3:
-                    attention_mask = attention_mask.unsqueeze(1)  # Add extra dimension to make it 4D
-
+                if attention_mask.dim() == 2:
+                    attention_mask = attention_mask.unsqueeze(1).unsqueeze(2)  # Add extra dimension to make it 4D
+                # Ensure attention_mask is padded and reshaped to match model.seqlen
+                # attention_mask = torch.nn.functional.pad(attention_mask, (0, model.seqlen - attention_mask.size(-1)), value=0)
+                attention_mask = torch.nn.functional.pad(attention_mask, (0, model.seqlen - attention_mask.size(-1), 0, model.seqlen - attention_mask.size(-2)), value=0)
                 # Ensure attention_mask is padded and reshaped to the expected size (1, 1, 2048, 2048)
-                if attention_mask.size(-1) < model.seqlen:
-                    attention_mask = torch.nn.functional.pad(attention_mask, (0, model.seqlen - attention_mask.size(-1), 0, model.seqlen - attention_mask.size(-2)), value=0)
+                # if attention_mask.size(-1) < model.seqlen:
+                #     attention_mask = torch.nn.functional.pad(attention_mask, (0, model.seqlen - attention_mask.size(-1), 0, model.seqlen - attention_mask.size(-2)), value=0)
 
-                attention_mask = attention_mask.expand(-1, 1, model.seqlen, model.seqlen)
+                # attention_mask = attention_mask.expand(-1, 1, model.seqlen, model.seqlen)
 
             else:
                 print("attention_mask is None")
@@ -112,6 +114,10 @@ def prepare_calibration_input(args, model, dataloader, device):
             # print(f"attention_mask shape: {attention_mask.size()}")
             # print(f"inps shape: {inps.size()}")
             # print(f"position_ids shape: {position_ids.size()}")
+            
+            # Ensure the cache index doesn't exceed the allocated number of samples
+            if cache["i"] >= args.nsamples:
+                raise ValueError(f"Cache index {cache['i']} exceeds allocated sample size {args.nsamples}.")
 
             inps[cache["i"]] = inp
             cache["i"] += 1
@@ -219,7 +225,7 @@ def prune_magnitude(
         save_time_result(args, args.output_results_file, total_time)
 
 def prune_wanda(args, model, tokenizer, device=torch.device("cuda:0"), prune_n=0, prune_m=0):
-    
+
     use_cache = model.config.use_cache
     model.config.use_cache = False
 
@@ -283,7 +289,7 @@ def prune_wanda(args, model, tokenizer, device=torch.device("cuda:0"), prune_n=0
 
         # Pruning logic
         for name in subset:
-            print(f"Pruning layer {i} name {name}")
+            print(f"Wanda pruning layer {i} name {name}")
             start_time = time.time()
 
             # W_metric = torch.abs(W) * torch.sqrt(wrapped_layers[name].scaler_row.reshape((1, -1)))
@@ -556,9 +562,6 @@ def prune_DSnoT(args, model, tokenizer, device=torch.device("cuda:0"), prune_n=0
     use_cache = model.config.use_cache
     model.config.use_cache = False
 
-    # dataloader, _ = get_loaders(
-    #     "c4", nsamples=args.nsamples, seed=args.seed, seqlen=2048, tokenizer=tokenizer
-    # )
     print("Loading calibration data...")
     # Load the ALMA-Human-Parallel dataset using get_alma
     dataloader, _ = get_loaders(
@@ -570,15 +573,19 @@ def prune_DSnoT(args, model, tokenizer, device=torch.device("cuda:0"), prune_n=0
         source_lang=args.source_lang,
         target_lang=args.target_lang
     )
-    print("dataset loading complete")
+    print("dataset loading for DSnoT complete")
 
+    # STEP 1: Preparation of Calibration Data
     with torch.no_grad():
         inps, outs, attention_mask, position_ids = prepare_calibration_input(
             args, model, dataloader, device
         )
 
     total_time = 0
-    layers = model.layers  # Adjusted for ALMA
+    layers = model.model.layers  
+
+    # STEP 2: Layer-wise Pruning
+    #  For each layer, a weight pruning mask is created based on a DSnoT-specific metric. The metric is dynamically updated in multiple cycles.
     for i in range(len(layers)):
         layer = layers[i]
         subset = find_layers(layer)
@@ -595,11 +602,11 @@ def prune_DSnoT(args, model, tokenizer, device=torch.device("cuda:0"), prune_n=0
 
         wrapped_layers = {}
         for name in subset:
-            # wrapped_layers[name] = WrappedGPT(
-            #     subset[name],
-            #     initial_method=args.initial_method
-            # )
-            wrapped_layers[name] = WrappedGPT(subset[name])
+            wrapped_layers[name] = WrappedGPT(
+                subset[name],
+                initial_method=args.initial_method
+            )
+            # wrapped_layers[name] = WrappedGPT(subset[name])
 
         def add_batch(name):
             def tmp(_, inp, out):
@@ -620,44 +627,23 @@ def prune_DSnoT(args, model, tokenizer, device=torch.device("cuda:0"), prune_n=0
             h.remove()
 
         for name in subset:
-            print(f"pruning layer {i} name {name}")
+            print(f"DSnoT pruning layer {i} name {name}")
             start_time = time.time()
 
+            # STEP 3: DSnoT Metric Calculation
+            # This metric reflects both the weight magnitudes and additional structural or statistical information gathered during training.
             DSnoT_metric = subset[name].weight.data * wrapped_layers[name].sum_metric_row.reshape((1, -1))
 
+            # STEP 4: Initial Pruning
             if args.initial_method == "wanda":
                 initial_metric = torch.abs(subset[name].weight.data) * torch.sqrt(
                     wrapped_layers[name].scaler_row.reshape((1, -1))
                 )
-            elif args.initial_method == "magnitude":
-                initial_metric = torch.abs(subset[name].weight.data)
-            elif args.initial_method == "sparsegpt":
-                W = subset[name].weight.data.clone()
-                if isinstance(subset[name], nn.Conv2d):
-                    W = W.flatten(1)
-                if isinstance(subset[name], transformers.Conv1D):
-                    W = W.t()
-                W = W.float()
-
-                H = wrapped_layers[name].H
-                # del wrapped_layers[name].H
-                dead = torch.diag(H) == 0
-                H[dead, dead] = 1
-                W[:, dead] = 0
-
-                percdamp = 0.01
-                damp = percdamp * torch.mean(torch.diag(H))
-                diag = torch.arange(
-                    wrapped_layers[name].columns, device=wrapped_layers[name].dev
-                )
-                H[diag, diag] += damp
-                H = torch.linalg.cholesky(H)
-                H = torch.cholesky_inverse(H)
-                H = torch.linalg.cholesky(H, upper=True)
-                Hinv = H
-
-                initial_metric = W**2 / (torch.diag(Hinv).reshape((1, -1))) ** 2
-
+         
+            # STEP 5: Masking and Pruning
+            #  Weights are dynamically masked based on the initial metric, creating a weight mask (weight_mask) that determines which weights to zero out.
+            #  -- Weights are pruned if their importance (based on the metric) is lower
+            #  -- Some weights may be regrown if pruning would cause too much error in the network
             weight_mask = torch.zeros_like(initial_metric) == 1
 
             if prune_n != 0:
@@ -777,6 +763,7 @@ def prune_DSnoT(args, model, tokenizer, device=torch.device("cuda:0"), prune_n=0
                         pruning_metric = DSnoT_metric.gather( 1, pruning_indice.to(torch.int64) )
                         
 
+                        # STEP 6: Dynamic Regrowing (Reconstruction Error Handling)
                         reconstruction_error_after = ( reconstruction_error + pruning_metric - regrowing_metric )
 
                         update_mask = (update_mask & ( initialize_error_sign == torch.sign(reconstruction_error_after) ) & ( abs(reconstruction_error) > args.update_threshold))
@@ -994,7 +981,8 @@ def prune_DSnoT(args, model, tokenizer, device=torch.device("cuda:0"), prune_n=0
                             torch.zeros_like(regrowing_metric),
                         )
 
-            
+            # STEP 7: Final Pruning
+            # Once the dynamic regrowing process completes, the masked weights are zeroed out
             subset[name].weight.data[weight_mask] = 0
 
             end_time = time.time()
@@ -1009,6 +997,7 @@ def prune_DSnoT(args, model, tokenizer, device=torch.device("cuda:0"), prune_n=0
                 )[0]
         inps, outs = outs, inps
 
+    # STEP 8: Time Overhead and Cleanup
     if args.get_time_overhead:
         save_time_result(args, args.output_results_file, total_time)
 

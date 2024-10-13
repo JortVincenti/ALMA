@@ -39,6 +39,7 @@ def get_wikitext2(nsamples, seed, seqlen, tokenizer):
         trainloader.append((inp, tar))
     return trainloader, testenc
 
+
 LANG_MAP = {
     'en': 'English',
     'de': 'German',
@@ -192,25 +193,107 @@ def get_alma(nsamples, seed, seqlen, tokenizer, source_lang, target_lang):
     return trainloader, valenc
 
 
-
-# def get_alma_test(seqlen, tokenizer, source_lang, target_lang):
-#     import pandas as pd
+# # HALF DATASET
+# def get_alma(nsamples, seed, seqlen, tokenizer, source_lang, target_lang):
 #     from datasets import Dataset
+#     import pandas as pd
+#     import random
 
-#     # Load ALMA test dataset
-#     test_df = pd.read_parquet("hf://datasets/haoranxu/WMT22-Test/cs-en/test-00000-of-00001-1a83a591805d9178.parquet")
+#     # Define all language directions
+#     full_alma_splits = {
+#         'train': {
+#             'cs-en': 'cs-en/train-00000-of-00001-3a60b130a713425b.parquet', # ok
+#             'de-en': 'de-en/train-00000-of-00001-39460826cd7ac756.parquet', # ok 
+#             'ru-en': 'ru-en/train-00000-of-00001-3ba3fad04eea46f0.parquet', # ok
+#             'zh-en': 'zh-en/train-00000-of-00001-6bd744feceb30dbf.parquet'  # ok
+#         },
+#         'validation': {
+#             'cs-en': 'cs-en/validation-00000-of-00001-d1f9a3fc339fbc84.parquet', # ok
+#             'de-en': 'de-en/validation-00000-of-00001-34198d3f975c1787.parquet', # ok
+#             'ru-en': 'ru-en/validation-00000-of-00001-e9c97fe731036b74.parquet', # ok
+#             'zh-en': 'zh-en/validation-00000-of-00001-d1cc83e30e3dcdb2.parquet'  # ok
+#         }
+#     }
 
-#     # Convert the Pandas DataFrame back into a Hugging Face Dataset
-#     testdata = Dataset.from_pandas(test_df)
+#     # Set seed for reproducibility
+#     random.seed(seed)
 
-#     # Prepare test data: Join source texts into a single string and tokenize
-#     source_texts = [entry['translation'][source_lang] for entry in testdata]
-#     joined_source_text = ' '.join(source_texts)
+#     # Prepare the data loader
+#     trainloader = []
+#     all_validation_texts = []
 
-#     # Tokenize the test data
-#     testenc = tokenizer(joined_source_text, return_tensors='pt', max_length=seqlen, truncation=True)
+#     # Iterate over all language directions
+#     for lang_pair in full_alma_splits['train'].keys():
+#         print(f"Loading dataset for {lang_pair}")
 
-#     return testenc
+#         # Load train and validation splits
+#         train_split_path = f"hf://datasets/haoranxu/ALMA-Human-Parallel/{full_alma_splits['train'][lang_pair]}"
+#         train_df = pd.read_parquet(train_split_path)
+
+#         val_split_path = f"hf://datasets/haoranxu/ALMA-Human-Parallel/{full_alma_splits['validation'][lang_pair]}"
+#         val_df = pd.read_parquet(val_split_path)
+#         valdata = Dataset.from_pandas(val_df)
+
+#         # Convert DataFrames to Hugging Face Dataset
+#         traindata = Dataset.from_pandas(train_df)
+#         valdata = Dataset.from_pandas(val_df)
+
+#         source_lang, target_lang = lang_pair.split('-')
+
+#         # Sample data for training with prompt
+#         for _ in range(nsamples):
+#             while True:
+#                 i = random.randint(0, len(traindata) - 1)
+#                 translations = traindata[i]['translation']
+#                 source_text = translations.get(source_lang)
+#                 target_text = translations.get(target_lang)
+
+#                 if source_text is None or target_text is None:
+#                     continue  # Skip this entry if either source or target text is missing
+
+#                 # Construct the prompt for the original direction
+#                 prompt = (
+#                     f"Translate this from {LANG_MAP[source_lang]} to {LANG_MAP[target_lang]}:\n"
+#                     f"{LANG_MAP[source_lang]}: {source_text}\n"
+#                     f"{LANG_MAP[target_lang]}:"
+#                 )
+
+#                 # Tokenize the prompt and the target sequence
+#                 source_enc = tokenizer(prompt, return_tensors='pt', max_length=seqlen, truncation=True)
+#                 target_enc = tokenizer(target_text, return_tensors='pt', max_length=seqlen, truncation=True)
+
+#                 if source_enc.input_ids.shape[1] <= seqlen:
+#                     break
+
+#             # Append the tokenized prompt to the input and target sequences
+#             inp = source_enc.input_ids
+#             tar = target_enc.input_ids.clone()
+#             trainloader.append((inp, tar))
+        
+#         # Collect validation data
+#         source_texts = [entry['translation'][source_lang] for entry in valdata if 'translation' in entry]
+#         all_validation_texts.extend(source_texts)
+
+#     # Join all validation texts from multiple languages
+#     joined_source_text = ' '.join(all_validation_texts)
+
+#     # Tokenize validation data
+#     valenc = tokenizer(
+#         joined_source_text,
+#         return_tensors='pt', 
+#         max_length=(256 * seqlen), 
+#         truncation=True
+#     )
+#     valenc = valenc.input_ids[:, :(256 * seqlen)]
+
+#     if valenc is None:
+#         raise ValueError("Validation data could not be processed properly.")
+
+#     # Wrap validation data for compatibility
+#     valenc = TokenizerWrapper(valenc)
+
+#     return trainloader, valenc
+
 
 # Load and process c4 dataset
 def get_c4(nsamples, seed, seqlen, tokenizer):
